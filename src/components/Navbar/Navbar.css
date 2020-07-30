@@ -1,0 +1,5 @@
+.nav {
+  grid-area: nav;
+  width: 100px;
+  background-color: #eb5251;
+}

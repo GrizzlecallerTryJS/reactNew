@@ -8,25 +8,26 @@
   /* grid-gap: ; */
 }
 
-.header {
+/* .header {
   grid-area: header;
   background-color: #94ae99;
 }
 
 .header img {
   width: 40px;
-}
+} */
 
-.nav {
+/* .nav {
   grid-area: nav;
   width: 100px;
   background-color: #eb5251;
-}
+} */
 
-.content {
+/* .content {
   grid-area: content;
   background-color: #f2eecf;
 }
 .avatar img {
   width: 100px;
 }
+ */
