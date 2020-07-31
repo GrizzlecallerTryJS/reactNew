@@ -10,8 +10,12 @@ const Post = (props) => {
           alt='post avatar'
         />
         <div className={styles.post_sugar}>
-          <div>{props.message}</div>
-          <span>!*Like_Button*!</span>
+          <div>
+            {props.message} (Likes {props.likeCount})
+          </div>
+          <span>
+            <button>push to like</button>
+          </span>
         </div>
       </div>
     </div>
