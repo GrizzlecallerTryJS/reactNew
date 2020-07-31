@@ -16,10 +16,8 @@ const MyPosts = () => {
         <div>Post_1</div>
         <div>Post_2</div>
       </div> */}
-      <Post />
-      <Post />
-      <Post />
-      <Post />
+      <Post message='Hi' />
+      <Post message='Boop' />
     </div>
   );
 };

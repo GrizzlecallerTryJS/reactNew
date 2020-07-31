@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Post.module.css';
 
-const Post = () => {
+const Post = (props) => {
   return (
     <div className={styles.post_global}>
       <div className={styles.post_avatar_image}>
@@ -10,7 +10,7 @@ const Post = () => {
           alt='post avatar'
         />
         <div className={styles.post_sugar}>
-          <div>Post_1</div>
+          <div>{props.message}</div>
           <span>!*Like_Button*!</span>
         </div>
       </div>
