@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Profile.module.css';
+import MyPosts from './MyPosts/MyPosts';
 
 const Profile = () => {
   return (
@@ -11,17 +12,17 @@ const Profile = () => {
         />
       </div>
       <div>
-        ava + description
         <div className={styles.avatar}>
           <img src='https://imgur.com/I80W1Q0.png' alt='avatar' />
+          <div>------------------</div>
+          <div>DESCRIPTION</div>
+          <div>------------------</div>
         </div>
       </div>
       <div>
-        <div>Main Content</div>
-        <div className={styles.posts}>
-          <div>My posts</div>
-          <div>New Post</div>
-        </div>
+        <div>MAIN CONTENT BELOW</div>
+        <div>------------------</div>
+        <MyPosts />
       </div>
     </div>
   );
