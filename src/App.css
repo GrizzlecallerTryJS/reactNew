@@ -20,6 +20,7 @@
 .app_wrapper_navbar {
   grid-area: nav;
   width: 100px;
+  padding: 20px;
   background-color: #eb5251;
 }
 

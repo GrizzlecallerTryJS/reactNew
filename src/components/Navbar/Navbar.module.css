@@ -1,9 +1,8 @@
-/* .nav {
-  grid-area: nav;
-  width: 100px;
-  background-color: #eb5251;
-} */
-
-.item {
+.item a {
   color: #f1ecde;
+  text-decoration: none;
+}
+
+.item a.activeLink {
+  color: #6e638b;
 }
