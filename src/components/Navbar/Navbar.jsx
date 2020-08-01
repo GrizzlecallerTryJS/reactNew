@@ -7,14 +7,24 @@ const Navbar = () => {
       <div>
         <p />
       </div>
-      <div className={styles.item}>Profile</div>
-      <div className={styles.item}>Messages</div>
-      <div className={styles.item}>News</div>
-      <div className={styles.item}>Music</div>
+      <div className={styles.item}>
+        <a href='/profile'>Profile</a>
+      </div>
+      <div className={styles.item}>
+        <a href='/messages'>Messages</a>
+      </div>
+      <div className={styles.item}>
+        <a href='/news'>News</a>
+      </div>
+      <div className={styles.item}>
+        <a href='/music'>Music</a>
+      </div>
       <div>
         <p />
       </div>
-      <div className={styles.item}>Settings</div>
+      <div className={styles.item}>
+        <a href='/settings'>Settings</a>
+      </div>
     </nav>
   );
 };
