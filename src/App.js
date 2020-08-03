@@ -23,7 +23,7 @@ const App = () => {
           <Route path='/profile' component={Profile} />
           <div className='app_wrapper_dialogs'>
             {/* так сделано что бы в итоге не путать адрес и компоненту */}
-            <Route path='/messages' component={Dialogs} />
+            <Route exact path='/messages' component={Dialogs} />
             <Route path='/news' component={News} />
             <Route path='/music' component={Music} />
             <Route path='/settings' component={Settings} />

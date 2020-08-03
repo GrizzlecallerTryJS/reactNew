@@ -4,12 +4,17 @@
 }
 .dialogs_items {
   padding: 5px;
+  color: rgba(0, 0, 0, .5);
+  text-decoration: none;
+  font-size: 14px;
 }
 .dialog {
   padding: 5px;
+  text-decoration: none;
 }
 .dialogs_messages {
   padding: 5px;
+  font-size: 14px;
 }
 .message {
   padding: 5px;
