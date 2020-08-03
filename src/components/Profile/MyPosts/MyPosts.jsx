@@ -4,16 +4,26 @@ import Post from './Post/Post';
 
 const MyPosts = () => {
   return (
-    <div className={styles.posts}>
-      <div>MyPosts component below</div>
-      <div>----------</div>
-      <div>New Post</div>
+    <div>
       <div>
-        <textarea>Input here</textarea>
-        <button>add post</button>
+        <div>MyPosts component below</div>
+        <div>----------</div>
+        <div>
+          <h2>My Post</h2>
+        </div>
       </div>
-      <Post message='Hi' likeCount={'15'} />
-      <Post message='Boop' likeCount={'20'} />
+      <div className={styles.text_area}>
+        <div>
+          <textarea>Input here</textarea>
+        </div>
+        <div>
+          <button>add post</button>
+        </div>
+      </div>
+      <div className={styles.posts}>
+        <Post message='Hi' likeCount={'15'} />
+        <Post message='Boop' likeCount={'20'} />
+      </div>
     </div>
   );
 };
