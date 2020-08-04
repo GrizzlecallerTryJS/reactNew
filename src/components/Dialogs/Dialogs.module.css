@@ -4,9 +4,11 @@
 }
 .dialogs_items {
   padding: 5px;
-  color: rgba(0, 0, 0, .5);
-  text-decoration: none;
   font-size: 14px;
+}
+.dialogs_items a {
+  text-decoration: none;
+  color: #1c1f06;
 }
 .dialog {
   padding: 5px;

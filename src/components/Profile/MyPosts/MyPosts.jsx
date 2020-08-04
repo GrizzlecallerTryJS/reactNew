@@ -13,6 +13,10 @@ const MyPosts = () => {
     { id: 7, message: 'ROBOT', likeCount: 20 },
   ];
 
+  const PostMap = postData.map((post) => {
+    return <Post id={post.id} message={post.message} likeCount={post.likeCount} />;
+  });
+
   return (
     <div>
       <div>
@@ -30,15 +34,7 @@ const MyPosts = () => {
           <button>add post</button>
         </div>
       </div>
-      <div className={styles.posts}>
-        <Post id={postData[0].id} message={postData[0].message} likeCount={postData[0].likeCount} />
-        <Post id={postData[1].id} message={postData[1].message} likeCount={postData[1].likeCount} />
-        <Post id={postData[2].id} message={postData[2].message} likeCount={postData[2].likeCount} />
-        <Post id={postData[3].id} message={postData[3].message} likeCount={postData[3].likeCount} />
-        <Post id={postData[4].id} message={postData[4].message} likeCount={postData[4].likeCount} />
-        <Post id={postData[5].id} message={postData[5].message} likeCount={postData[5].likeCount} />
-        <Post id={postData[6].id} message={postData[6].message} likeCount={postData[6].likeCount} />
-      </div>
+      <div className={styles.posts}>{PostMap}</div>
     </div>
   );
 };
