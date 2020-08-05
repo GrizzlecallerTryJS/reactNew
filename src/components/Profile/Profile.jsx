@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <Fragment>
       <ProfileInfo />
@@ -12,7 +12,7 @@ const Profile = () => {
         <div>------------------</div>
       </div>
       <Fragment>
-        <MyPosts />
+        <MyPosts postData={props.postData} />
       </Fragment>
     </Fragment>
   );

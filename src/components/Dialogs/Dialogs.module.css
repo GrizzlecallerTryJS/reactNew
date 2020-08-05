@@ -10,14 +10,8 @@
   text-decoration: none;
   color: #1c1f06;
 }
-.dialog {
-  padding: 5px;
-  text-decoration: none;
-}
+
 .dialogs_messages {
   padding: 5px;
   font-size: 14px;
-}
-.message {
-  padding: 5px;
 }
