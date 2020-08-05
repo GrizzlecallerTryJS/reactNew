@@ -36,15 +36,15 @@ let postData = [
   { id: 7, message: 'ROBOT', likeCount: 20 },
 ];
 
+const dialogsCaller = () => {
+  return <Dialogs dialogsData={dialogsData} messagesData={messagesData} />;
+};
+
+const profileCaller = () => {
+  return <Profile postData={postData} />;
+};
+
 const App = () => {
-  const dialogsCaller = () => {
-    return <Dialogs dialogsData={dialogsData} messagesData={messagesData} />;
-  };
-
-  const profileCaller = () => {
-    return <Profile postData={postData} />;
-  };
-
   return (
     <BrowserRouter>
       <div className='app_wrapper'>
@@ -55,10 +55,10 @@ const App = () => {
           <Navbar />
         </div>
         <div className='app_wrapper_content'>
-          <Route path='/profile' component={profileCaller} />
+          <Route path='/profile' render={profileCaller} />
           <div className='app_wrapper_dialogs'>
             {/* так сделано что бы в итоге не путать адрес и компоненту */}
-            <Route exact path='/messages' component={dialogsCaller} />
+            <Route exact path='/messages' render={dialogsCaller} />
           </div>
           <Route path='/news' component={News} />
           <Route path='/music' component={Music} />
