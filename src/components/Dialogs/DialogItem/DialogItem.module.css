@@ -1,3 +1,8 @@
 .dialog {
   padding: 5px;
 }
+
+.dialog_avatar_image img {
+  width: 50px;
+  border-radius: 25px;
+}

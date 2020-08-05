@@ -1,40 +1,14 @@
 import React from 'react';
 import styles from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
+import NavbarItems from './NavbarItems/NavbarItems';
 
-const Navbar = () => {
-  return (
-    <nav>
-      <div className={styles.item}>
-        <NavLink to='/profile' activeClassName={styles.activeLink}>
-          Profile
-        </NavLink>
-      </div>
-      <div className={styles.item}>
-        <NavLink to='/messages' activeClassName={styles.activeLink}>
-          Messages
-        </NavLink>
-      </div>
-      <div className={styles.item}>
-        <NavLink to='/news' activeClassName={styles.activeLink}>
-          News
-        </NavLink>
-      </div>
-      <div className={styles.item}>
-        <NavLink to='/music' activeClassName={styles.activeLink}>
-          Music
-        </NavLink>
-      </div>
-      <div>
-        <p />
-      </div>
-      <div className={styles.item}>
-        <NavLink to='/settings' activeClassName={styles.activeLink}>
-          Settings
-        </NavLink>
-      </div>
-    </nav>
-  );
+const Navbar = (props) => {
+  let navbarItems = props.state.navbarData.map((n) => {
+    return <NavbarItems path={n.path} article={n.article} />;
+  });
+
+  return <div className={styles.item}>{navbarItems}</div>;
 };
 
 export default Navbar;

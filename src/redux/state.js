@@ -1,10 +1,25 @@
 let state = {
   forDialogs: {
     dialogsData: [
-      { id: 1, name: 'Aaron' },
-      { id: 2, name: 'Bernard' },
-      { id: 3, name: 'Christopher' },
-      { id: 4, name: 'Dylan' },
+      {
+        id: 1,
+        name: 'Aaron',
+        avatar:
+          'https://png.pngtree.com/png-clipart/20190924/original/pngtree-business-man-avatar-social-responsibility-vector-png-image_4822946.jpg',
+      },
+      {
+        id: 2,
+        name: 'Bernard',
+        avatar:
+          'https://thumbs.dreamstime.com/z/man-mustache-male-avatar-cartoon-social-media-icon-isolated-flat-illustration-vector-graphic-76950613.jpg',
+      },
+      {
+        id: 3,
+        name: 'Christopher',
+        avatar:
+          'https://n1.nextpng.com/sticker-png/664/825/sticker-png-social-media-icons-avatar-male-man-female-face-facial-hair-facial-expression.png',
+      },
+      { id: 4, name: 'Dylan', avatar: 'https://www.colourbox.com/preview/22295197-avatar-man-icon.jpg' },
     ],
 
     messagesData: [
@@ -26,6 +41,16 @@ let state = {
       { id: 5, message: 'AM', likeCount: 20 },
       { id: 6, message: 'A', likeCount: 20 },
       { id: 7, message: 'ROBOT', likeCount: 20 },
+    ],
+  },
+  forNavbar: {
+    navbarData: [
+      { id: 1, article: 'Profile', path: '/profile' },
+      { id: 2, article: 'Messages', path: '/messages' },
+      { id: 3, article: 'News', path: '/news' },
+      { id: 4, article: 'Music', path: '/music' },
+      { id: 5, article: 'Settings', path: '/settings' },
+      { id: 5, article: 'Friends', path: '/friends' },
     ],
   },
 };

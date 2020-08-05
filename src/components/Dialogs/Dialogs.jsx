@@ -5,7 +5,7 @@ import MessageItem from './MessageItem/MessageItem';
 
 const Dialogs = (props) => {
   const NameMassive = props.state.dialogsData.map((dialog) => {
-    return <DialogItem id={dialog.id} name={dialog.name} />;
+    return <DialogItem id={dialog.id} name={dialog.name} avatar={dialog.avatar} />;
   });
 
   const MessageMassive = props.state.messagesData.map((message) => {

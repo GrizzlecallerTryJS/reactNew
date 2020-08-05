@@ -24,7 +24,7 @@ const App = (props) => {
           <Header />
         </div>
         <div className='app_wrapper_navbar'>
-          <Navbar />
+          <Navbar state={props.state.forNavbar} />
         </div>
         <div className='app_wrapper_content'>
           <Route path='/profile' render={profileCaller} />
