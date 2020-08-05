@@ -12,7 +12,7 @@ const Profile = (props) => {
         <div>------------------</div>
       </div>
       <Fragment>
-        <MyPosts postData={props.postData} />
+        <MyPosts postData={props.state.postData} />
       </Fragment>
     </Fragment>
   );

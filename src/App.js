@@ -11,11 +11,11 @@ import { Route, BrowserRouter } from 'react-router-dom';
 
 const App = (props) => {
   const dialogsCaller = () => {
-    return <Dialogs dialogsData={props.dialogsData} messagesData={props.messagesData} />;
+    return <Dialogs state={props.state.forDialogs} />;
   };
 
   const profileCaller = () => {
-    return <Profile postData={props.postData} />;
+    return <Profile state={props.state.forPosts} />;
   };
   return (
     <BrowserRouter>
