@@ -4,11 +4,10 @@ import { Route } from 'react-router-dom';
 
 const AppLoadItems = (props) => {
   let AAA = () => {
-    let PropsComponent = props.component;
-    return <PropsComponent />;
+    return props.component;
   };
 
-  return props.route ? <Route exact path={props.path} render={props.component} /> : AAA;
+  return props.route ? <Route exact path={props.path} render={props.component} /> : <AAA />;
 };
 
 /* через пропсы принимает массив компонент, которые нужно отрисовать и передать в App.js */
