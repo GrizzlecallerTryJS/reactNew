@@ -50,7 +50,19 @@ let state = {
       { id: 3, article: 'News', path: '/news' },
       { id: 4, article: 'Music', path: '/music' },
       { id: 5, article: 'Settings', path: '/settings' },
-      { id: 5, article: 'Friends', path: '/friends' },
+      { id: 6, article: 'Friends', path: '/friends' },
+    ],
+  },
+  forApp: {
+    appData: [
+      { appData_id: 1, component: 'DialogsCaller', path: '/messages', route: true },
+      { appData_id: 2, component: 'ProfileCaller', path: '/profile', route: true },
+      { appData_id: 3, component: 'News', path: '/news', route: true },
+      { appData_id: 4, component: 'Music', path: '/music', route: true },
+      { appData_id: 5, component: 'Settings', path: '/settings', route: true },
+      { appData_id: 6, component: 'Friends', path: '/friends', route: true },
+      { appData_id: 7, component: 'HeaderCaller', path: null, route: false },
+      { appData_id: 8, component: 'NavbarCaller', path: null, route: false },
     ],
   },
 };

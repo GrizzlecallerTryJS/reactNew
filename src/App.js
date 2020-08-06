@@ -8,32 +8,52 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import { Route } from 'react-router-dom';
+import Friends from './components/Friends/Friends';
+import AppLoadItems from './components/AppLoadItems/AppLoadItems';
 
 const App = (props) => {
-  const dialogsCaller = () => {
+  const DialogsCaller = () => {
     return <Dialogs state={props.state.forDialogs} />;
   };
 
-  const profileCaller = () => {
+  const ProfileCaller = () => {
     return <Profile state={props.state.forPosts} />;
   };
+
+  const NavbarCaller = () => {
+    return <Navbar state={props.state.forNavbar} />;
+  };
+
+  const HeaderCaller = () => {
+    return <Header />;
+  };
+
+  /* let items = props.state.forApp.appData.map((i) => {
+    return (
+      <div>
+        <AppLoadItems path={i.path} component={i.component} route={i.route} />
+      </div>
+    );
+  });
+  return <div className='app_wrapper'>{items}</div>; */
+
   return (
     <div className='app_wrapper'>
       <div className='app_wrapper_header'>
-        <Header />
+        <HeaderCaller />
       </div>
       <div className='app_wrapper_navbar'>
-        <Navbar state={props.state.forNavbar} />
+        <NavbarCaller />
       </div>
       <div className='app_wrapper_content'>
-        <Route path='/profile' render={profileCaller} />
+        <Route path='/profile' render={ProfileCaller} />
         <div className='app_wrapper_dialogs'>
-          {/* так сделано что бы в итоге не путать адрес и компоненту */}
-          <Route exact path='/messages' render={dialogsCaller} />
+          <Route exact path='/messages' render={DialogsCaller} />
         </div>
-        <Route path='/news' component={News} />
-        <Route path='/music' component={Music} />
-        <Route path='/settings' component={Settings} />
+        <Route path='/news' render={News} />
+        <Route path='/music' render={Music} />
+        <Route path='/settings' render={Settings} />
+        <Route path='/friends' render={Friends} />
       </div>
     </div>
   );
