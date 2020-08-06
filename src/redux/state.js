@@ -67,4 +67,14 @@ let state = {
   },
 };
 
+export const addPost = (postMessage) => {
+  const newId = state.forPosts.postData[state.forPosts.postData.length - 1].id + 1;
+  let newPost = {
+    id: newId,
+    message: postMessage,
+    likeCount: 0,
+  };
+  state.forPosts.postData.push(newPost);
+};
+
 export default state;
