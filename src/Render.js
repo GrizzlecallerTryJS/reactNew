@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { addPost } from './redux/state';
 
-const Render = (state) => {
+const rerenderEntireTree = (state) => {
   ReactDOM.render(
     <BrowserRouter>
       <App state={state} addPost={addPost} />
@@ -13,4 +13,4 @@ const Render = (state) => {
   );
 };
 
-export default Render;
+export { rerenderEntireTree };

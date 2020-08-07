@@ -1,4 +1,4 @@
-import Render from '../Render';
+import { rerenderEntireTree } from '../Render';
 
 let state = {
   forDialogs: {
@@ -77,7 +77,7 @@ export const addPost = (postMessage) => {
     likeCount: 0,
   };
   state.forPosts.postData.push(newPost);
-  Render(state, addPost);
+  rerenderEntireTree(state, addPost);
 };
 
 export default state;
