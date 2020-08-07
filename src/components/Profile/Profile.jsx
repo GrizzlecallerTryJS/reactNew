@@ -12,7 +12,7 @@ const Profile = (props) => {
         <div>------------------</div>
       </div>
       <Fragment>
-        <MyPosts postData={props.state.postData} function={props.function} />
+        <MyPosts postData={props.state.postData} addPost={props.addPost} />
       </Fragment>
     </Fragment>
   );

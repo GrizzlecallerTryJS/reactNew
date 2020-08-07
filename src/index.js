@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App state={state} function={addPost} />
+      <App state={state} addPost={addPost} />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

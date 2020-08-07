@@ -16,7 +16,7 @@ const App = (props) => {
   };
 
   const ProfileCaller = () => {
-    return <Profile state={props.state.forPosts} function={props.function} />;
+    return <Profile state={props.state.forPosts} addPost={props.addPost} />;
   };
 
   const NavbarCaller = () => {
