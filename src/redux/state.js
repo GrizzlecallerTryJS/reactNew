@@ -1,3 +1,5 @@
+import Render from '../Render';
+
 let state = {
   forDialogs: {
     dialogsData: [
@@ -75,6 +77,7 @@ export const addPost = (postMessage) => {
     likeCount: 0,
   };
   state.forPosts.postData.push(newPost);
+  Render(state, addPost);
 };
 
 export default state;
