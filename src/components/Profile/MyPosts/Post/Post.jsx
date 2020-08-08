@@ -20,6 +20,7 @@ const Post = (props) => {
           <span>
             <button onClick={likeButtonCounter}>push to like</button>
           </span>
+          <p />
         </div>
       </div>
     </div>
