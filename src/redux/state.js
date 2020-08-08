@@ -1,4 +1,6 @@
-import { rerenderEntireTree } from '../Render';
+let rerenderEntireTree = () => {
+  console.log('state was changed');
+};
 
 let state = {
   forDialogs: {
@@ -81,7 +83,7 @@ export const addPost = () => {
   };
   state.forPosts.postData.push(newPost);
   state.forPosts.newPostText = '';
-  rerenderEntireTree(state, addPost);
+  rerenderEntireTree(state);
 };
 
 export const updateNewPostText = (newPostText) => {
@@ -99,6 +101,10 @@ export const likeButtonCounter = (id) => {
     state.forPosts.postData[id - 1].liked = false;
     rerenderEntireTree(state);
   }
+};
+
+export const subscriber = (observer) => {
+  rerenderEntireTree = observer;
 };
 
 export default state;
