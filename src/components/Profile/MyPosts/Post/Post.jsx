@@ -2,6 +2,10 @@ import React from 'react';
 import styles from './Post.module.css';
 
 const Post = (props) => {
+  const likeButtonCounter = () => {
+    return props.likeButtonCounter(props.id);
+  };
+  debugger;
   return (
     <div className={styles.post_global}>
       <div className={styles.post_avatar_image}>
@@ -14,7 +18,7 @@ const Post = (props) => {
             {props.message} (Likes {props.likeCount})
           </div>
           <span>
-            <button>push to like</button>
+            <button onClick={likeButtonCounter}>push to like</button>
           </span>
         </div>
       </div>

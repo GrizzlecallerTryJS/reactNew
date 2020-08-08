@@ -6,7 +6,14 @@ const MyPosts = (props) => {
   const postData = props.postData;
 
   const PostMap = postData.map((post) => {
-    return <Post id={post.id} message={post.message} likeCount={post.likeCount} />;
+    return (
+      <Post
+        id={post.id}
+        message={post.message}
+        likeCount={post.likeCount}
+        likeButtonCounter={props.likeButtonCounter}
+      />
+    );
   });
 
   let newPostElement = React.createRef();

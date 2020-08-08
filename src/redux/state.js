@@ -80,4 +80,9 @@ export const addPost = (postMessage) => {
   rerenderEntireTree(state, addPost);
 };
 
+export const likeButtonCounter = (id) => {
+  state.forPosts.postData[id - 1].likeCount += 1;
+  rerenderEntireTree(state);
+};
+
 export default state;
