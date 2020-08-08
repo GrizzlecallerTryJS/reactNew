@@ -36,13 +36,13 @@ let state = {
   },
   forPosts: {
     postData: [
-      { id: 1, message: 'BEEP', likeCount: 15 },
-      { id: 2, message: 'BOOP', likeCount: 20 },
-      { id: 3, message: 'BOOP', likeCount: 20 },
-      { id: 4, message: 'I', likeCount: 20 },
-      { id: 5, message: 'AM', likeCount: 20 },
-      { id: 6, message: 'A', likeCount: 20 },
-      { id: 7, message: 'ROBOT', likeCount: 20 },
+      { id: 1, message: 'BEEP', likeCount: 15, liked: false },
+      { id: 2, message: 'BOOP', likeCount: 20, liked: false },
+      { id: 3, message: 'BOOP', likeCount: 20, liked: false },
+      { id: 4, message: 'I', likeCount: 20, liked: false },
+      { id: 5, message: 'AM', likeCount: 20, liked: false },
+      { id: 6, message: 'A', likeCount: 20, liked: false },
+      { id: 7, message: 'ROBOT', likeCount: 20, liked: false },
     ],
   },
   forNavbar: {
@@ -81,8 +81,15 @@ export const addPost = (postMessage) => {
 };
 
 export const likeButtonCounter = (id) => {
-  state.forPosts.postData[id - 1].likeCount += 1;
-  rerenderEntireTree(state);
+  if (!state.forPosts.postData[id - 1].liked) {
+    state.forPosts.postData[id - 1].likeCount += 1;
+    state.forPosts.postData[id - 1].liked = true;
+    rerenderEntireTree(state);
+  } else {
+    state.forPosts.postData[id - 1].likeCount -= 1;
+    state.forPosts.postData[id - 1].liked = false;
+    rerenderEntireTree(state);
+  }
 };
 
 export default state;

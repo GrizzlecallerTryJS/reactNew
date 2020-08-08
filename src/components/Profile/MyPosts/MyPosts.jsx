@@ -10,6 +10,7 @@ const MyPosts = (props) => {
       <Post
         id={post.id}
         message={post.message}
+        liked={post.liked}
         likeCount={post.likeCount}
         likeButtonCounter={props.likeButtonCounter}
       />

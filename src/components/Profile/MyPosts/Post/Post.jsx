@@ -2,10 +2,27 @@ import React from 'react';
 import styles from './Post.module.css';
 
 const Post = (props) => {
+  const likeButtonState = () => {
+    debugger;
+    if (!props.liked) {
+      return (
+        <span>
+          <button onClick={likeButtonCounter}>push to like</button>
+        </span>
+      );
+    } else {
+      return (
+        <span>
+          <button onClick={likeButtonCounter}>push to unLike</button>
+        </span>
+      );
+    }
+  };
+
   const likeButtonCounter = () => {
     return props.likeButtonCounter(props.id);
   };
-  debugger;
+
   return (
     <div className={styles.post_global}>
       <div className={styles.post_avatar_image}>
@@ -17,9 +34,10 @@ const Post = (props) => {
           <div>
             {props.message} (Likes {props.likeCount})
           </div>
-          <span>
+          {/* <span>
             <button onClick={likeButtonCounter}>push to like</button>
-          </span>
+          </span> */}
+          {likeButtonState()}
           <p />
         </div>
       </div>
