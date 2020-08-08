@@ -3,7 +3,6 @@ import styles from './Post.module.css';
 
 const Post = (props) => {
   const likeButtonState = () => {
-    debugger;
     if (!props.liked) {
       return (
         <span>

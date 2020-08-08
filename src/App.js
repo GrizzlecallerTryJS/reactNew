@@ -16,7 +16,14 @@ const App = (props) => {
   };
 
   const ProfileCaller = () => {
-    return <Profile state={props.state.forPosts} addPost={props.addPost} likeButtonCounter={props.likeButtonCounter} />;
+    return (
+      <Profile
+        forPosts={props.state.forPosts}
+        addPost={props.addPost}
+        updateNewPostText={props.updateNewPostText}
+        likeButtonCounter={props.likeButtonCounter}
+      />
+    );
   };
 
   const NavbarCaller = () => {

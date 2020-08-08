@@ -44,6 +44,7 @@ let state = {
       { id: 6, message: 'A', likeCount: 20, liked: false },
       { id: 7, message: 'ROBOT', likeCount: 20, liked: false },
     ],
+    newPostText: 'test',
   },
   forNavbar: {
     navbarData: [
@@ -69,15 +70,23 @@ let state = {
   },
 };
 
-export const addPost = (postMessage) => {
+window.state = state;
+
+export const addPost = () => {
   const newId = state.forPosts.postData[state.forPosts.postData.length - 1].id + 1;
   let newPost = {
     id: newId,
-    message: postMessage,
+    message: state.forPosts.newPostText,
     likeCount: 0,
   };
   state.forPosts.postData.push(newPost);
+  state.forPosts.newPostText = '';
   rerenderEntireTree(state, addPost);
+};
+
+export const updateNewPostText = (newPostText) => {
+  state.forPosts.newPostText = newPostText;
+  rerenderEntireTree(state);
 };
 
 export const likeButtonCounter = (id) => {
