@@ -12,23 +12,22 @@ import Friends from './components/Friends/Friends';
 
 const App = (props) => {
   const DialogsCaller = () => {
-    return <Dialogs state={props.store.getState().forDialogs} />;
+    return <Dialogs state={props.state.forDialogs} />;
   };
 
   const ProfileCaller = () => {
-    debugger;
     return (
       <Profile
-        forPosts={props.store.getState().forPosts}
-        addPost={props.store.getState().addPost}
-        updateNewPostText={props.store.updateNewPostText}
-        likeButtonCounter={props.store.likeButtonCounter}
+        forPosts={props.state.forPosts}
+        addPost={props.addPost}
+        updateNewPostText={props.updateNewPostText}
+        likeButtonCounter={props.likeButtonCounter}
       />
     );
   };
 
   const NavbarCaller = () => {
-    return <Navbar state={props.store.getState().forNavbar} />;
+    return <Navbar state={props.state.forNavbar} />;
   };
 
   const HeaderCaller = () => {
