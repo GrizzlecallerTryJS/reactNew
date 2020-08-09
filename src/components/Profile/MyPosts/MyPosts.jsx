@@ -3,6 +3,7 @@ import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
+  debugger;
   const postData = props.postData;
 
   const PostMap = postData.map((post) => {
