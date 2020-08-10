@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Post.module.css';
+import { likeButtonCounterAC } from '../../../../redux/state';
 
 const Post = (props) => {
   const likeButtonState = () => {
@@ -19,11 +20,7 @@ const Post = (props) => {
   };
 
   const likeButtonCounter = () => {
-    let action = {
-      type: 'LIKE-BUTTON-COUNTER',
-      id: props.id,
-    };
-    return props.dispatch(action);
+    return props.dispatch(likeButtonCounterAC(props.id));
   };
 
   return (

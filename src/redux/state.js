@@ -1,3 +1,7 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const LIKE_BUTTON_COUNTER = 'LIKE-BUTTON-COUNTER';
+
 let store = {
   _state: {
     forDialogs: {
@@ -112,14 +116,32 @@ let store = {
   },
 
   dispatch (action) {
-    if (action.type === 'ADD-POST') {
+    if (action.type === ADD_POST) {
       this._addPost();
-    } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+    } else if (action.type === UPDATE_NEW_POST_TEXT) {
       this._updateNewPostText(action.newPostText);
-    } else if (action.type === 'LIKE-BUTTON-COUNTER') {
+    } else if (action.type === LIKE_BUTTON_COUNTER) {
       this._likeButtonCounter(action.id);
     }
   },
+};
+
+export const addPostAC = () => {
+  return { type: ADD_POST };
+};
+
+export const updateNewPostTextAC = (text) => {
+  return {
+    type: UPDATE_NEW_POST_TEXT,
+    newPostText: text,
+  };
+};
+
+export const likeButtonCounterAC = (id) => {
+  return {
+    type: LIKE_BUTTON_COUNTER,
+    id: id,
+  };
 };
 
 export default store;
