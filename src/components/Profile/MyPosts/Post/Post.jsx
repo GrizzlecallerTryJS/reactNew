@@ -19,7 +19,11 @@ const Post = (props) => {
   };
 
   const likeButtonCounter = () => {
-    return props.likeButtonCounter(props.id);
+    let action = {
+      type: 'LIKE-BUTTON-COUNTER',
+      id: props.id,
+    };
+    return props.dispatch(action);
   };
 
   return (

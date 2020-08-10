@@ -73,15 +73,7 @@ let store = {
     console.log('state was changed');
   },
 
-  /* _subscriber () {
-    console.log('lol');
-  }, */
-
-  getState () {
-    return this._state;
-  },
-
-  addPost () {
+  _addPost () {
     let last = this._state.forPosts.postData.length - 1;
     const newId = this._state.forPosts.postData[last].id + 1;
     let newPost = {
@@ -94,13 +86,12 @@ let store = {
     this._callSubscriber(this._state);
   },
 
-  updateNewPostText (newPostText) {
+  _updateNewPostText (newPostText) {
     this._state.forPosts.newPostText = newPostText;
     this._callSubscriber(this._state);
   },
 
-  likeButtonCounter (id) {
-    debugger;
+  _likeButtonCounter (id) {
     if (!this.getState().forPosts.postData[id - 1].liked) {
       this._state.forPosts.postData[id - 1].likeCount += 1;
       this._state.forPosts.postData[id - 1].liked = true;
@@ -112,8 +103,22 @@ let store = {
     }
   },
 
+  getState () {
+    return this._state;
+  },
+
   subscribe (observer) {
     this._callSubscriber = observer;
+  },
+
+  dispatch (action) {
+    if (action.type === 'ADD-POST') {
+      this._addPost();
+    } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+      this._updateNewPostText(action.newPostText);
+    } else if (action.type === 'LIKE-BUTTON-COUNTER') {
+      this._likeButtonCounter(action.id);
+    }
   },
 };
 

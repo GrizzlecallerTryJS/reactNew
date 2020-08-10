@@ -15,9 +15,7 @@ const Profile = (props) => {
         <MyPosts
           postData={props.forPosts.postData}
           newPostText={props.forPosts.newPostText}
-          updateNewPostText={props.updateNewPostText}
-          addPost={props.addPost}
-          likeButtonCounter={props.likeButtonCounter}
+          dispatch={props.dispatch}
         />
       </Fragment>
     </Fragment>

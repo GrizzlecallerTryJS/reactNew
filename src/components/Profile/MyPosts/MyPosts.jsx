@@ -12,19 +12,27 @@ const MyPosts = (props) => {
         message={post.message}
         liked={post.liked}
         likeCount={post.likeCount}
-        likeButtonCounter={props.likeButtonCounter}
+        dispatch={props.dispatch}
       />
     );
   });
 
   let newPostElement = React.createRef();
+
   let addPost = () => {
-    props.addPost();
+    let action = {
+      type: 'ADD-POST',
+    };
+    props.dispatch(action);
   };
 
   let updateNewPostText = () => {
     let text = newPostElement.current.value;
-    props.updateNewPostText(text);
+    let action = {
+      type: 'UPDATE-NEW-POST-TEXT',
+      newPostText: text,
+    };
+    props.dispatch(action);
   };
 
   return (
