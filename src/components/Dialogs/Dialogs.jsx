@@ -13,10 +13,8 @@ const Dialogs = (props) => {
     return <MessageItem id={message.id} messageText={message.text} />;
   });
 
-  let newDialogElement = React.createRef();
-
-  let updateNewMessageText = () => {
-    let text = newDialogElement.current.value;
+  let updateNewMessageText = (element) => {
+    let text = element.target.value;
     props.dispatch(updateNewMessageTextAC(text));
   };
 
@@ -30,7 +28,7 @@ const Dialogs = (props) => {
       <div className={styles.dialogs_messages}>
         <div>{MessageMassive}</div>
         <div>
-          <textarea onChange={updateNewMessageText} ref={newDialogElement} value={props.forDialogs.newMessageText} />
+          <textarea onChange={updateNewMessageText} value={props.forDialogs.newMessageText} />
           <button onClick={addMessage}>add post</button>
         </div>
       </div>
