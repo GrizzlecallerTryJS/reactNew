@@ -12,7 +12,7 @@ import Friends from './components/Friends/Friends';
 
 const App = (props) => {
   const DialogsCaller = () => {
-    return <Dialogs state={props.state.forDialogs} />;
+    return <Dialogs forDialogs={props.state.forDialogs} dispatch={props.dispatch} />;
   };
 
   const ProfileCaller = () => {

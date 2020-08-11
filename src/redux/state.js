@@ -1,6 +1,8 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const LIKE_BUTTON_COUNTER = 'LIKE-BUTTON-COUNTER';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let store = {
   _state: {
@@ -36,6 +38,7 @@ let store = {
         { id: 6, text: 'Eu dolor nulla esse fugiat ea non est consequat ad exercitation.' },
         { id: 7, text: 'Est laboris sit elit magna veniam nostrud mollit duis minim.' },
       ],
+      newMessageText: 'test',
     },
     forPosts: {
       postData: [
@@ -90,8 +93,25 @@ let store = {
     this._callSubscriber(this._state);
   },
 
+  _addMessage () {
+    let last = this._state.forDialogs.messagesData.length - 1;
+    const newId = this._state.forDialogs.messagesData[last].id + 1;
+    let newMessage = {
+      id: newId,
+      text: this._state.forDialogs.newMessageText,
+    };
+    this._state.forDialogs.messagesData.push(newMessage);
+    this._state.forDialogs.newMessageText = '';
+    this._callSubscriber(this._state);
+  },
+
   _updateNewPostText (newPostText) {
     this._state.forPosts.newPostText = newPostText;
+    this._callSubscriber(this._state);
+  },
+
+  _updateNewMessageText (newMessageText) {
+    this._state.forDialogs.newMessageText = newMessageText;
     this._callSubscriber(this._state);
   },
 
@@ -122,6 +142,10 @@ let store = {
       this._updateNewPostText(action.newPostText);
     } else if (action.type === LIKE_BUTTON_COUNTER) {
       this._likeButtonCounter(action.id);
+    } else if (action.type === ADD_MESSAGE) {
+      this._addMessage();
+    } else if ((action.type = UPDATE_NEW_MESSAGE_TEXT)) {
+      this._updateNewMessageText(action.newMessageText);
     }
   },
 };
@@ -141,6 +165,17 @@ export const likeButtonCounterAC = (id) => {
   return {
     type: LIKE_BUTTON_COUNTER,
     id: id,
+  };
+};
+
+export const addMessageAC = () => {
+  return { type: ADD_MESSAGE };
+};
+
+export const updateNewMessageTextAC = (text) => {
+  return {
+    type: UPDATE_NEW_MESSAGE_TEXT,
+    newMessageText: text,
   };
 };
 
