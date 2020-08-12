@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Post.module.css';
-import { likeButtonCounterAC } from '../../../../redux/state';
+import { likeButtonCounterAC } from '../../../../redux/LIkeButton-Reducer';
 
 const Post = (props) => {
   const likeButtonState = () => {

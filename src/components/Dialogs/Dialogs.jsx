@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import MessageItem from './MessageItem/MessageItem';
-import { addMessageAC, updateNewMessageTextAC } from '../../redux/state';
+import { updateNewMessageTextAC, addMessageAC } from '../../redux/Message-Reducer';
 
 const Dialogs = (props) => {
   const NameMassive = props.forDialogs.dialogsData.map((dialog) => {

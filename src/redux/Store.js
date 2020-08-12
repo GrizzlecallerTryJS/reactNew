@@ -1,8 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const LIKE_BUTTON_COUNTER = 'LIKE-BUTTON-COUNTER';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+import postReducer from './Post-Reducer';
+import messageReducer from './Message-Reducer';
+import likeButtonReducer from './LIkeButton-Reducer';
 
 let store = {
   _state: {
@@ -80,53 +78,6 @@ let store = {
     console.log('state was changed');
   },
 
-  _addPost () {
-    let last = this._state.forPosts.postData.length - 1;
-    const newId = this._state.forPosts.postData[last].id + 1;
-    let newPost = {
-      id: newId,
-      message: this._state.forPosts.newPostText,
-      likeCount: 0,
-    };
-    this._state.forPosts.postData.push(newPost);
-    this._state.forPosts.newPostText = '';
-    this._callSubscriber(this._state);
-  },
-
-  _addMessage () {
-    let last = this._state.forDialogs.messagesData.length - 1;
-    const newId = this._state.forDialogs.messagesData[last].id + 1;
-    let newMessage = {
-      id: newId,
-      text: this._state.forDialogs.newMessageText,
-    };
-    this._state.forDialogs.messagesData.push(newMessage);
-    this._state.forDialogs.newMessageText = '';
-    this._callSubscriber(this._state);
-  },
-
-  _updateNewPostText (newPostText) {
-    this._state.forPosts.newPostText = newPostText;
-    this._callSubscriber(this._state);
-  },
-
-  _updateNewMessageText (newMessageText) {
-    this._state.forDialogs.newMessageText = newMessageText;
-    this._callSubscriber(this._state);
-  },
-
-  _likeButtonCounter (id) {
-    if (!this.getState().forPosts.postData[id - 1].liked) {
-      this._state.forPosts.postData[id - 1].likeCount += 1;
-      this._state.forPosts.postData[id - 1].liked = true;
-      this._callSubscriber(this._state);
-    } else {
-      this._state.forPosts.postData[id - 1].likeCount -= 1;
-      this._state.forPosts.postData[id - 1].liked = false;
-      this._callSubscriber(this._state);
-    }
-  },
-
   getState () {
     return this._state;
   },
@@ -136,47 +87,12 @@ let store = {
   },
 
   dispatch (action) {
-    if (action.type === ADD_POST) {
-      this._addPost();
-    } else if (action.type === UPDATE_NEW_POST_TEXT) {
-      this._updateNewPostText(action.newPostText);
-    } else if (action.type === LIKE_BUTTON_COUNTER) {
-      this._likeButtonCounter(action.id);
-    } else if (action.type === ADD_MESSAGE) {
-      this._addMessage();
-    } else if ((action.type = UPDATE_NEW_MESSAGE_TEXT)) {
-      this._updateNewMessageText(action.newMessageText);
-    }
+    this._state.forPosts = postReducer(this._state.forPosts, action);
+    this._state.forPosts = likeButtonReducer(this._state.forPosts, action);
+    this._state.forDialogs = messageReducer(this._state.forDialogs, action);
+
+    this._callSubscriber(this._state);
   },
-};
-
-export const addPostAC = () => {
-  return { type: ADD_POST };
-};
-
-export const updateNewPostTextAC = (text) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    newPostText: text,
-  };
-};
-
-export const likeButtonCounterAC = (id) => {
-  return {
-    type: LIKE_BUTTON_COUNTER,
-    id: id,
-  };
-};
-
-export const addMessageAC = () => {
-  return { type: ADD_MESSAGE };
-};
-
-export const updateNewMessageTextAC = (text) => {
-  return {
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    newMessageText: text,
-  };
 };
 
 export default store;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
-import { addPostAC, updateNewPostTextAC } from '../../../redux/state';
+import { updateNewPostTextAC, addPostAC } from '../../../redux/Post-Reducer';
 
 const MyPosts = (props) => {
   const postData = props.postData;
