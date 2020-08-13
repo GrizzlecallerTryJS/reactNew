@@ -2,13 +2,12 @@ import { createStore, combineReducers } from 'redux';
 
 import postReducer from './Post-Reducer';
 import messageReducer from './Message-Reducer';
-import likeButtonReducer from './LIkeButton-Reducer';
+import navBarReducer from './NavBar-Reducer';
 
 let reducers = combineReducers({
   forPosts: postReducer,
-  likeButtonReducer: likeButtonReducer,
   forDialogs: messageReducer,
-  //forNavbar: hz,
+  forNavbar: navBarReducer,
 });
 
 let store = createStore(reducers);

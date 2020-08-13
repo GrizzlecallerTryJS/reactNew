@@ -8,3 +8,9 @@ let initialState = {
     { id: 6, article: 'Friends', path: '/friends' },
   ],
 };
+
+const navBarReducer = (state = initialState, action) => {
+  return state;
+};
+
+export default navBarReducer;

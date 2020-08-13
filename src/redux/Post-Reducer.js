@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const LIKE_BUTTON_COUNTER = 'LIKE-BUTTON-COUNTER';
 
 let initialState = {
   postData: [
@@ -22,9 +23,20 @@ const postReducer = (state = initialState, action) => {
       id: newId,
       message: state.newPostText,
       likeCount: 0,
+      liked: false,
     };
     state.postData.push(newPost);
     state.newPostText = '';
+  };
+
+  const _likeButtonCounter = (id) => {
+    if (!state.postData[id - 1].liked) {
+      state.postData[id - 1].likeCount += 1;
+      state.postData[id - 1].liked = true;
+    } else {
+      state.postData[id - 1].likeCount -= 1;
+      state.postData[id - 1].liked = false;
+    }
   };
 
   const _updateNewPostText = (newPostText) => {
@@ -35,6 +47,8 @@ const postReducer = (state = initialState, action) => {
     _addPost();
   } else if (action.type === UPDATE_NEW_POST_TEXT) {
     _updateNewPostText(action.newPostText);
+  } else if (action.type === LIKE_BUTTON_COUNTER) {
+    _likeButtonCounter(action.id);
   }
 
   return state;
@@ -48,6 +62,13 @@ export const updateNewPostTextAC = (text) => {
   return {
     type: UPDATE_NEW_POST_TEXT,
     newPostText: text,
+  };
+};
+
+export const likeButtonCounterAC = (id) => {
+  return {
+    type: LIKE_BUTTON_COUNTER,
+    id: id,
   };
 };
 

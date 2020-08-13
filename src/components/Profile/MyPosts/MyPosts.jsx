@@ -4,6 +4,7 @@ import Post from './Post/Post';
 import { updateNewPostTextAC, addPostAC } from '../../../redux/Post-Reducer';
 
 const MyPosts = (props) => {
+  debugger;
   const postData = props.postData;
 
   const PostMap = postData.map((post) => {
