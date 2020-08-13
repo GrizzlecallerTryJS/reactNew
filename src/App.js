@@ -11,6 +11,7 @@ import { Route } from 'react-router-dom';
 import Friends from './components/Friends/Friends';
 
 const App = (props) => {
+  debugger;
   const DialogsCaller = () => {
     return <Dialogs forDialogs={props.state.forDialogs} dispatch={props.dispatch} />;
   };
@@ -20,7 +21,8 @@ const App = (props) => {
   };
 
   const NavbarCaller = () => {
-    return <Navbar state={props.state.forNavbar} />;
+    //return <Navbar state={props.state.forNavbar} />;
+    return <Navbar />;
   };
 
   const HeaderCaller = () => {

@@ -1,7 +1,20 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-const postReducer = (state, action) => {
+let initialState = {
+  postData: [
+    { id: 1, message: 'BEEP', likeCount: 15, liked: false },
+    { id: 2, message: 'BOOP', likeCount: 20, liked: false },
+    { id: 3, message: 'BOOP', likeCount: 20, liked: false },
+    { id: 4, message: 'I', likeCount: 20, liked: false },
+    { id: 5, message: 'AM', likeCount: 20, liked: false },
+    { id: 6, message: 'A', likeCount: 20, liked: false },
+    { id: 7, message: 'ROBOT', likeCount: 20, liked: false },
+  ],
+  newPostText: 'test',
+};
+
+const postReducer = (state = initialState, action) => {
   const _addPost = () => {
     let last = state.postData.length - 1;
     const newId = state.postData[last].id + 1;
