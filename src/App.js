@@ -9,6 +9,7 @@ import Settings from './components/Settings/Settings';
 import { Route } from 'react-router-dom';
 import Friends from './components/Friends/Friends';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import NavbarContainer from './components/Navbar/NavbarContainer';
 
 const App = (props) => {
   const DialogsCaller = () => {
@@ -21,7 +22,7 @@ const App = (props) => {
   };
 
   const NavbarCaller = () => {
-    return <Navbar state={props.state.forNavbar} />;
+    return <NavbarContainer store={props.store} />;
   };
 
   const HeaderCaller = () => {

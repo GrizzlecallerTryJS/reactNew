@@ -4,7 +4,7 @@ import NavbarItems from './NavbarItems/NavbarItems';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = (props) => {
-  let navbarItems = props.state.navbarData.map((n) => {
+  let navbarItems = props.navbarData.map((n) => {
     return <NavbarItems path={n.path} article={n.article} />;
   });
 
