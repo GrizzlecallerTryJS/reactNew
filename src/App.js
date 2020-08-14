@@ -10,19 +10,20 @@ import { Route } from 'react-router-dom';
 import Friends from './components/Friends/Friends';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
+import StoreContext from './StoreContext';
 
 const App = (props) => {
   const DialogsCaller = () => {
-    return <DialogsContainer store={props.store} />;
+    return <DialogsContainer />;
   };
 
   const ProfileCaller = () => {
     /* return <Profile forPosts={props.state.forPosts} dispatch={props.dispatch} />; */
-    return <Profile store={props.store} />;
+    return <Profile />;
   };
 
   const NavbarCaller = () => {
-    return <NavbarContainer store={props.store} />;
+    return <NavbarContainer />;
   };
 
   const HeaderCaller = () => {

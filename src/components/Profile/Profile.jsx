@@ -12,7 +12,7 @@ const Profile = (props) => {
         <div>------------------</div>
       </div>
       <Fragment>
-        <MyPostsContainer store={props.store} />
+        <MyPostsContainer />
       </Fragment>
     </Fragment>
   );
