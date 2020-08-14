@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 //import styles from './Profile.module.css';
-import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 const Profile = (props) => {
   return (
@@ -12,13 +12,13 @@ const Profile = (props) => {
         <div>------------------</div>
       </div>
       <Fragment>
-        <MyPosts
-          postData={props.forPosts.postData}
-          newPostText={props.forPosts.newPostText}
-          dispatch={props.dispatch}
-        />
+        <MyPostsContainer store={props.store} />
       </Fragment>
     </Fragment>
   );
 };
 export default Profile;
+
+/* postData={props.forPosts.postData}
+          newPostText={props.forPosts.newPostText}
+          dispatch={props.dispatch} */

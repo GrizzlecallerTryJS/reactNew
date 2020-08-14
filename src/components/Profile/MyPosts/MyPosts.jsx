@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
-import { updateNewPostTextAC, addPostAC } from '../../../redux/Post-Reducer';
 
 const MyPosts = (props) => {
-  debugger;
   const postData = props.postData;
 
   const PostMap = postData.map((post) => {
@@ -14,22 +12,19 @@ const MyPosts = (props) => {
         message={post.message}
         liked={post.liked}
         likeCount={post.likeCount}
-        dispatch={props.dispatch}
+        likeButtonCounter={props.likeButtonCounter}
       />
     );
   });
 
   let addPost = () => {
-    props.dispatch(addPostAC());
+    //props.dispatch(addPostAC());
+    props.addPost();
   };
 
   let updateNewPostText = (element) => {
     let text = element.target.value;
-    /* let action = {
-      type: 'UPDATE-NEW-POST-TEXT',
-      newPostText: text,
-    }; */
-    props.dispatch(updateNewPostTextAC(text));
+    props.textAreaUpdateText(text);
   };
 
   return (

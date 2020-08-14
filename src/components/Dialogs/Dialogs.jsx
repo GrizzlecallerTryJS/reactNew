@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import MessageItem from './MessageItem/MessageItem';
-import { updateNewMessageTextAC, addMessageAC } from '../../redux/Message-Reducer';
 
 const Dialogs = (props) => {
   const NameMassive = props.forDialogs.dialogsData.map((dialog) => {
@@ -15,11 +14,11 @@ const Dialogs = (props) => {
 
   let updateNewMessageText = (element) => {
     let text = element.target.value;
-    props.dispatch(updateNewMessageTextAC(text));
+    props.updateNewMessageText(text);
   };
 
   let addMessage = () => {
-    props.dispatch(addMessageAC());
+    props.addMessage();
   };
 
   return (

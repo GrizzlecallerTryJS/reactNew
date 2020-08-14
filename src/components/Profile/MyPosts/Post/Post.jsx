@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from './Post.module.css';
-import { likeButtonCounterAC } from '../../../../redux/Post-Reducer';
 
 const Post = (props) => {
+  const likeButtonCounter = () => {
+    return props.likeButtonCounter(props.id);
+  };
+
   const likeButtonState = () => {
     if (!props.liked) {
       return (
@@ -19,10 +22,6 @@ const Post = (props) => {
     }
   };
 
-  const likeButtonCounter = () => {
-    return props.dispatch(likeButtonCounterAC(props.id));
-  };
-
   return (
     <div className={styles.post_global}>
       <div className={styles.post_avatar_image}>
@@ -34,9 +33,6 @@ const Post = (props) => {
           <div>
             {props.message} (Likes {props.likeCount})
           </div>
-          {/* <span>
-            <button onClick={likeButtonCounter}>push to like</button>
-          </span> */}
           {likeButtonState()}
           <p />
         </div>
