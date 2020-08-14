@@ -18,6 +18,7 @@ const Dialogs = (props) => {
   };
 
   let addMessage = () => {
+    debugger;
     props.addMessage();
   };
 

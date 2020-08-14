@@ -1,9 +1,8 @@
 import React from 'react';
 import Navbar from './Navbar';
-import StoreContext from '../../StoreContext';
+import { connect } from 'react-redux';
 
-const NavbarContainer = (props) => {
-  /* let stateForNavbar = props.store.getState().forNavbar.navbarData; */
+/* const NavbarContainer = (props) => {
 
   return (
     <StoreContext.Consumer>
@@ -13,6 +12,18 @@ const NavbarContainer = (props) => {
       }}
     </StoreContext.Consumer>
   );
+}; */
+
+let mapStateToProps = (state) => {
+  return {
+    navbarData: state.forNavbar.navbarData,
+  };
 };
+
+let mapDispatchToProps = () => {
+  return {};
+};
+
+let NavbarContainer = connect(mapStateToProps, mapDispatchToProps)(Navbar);
 
 export default NavbarContainer;

@@ -1,22 +1,9 @@
 import React from 'react';
 import MyPosts from './MyPosts';
 import { updateNewPostTextAC, addPostAC, likeButtonCounterAC } from '../../../redux/Post-Reducer';
-import StoreContext from '../../../StoreContext';
+import { connect } from 'react-redux';
 
-const MyPostsContainer = (props) => {
-  /* let store = props.store.getState();
-
-  let addPost = () => {
-    props.store.dispatch(addPostAC());
-  };
-
-  let textAreaUpdateText = (text) => {
-    props.store.dispatch(updateNewPostTextAC(text));
-  };
-
-  const likeButtonCounter = (id) => {
-    return props.store.dispatch(likeButtonCounterAC(id));
-  }; */
+/* const MyPostsContainer = (props) => {
 
   return (
     <StoreContext.Consumer>
@@ -47,6 +34,29 @@ const MyPostsContainer = (props) => {
       }}
     </StoreContext.Consumer>
   );
+}; */
+
+let mapStateToProps = (state) => {
+  return {
+    postData: state.forPosts.postData,
+    newPostText: state.forPosts.newPostText,
+  };
 };
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+    addPost: () => {
+      dispatch(addPostAC());
+    },
+    textAreaUpdateText: (text) => {
+      dispatch(updateNewPostTextAC(text));
+    },
+    likeButtonCounter: (id) => {
+      dispatch(likeButtonCounterAC(id));
+    },
+  };
+};
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
 export default MyPostsContainer;

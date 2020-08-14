@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header/Header';
-import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import News from './components/News/News';
 import Music from './components/Music/Music';
@@ -10,7 +9,6 @@ import { Route } from 'react-router-dom';
 import Friends from './components/Friends/Friends';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
-import StoreContext from './StoreContext';
 
 const App = (props) => {
   const DialogsCaller = () => {
@@ -18,7 +16,6 @@ const App = (props) => {
   };
 
   const ProfileCaller = () => {
-    /* return <Profile forPosts={props.state.forPosts} dispatch={props.dispatch} />; */
     return <Profile />;
   };
 
@@ -29,15 +26,6 @@ const App = (props) => {
   const HeaderCaller = () => {
     return <Header />;
   };
-
-  /* let items = props.state.forApp.appData.map((i) => {
-    return (
-      <div>
-        <AppLoadItems path={i.path} component={i.component} route={i.route} />
-      </div>
-    );
-  });
-  return <div className='app_wrapper'>{items}</div>; */
 
   return (
     <div className='app_wrapper'>
