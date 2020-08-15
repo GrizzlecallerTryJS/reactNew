@@ -16,26 +16,45 @@ let initialState = {
 };
 
 const postReducer = (state = initialState, action) => {
-  let stateCopy = { ...state };
+  /* let stateCopy = { ...state };
   stateCopy.postData = [
     ...state.postData,
-  ];
+  ]; */
+
+  let stateCopy = state;
 
   const _addPost = () => {
+    stateCopy = {
+      ...state,
+      postData: [
+        ...state.postData,
+      ],
+    };
+
     let last = stateCopy.postData.length - 1;
+
     const newId = stateCopy.postData[last].id + 1;
+
     let newPost = {
       id: newId,
       message: stateCopy.newPostText,
       likeCount: 0,
       liked: false,
     };
+
     stateCopy.postData.push(newPost);
     stateCopy.newPostText = '';
     debugger;
   };
 
   const _likeButtonCounter = (id) => {
+    stateCopy = {
+      ...state,
+      postData: [
+        ...state.postData,
+      ],
+    };
+
     if (!stateCopy.postData[id - 1].liked) {
       stateCopy.postData[id - 1].likeCount += 1;
       stateCopy.postData[id - 1].liked = true;
@@ -46,6 +65,10 @@ const postReducer = (state = initialState, action) => {
   };
 
   const _updateNewPostText = (newPostText) => {
+    stateCopy = {
+      ...state,
+    };
+
     stateCopy.newPostText = newPostText;
   };
 

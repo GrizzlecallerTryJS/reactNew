@@ -37,26 +37,16 @@ let initialState = {
 };
 
 const messageReducer = (state = initialState, action) => {
-  /* const _addMessage = () => {
-    let last = state.messagesData.length - 1;
-    const newId = state.messagesData[last].id + 1;
-    let newMessage = {
-      id: newId,
-      text: state.newMessageText,
-    };
-    state.messagesData.push(newMessage);
-    state.newMessageText = '';
-  };
-
-  const _updateNewMessageText = (newMessageText) => {
-    state.newMessageText = newMessageText;
-  }; */
-  let stateCopy = { ...state };
-  stateCopy.messagesData = [
-    ...state.messagesData,
-  ];
+  let stateCopy = state;
 
   const _addMessage = () => {
+    stateCopy = {
+      ...state,
+      messagesData: [
+        ...state.messagesData,
+      ],
+    };
+
     let last = stateCopy.messagesData.length - 1;
     const newId = stateCopy.messagesData[last].id + 1;
 
@@ -64,11 +54,13 @@ const messageReducer = (state = initialState, action) => {
       id: newId,
       text: state.newMessageText,
     };
+
     stateCopy.messagesData.push(newMessage);
     stateCopy.newMessageText = '';
   };
 
   const _updateNewMessageText = (newMessageText) => {
+    stateCopy = { ...state };
     stateCopy.newMessageText = newMessageText;
   };
 
