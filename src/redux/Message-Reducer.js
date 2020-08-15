@@ -37,7 +37,7 @@ let initialState = {
 };
 
 const messageReducer = (state = initialState, action) => {
-  const _addMessage = () => {
+  /* const _addMessage = () => {
     let last = state.messagesData.length - 1;
     const newId = state.messagesData[last].id + 1;
     let newMessage = {
@@ -50,6 +50,26 @@ const messageReducer = (state = initialState, action) => {
 
   const _updateNewMessageText = (newMessageText) => {
     state.newMessageText = newMessageText;
+  }; */
+  let stateCopy = { ...state };
+  stateCopy.messagesData = [
+    ...state.messagesData,
+  ];
+
+  const _addMessage = () => {
+    let last = stateCopy.messagesData.length - 1;
+    const newId = stateCopy.messagesData[last].id + 1;
+
+    let newMessage = {
+      id: newId,
+      text: state.newMessageText,
+    };
+    stateCopy.messagesData.push(newMessage);
+    stateCopy.newMessageText = '';
+  };
+
+  const _updateNewMessageText = (newMessageText) => {
+    stateCopy.newMessageText = newMessageText;
   };
 
   if (action.type === ADD_MESSAGE) {
@@ -57,7 +77,7 @@ const messageReducer = (state = initialState, action) => {
   } else if ((action.type = UPDATE_NEW_MESSAGE_TEXT)) {
     _updateNewMessageText(action.newMessageText);
   }
-  return state;
+  return stateCopy;
 };
 
 export const addMessageAC = () => {

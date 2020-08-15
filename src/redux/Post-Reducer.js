@@ -16,31 +16,37 @@ let initialState = {
 };
 
 const postReducer = (state = initialState, action) => {
+  let stateCopy = { ...state };
+  stateCopy.postData = [
+    ...state.postData,
+  ];
+
   const _addPost = () => {
-    let last = state.postData.length - 1;
-    const newId = state.postData[last].id + 1;
+    let last = stateCopy.postData.length - 1;
+    const newId = stateCopy.postData[last].id + 1;
     let newPost = {
       id: newId,
-      message: state.newPostText,
+      message: stateCopy.newPostText,
       likeCount: 0,
       liked: false,
     };
-    state.postData.push(newPost);
-    state.newPostText = '';
+    stateCopy.postData.push(newPost);
+    stateCopy.newPostText = '';
+    debugger;
   };
 
   const _likeButtonCounter = (id) => {
-    if (!state.postData[id - 1].liked) {
-      state.postData[id - 1].likeCount += 1;
-      state.postData[id - 1].liked = true;
+    if (!stateCopy.postData[id - 1].liked) {
+      stateCopy.postData[id - 1].likeCount += 1;
+      stateCopy.postData[id - 1].liked = true;
     } else {
-      state.postData[id - 1].likeCount -= 1;
-      state.postData[id - 1].liked = false;
+      stateCopy.postData[id - 1].likeCount -= 1;
+      stateCopy.postData[id - 1].liked = false;
     }
   };
 
   const _updateNewPostText = (newPostText) => {
-    state.newPostText = newPostText;
+    stateCopy.newPostText = newPostText;
   };
 
   if (action.type === ADD_POST) {
@@ -50,8 +56,8 @@ const postReducer = (state = initialState, action) => {
   } else if (action.type === LIKE_BUTTON_COUNTER) {
     _likeButtonCounter(action.id);
   }
-
-  return state;
+  debugger;
+  return stateCopy;
 };
 
 export const addPostAC = () => {
