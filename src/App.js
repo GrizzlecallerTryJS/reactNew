@@ -9,6 +9,8 @@ import { Route } from 'react-router-dom';
 import Friends from './components/Friends/Friends';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
+import Users from './components/Users/Users';
+import UsersContainer from './components/Users/UsersContainer';
 
 const App = (props) => {
   const DialogsCaller = () => {
@@ -25,6 +27,10 @@ const App = (props) => {
 
   const HeaderCaller = () => {
     return <Header />;
+  };
+
+  const UsersCaller = () => {
+    return <UsersContainer />;
   };
 
   return (
@@ -44,6 +50,7 @@ const App = (props) => {
         <Route path='/music' render={Music} />
         <Route path='/settings' render={Settings} />
         <Route path='/friends' render={Friends} />
+        <Route path='/users' render={UsersCaller} />
       </div>
     </div>
   );

@@ -44,7 +44,6 @@ const postReducer = (state = initialState, action) => {
 
     stateCopy.postData.push(newPost);
     stateCopy.newPostText = '';
-    debugger;
   };
 
   const _likeButtonCounter = (id) => {
@@ -79,7 +78,6 @@ const postReducer = (state = initialState, action) => {
   } else if (action.type === LIKE_BUTTON_COUNTER) {
     _likeButtonCounter(action.id);
   }
-  debugger;
   return stateCopy;
 };
 
