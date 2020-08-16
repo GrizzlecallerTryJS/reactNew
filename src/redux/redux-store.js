@@ -7,6 +7,7 @@ import usersReducer from './Users-Reducer';
 
 let reducers = combineReducers({
   forPosts: postReducer,
+  forUsers: usersReducer,
   forDialogs: messageReducer,
   forNavbar: navBarReducer,
 });

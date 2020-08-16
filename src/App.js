@@ -9,7 +9,6 @@ import { Route } from 'react-router-dom';
 import Friends from './components/Friends/Friends';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
-import Users from './components/Users/Users';
 import UsersContainer from './components/Users/UsersContainer';
 
 const App = (props) => {

@@ -1,0 +1,34 @@
+.userItem_global {
+  display: grid;
+  width: 400px;
+  margin: 5px;
+  grid-template-areas: "avatar name" " avatar status" "avatar followButton";
+  grid-template-rows: 1fr, 1fr;
+  grid-template-columns: 50px 1fr;
+  grid-gap: 2vw;
+}
+
+.userItem_avatar_image {
+}
+
+.userItem_avatar_image img {
+  grid-area: avatar;
+  width: 50px;
+  border-radius: 25px;
+}
+
+.userItem_status_area {
+  grid-area: status;
+}
+
+.userItem_name_area {
+  grid-area: name;
+}
+
+.userItem_followButton_area {
+  grid-area: followButton;
+}
+
+.userItem_location_area {
+  grid-area: location;
+}
