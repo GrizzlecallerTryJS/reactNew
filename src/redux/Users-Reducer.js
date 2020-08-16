@@ -9,6 +9,7 @@ const usersReducer = (state = initState, action) => {
   let stateCopy = state;
 
   const _followButton = (id) => {
+    debugger;
     stateCopy = {
       ...state,
       users: state.users.map((u) => u),

@@ -22,12 +22,16 @@ const UserItem = (props) => {
     }
   };
 
+  let hasImageSmall = () => {
+    return props.avatar === null ? props.defaultImage : props.avatar;
+  };
+
   return (
     <div className={styles.userItem_global}>
       <div className={styles.userItem_avatar_image}>
-        <img src={props.avatar} alt='{avatar}' />
+        <img src={hasImageSmall()} alt='{avatarSmall}' />
       </div>
-      <div className={styles.userItem_name_area}>{props.fullName}</div>
+      <div className={styles.userItem_name_area}>{props.name}</div>
       <div className={styles.userItem_status_area}>{props.status}</div>
       <div className={styles.userItem_followButton_area}>{followState()}</div>
     </div>
