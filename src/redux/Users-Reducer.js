@@ -9,14 +9,14 @@ const usersReducer = (state = initState, action) => {
   let stateCopy = state;
 
   const _followButton = (id) => {
-    debugger;
     stateCopy = {
       ...state,
       users: state.users.map((u) => u),
     };
-    stateCopy.users[id - 1].followed === false
-      ? (stateCopy.users[id - 1].followed = true)
-      : (stateCopy.users[id - 1].followed = false);
+
+    state.users.map((user) => {
+      user.id === id && user.followed === false ? (user.followed = true) : (user.followed = false);
+    });
   };
 
   let _setUsers = (newUsers) => {
