@@ -22,8 +22,16 @@ const UserItem = (props) => {
     }
   };
 
+  let defaultStatus = () => {
+    return <div>Lorem ipsum dolor sit amet consectetur.</div>;
+  };
+
   let hasImageSmall = () => {
     return props.avatar === null ? props.defaultImage : props.avatar;
+  };
+
+  let haStatus = () => {
+    return props.status === null ? defaultStatus() : props.status;
   };
 
   return (
@@ -32,7 +40,7 @@ const UserItem = (props) => {
         <img src={hasImageSmall()} alt='{avatarSmall}' />
       </div>
       <div className={styles.userItem_name_area}>{props.name}</div>
-      <div className={styles.userItem_status_area}>{props.status}</div>
+      <div className={styles.userItem_status_area}>{haStatus()}</div>
       <div className={styles.userItem_followButton_area}>{followState()}</div>
     </div>
   );

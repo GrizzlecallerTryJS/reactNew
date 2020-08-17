@@ -1,11 +1,11 @@
 .userItem_global {
   display: grid;
-  width: 400px;
+  width: 350px;
   margin: 5px;
-  grid-template-areas: "avatar name" " avatar status" "avatar followButton";
-  grid-template-rows: 1fr, 1fr;
-  grid-template-columns: 50px 1fr;
-  grid-gap: 2vw;
+  grid-template-areas: "avatar avatar avatar" "name name followButton" "status status status";
+
+  grid-gap: 1em;
+  background-color: rgb(241, 193, 128);
 }
 
 .userItem_avatar_image {
