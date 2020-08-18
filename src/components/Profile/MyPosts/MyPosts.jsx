@@ -3,10 +3,15 @@ import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 
 class MyPosts extends React.Component {
+  // конструктор закоменчен, только потому что его не обязательно писать, т.к.
+  // единственное его предназначение передавать пропсы в родительский класс
+  /* constructor (props) {
+    super(props);
+  } */
+
   postData = this.props.postData;
 
   addPost = () => {
-    //props.dispatch(addPostAC());
     this.props.addPost();
   };
 
