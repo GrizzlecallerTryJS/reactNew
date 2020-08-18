@@ -5,20 +5,18 @@ import * as axios from 'axios';
 import defaultImage from './../../assets/defaultImage.jpg';
 
 class Users extends React.Component {
-  constructor (props) {
+  // конструктор закоменчен, только потому что его не обязательно писать, т.к.
+  // единственное его предназначение передавать пропсы в родительский класс
+
+  /* constructor (props) {
     super(props);
+  } */
+
+  componentDidMount () {
     axios.get('https://social-network.samuraijs.com/api/1.0/users', { withCredentials: true }).then((response) => {
       this.props.setUsers(response.data.items);
     });
   }
-
-  getUsers = () => {
-    if (this.props.users.length === 0) {
-      axios.get('https://social-network.samuraijs.com/api/1.0/users', { withCredentials: true }).then((response) => {
-        this.props.setUsers(response.data.items);
-      });
-    }
-  };
 
   render () {
     let user = this.props.users.map((user) => {
