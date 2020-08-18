@@ -16,7 +16,7 @@ class MyPosts extends React.Component {
   };
 
   render () {
-    const PostMap = postData.map((post) => {
+    const PostMap = this.postData.map((post) => {
       return (
         <Post
           id={post.id}
