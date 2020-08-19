@@ -1,3 +1,7 @@
 .users_global {
   padding: 5px;
 }
+
+.selectedPage {
+  font-weight: bold;
+}
