@@ -20,7 +20,12 @@ const usersReducer = (state = initState, action) => {
     };
 
     state.users.map((user) => {
-      return user.id === id && user.followed === false ? (user.followed = true) : (user.followed = false);
+      //return user.id === id && user.followed === false ? (user.followed = true) : (user.followed = false);
+      if (user.id === id && user.followed === false) {
+        return (user.followed = true);
+      } else if (user.id === id && user.followed === true) {
+        return (user.followed = false);
+      }
     });
   };
 
