@@ -2,12 +2,14 @@ const FOLLOW_BUTTON = 'FOLLOW-BUTTON';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 
 let initState = {
   users: [],
   pageSize: 8,
   totalUsersCount: 0,
   currentPage: 1,
+  isFetching: true,
 };
 
 const usersReducer = (state = initState, action) => {
@@ -44,6 +46,10 @@ const usersReducer = (state = initState, action) => {
     stateCopy = { ...state, totalUsersCount: totalCount };
   };
 
+  let _setIsFetching = (isFetching) => {
+    stateCopy = { ...state, isFetching: isFetching };
+  };
+
   if (action.type === FOLLOW_BUTTON) {
     _followButton(action.id);
   } else if (action.type === SET_USERS) {
@@ -52,6 +58,8 @@ const usersReducer = (state = initState, action) => {
     _setCurrentPage(action.currentPage);
   } else if (action.type === SET_TOTAL_USERS_COUNT) {
     _setTotalUsersCount(action.totalUsersCount);
+  } else if (action.type === TOGGLE_IS_FETCHING) {
+    _setIsFetching(action.isFetching);
   }
 
   return stateCopy;
@@ -82,6 +90,13 @@ export const setTotalUsersCountAC = (totalCount) => {
   return {
     type: SET_TOTAL_USERS_COUNT,
     totalUsersCount: totalCount,
+  };
+};
+
+export const setIsFetchingAC = (isFetching) => {
+  return {
+    type: TOGGLE_IS_FETCHING,
+    isFetching: isFetching,
   };
 };
 
