@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './UserItem.module.css';
+import { NavLink } from 'react-router-dom';
 
 const UserItem = (props) => {
   let followButton = () => {
@@ -31,14 +32,16 @@ const UserItem = (props) => {
   };
 
   let haStatus = () => {
-    return props.status === null ? defaultStatus() : props.status;
+    return props.status === null ? defaultStatus() : props.aboutMe;
   };
 
   return (
     <div className={styles.userItem_global}>
-      <div className={styles.userItem_avatar_image}>
-        <img src={hasImageSmall()} alt='{avatarSmall}' />
-      </div>
+      <NavLink to={`/profile/${props.id}`}>
+        <div className={styles.userItem_avatar_image}>
+          <img src={hasImageSmall()} alt='{avatarSmall}' />
+        </div>
+      </NavLink>
       <div className={styles.userItem_name_area}>{props.name}</div>
       <div className={styles.userItem_status_area}>{haStatus()}</div>
       <div className={styles.userItem_followButton_area}>{followState()}</div>

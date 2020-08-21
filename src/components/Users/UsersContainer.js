@@ -4,7 +4,7 @@ import { followButton, setUsers, setCurrentPage, setTotalUsersCount, setIsFetchi
 import * as axios from 'axios';
 import defaultImage from './../../assets/defaultImage.jpg';
 import Users from './Users';
-import Preloader from '../../assets/loaders/Preloader/UserPreLoader';
+import Preloader from '../../assets/loaders/Preloader/Preloader';
 
 class UsersAPIComponent extends React.Component {
   // конструктор закоменчен, только потому что его не обязательно писать, т.к.

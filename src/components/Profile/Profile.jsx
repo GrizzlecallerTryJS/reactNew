@@ -6,7 +6,7 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 const Profile = (props) => {
   return (
     <Fragment>
-      <ProfileInfo />
+      <ProfileInfo userData={props.userData} />
       <div>
         <div>MAIN CONTENT BELOW</div>
         <div>------------------</div>
@@ -18,7 +18,3 @@ const Profile = (props) => {
   );
 };
 export default Profile;
-
-/* postData={props.forPosts.postData}
-          newPostText={props.forPosts.newPostText}
-          dispatch={props.dispatch} */
