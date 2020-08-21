@@ -1,12 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import {
-  followButtonAC,
-  setUsersAC,
-  setCurrentPageAC,
-  setTotalUsersCountAC,
-  setIsFetchingAC,
-} from '../../redux/Users-Reducer';
+import { followButton, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching } from '../../redux/Users-Reducer';
 import * as axios from 'axios';
 import defaultImage from './../../assets/defaultImage.jpg';
 import Users from './Users';
@@ -74,7 +68,7 @@ let mapStateToProps = (state) => {
   };
 };
 
-let mapDispatchToProps = (dispatch) => {
+/* let mapDispatchToProps = (dispatch) => {
   return {
     followButton: (id) => {
       dispatch(followButtonAC(id));
@@ -92,6 +86,22 @@ let mapDispatchToProps = (dispatch) => {
       dispatch(setIsFetchingAC(isFetching));
     },
   };
+}; */
+
+/* let mapDispatchToProps = {
+  followButton: followButtonAC,
+  setUsers: setUsersAC,
+  setCurrentPage: setCurrentPageAC,
+  setTotalUsersCount: setTotalUsersCountAC,
+  setIsFetching: setIsFetchingAC,
+}; */
+
+let mapDispatchToProps = {
+  followButton,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+  setIsFetching,
 };
 
 //const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
