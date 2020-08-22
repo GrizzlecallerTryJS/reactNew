@@ -41,7 +41,7 @@ const App = (props) => {
         <NavbarCaller />
       </div>
       <div className='app_wrapper_content'>
-        <Route path='/profile' render={ProfileCaller} />
+        <Route path='/profile/:userId?' render={ProfileCaller} />
         <div className='app_wrapper_dialogs'>
           <Route exact path='/messages' render={DialogsCaller} />
         </div>
