@@ -1,4 +1,5 @@
 const SET_COMMON_USER_PROFILE = 'SET-COMMON_USER_DATA';
+const SET_IS_FETCHNG = 'SET-IS-FETCHNG';
 
 let initState = {
   aboutMe: null,
@@ -20,6 +21,7 @@ let initState = {
     small: null,
     large: null,
   },
+  isFetching: true,
 };
 
 const profileReducer = (state = initState, action) => {
@@ -33,8 +35,17 @@ const profileReducer = (state = initState, action) => {
     };
   };
 
+  let _isFetching = (isFetching) => {
+    stateCopy = {
+      ...state,
+      isFetching: isFetching,
+    };
+  };
+
   if (action.type === SET_COMMON_USER_PROFILE) {
     _setCommonUserProfile(action.userProfile);
+  } else if (action.type === SET_IS_FETCHNG) {
+    _isFetching(action.isFetching);
   }
 
   return stateCopy;
@@ -44,6 +55,13 @@ export const setCommonUserProfile = (userProfile) => {
   return {
     type: SET_COMMON_USER_PROFILE,
     userProfile: userProfile,
+  };
+};
+
+export const setIsFetching = (isFetching) => {
+  return {
+    type: SET_IS_FETCHNG,
+    isFetching: isFetching,
   };
 };
 

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Profile from './Profile';
 import * as axios from 'axios';
-import { setCommonUserProfile } from '../../redux/Profile-Reducer';
+import { setCommonUserProfile, setIsFetching } from '../../redux/Profile-Reducer';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import Preloader from '../../assets/loaders/Preloader/Preloader';
 
 class ProfileContainer extends React.Component {
   componentDidMount () {
+    this.props.setIsFetching(true);
     let userId = this.props.match.params.userId;
     if (!userId) {
       userId = 2;
@@ -14,14 +16,18 @@ class ProfileContainer extends React.Component {
     axios
       .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`, { withCredentials: true })
       .then((response) => {
+        this.props.setIsFetching(false);
         this.props.setCommonUserProfile(response.data);
       });
   }
 
   render () {
+    let ProfileCaller = () => {
+      return <Profile {...this.props} />;
+    };
     return (
       <div>
-        <Profile {...this.props} />
+        <Fragment>{this.props.isFetching ? <Preloader /> : <ProfileCaller />}</Fragment>
       </div>
     );
   }
@@ -30,6 +36,7 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => {
   return {
     userData: state.forProfile,
+    isFetching: state.forProfile.isFetching,
   };
 };
 
@@ -43,10 +50,9 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = {
   setCommonUserProfile,
+  setIsFetching,
 };
 
 let withUrlDataContainerComponent = withRouter(ProfileContainer);
-
-//export default ProfileContainer;
 
 export default connect(mapStateToProps, mapDispatchToProps)(withUrlDataContainerComponent);
