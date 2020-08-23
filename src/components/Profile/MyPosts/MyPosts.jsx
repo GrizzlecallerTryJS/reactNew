@@ -17,7 +17,7 @@ class MyPosts extends React.Component {
 
   updateNewPostText = (element) => {
     let text = element.target.value;
-    this.props.textAreaUpdateText(text);
+    this.props.updateNewPostText(text);
   };
 
   render () {

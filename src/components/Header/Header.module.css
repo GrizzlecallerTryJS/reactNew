@@ -6,3 +6,15 @@
 .header img {
   width: 40px;
 }
+
+.login_block a {
+  float: right;
+  display: inline-block;
+  color: #f1ecde;
+  font-size: 20px;
+  text-decoration: none;
+  user-select: none;
+  padding: 0 5px;
+  outline: none;
+  border-radius: 2px;
+}

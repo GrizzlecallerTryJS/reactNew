@@ -21,7 +21,7 @@ let initState = {
     small: null,
     large: null,
   },
-  isFetching: true,
+  isFetching: false,
 };
 
 const profileReducer = (state = initState, action) => {

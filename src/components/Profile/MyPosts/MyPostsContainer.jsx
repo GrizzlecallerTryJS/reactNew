@@ -1,4 +1,4 @@
-import MyPosts from './OLD_MyPosts';
+import MyPosts from './MyPosts';
 import { addPost, updateNewPostText, likeButtonCounter } from '../../../redux/Post-Reducer';
 import { connect } from 'react-redux';
 

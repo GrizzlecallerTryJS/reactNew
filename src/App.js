@@ -10,6 +10,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 const App = (props) => {
   const DialogsCaller = () => {
@@ -25,7 +26,7 @@ const App = (props) => {
   };
 
   const HeaderCaller = () => {
-    return <Header />;
+    return <HeaderContainer />;
   };
 
   const UsersCaller = () => {
