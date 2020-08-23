@@ -5,6 +5,7 @@ import { setCommonUserProfile, setIsFetching } from '../../redux/Profile-Reducer
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
+import defaultImage from './../../assets/defaultImage.jpg';
 
 class ProfileContainer extends React.Component {
   componentDidMount () {
@@ -23,7 +24,7 @@ class ProfileContainer extends React.Component {
 
   render () {
     let ProfileCaller = () => {
-      return <Profile {...this.props} />;
+      return <Profile {...this.props} defaultImage={defaultImage} />;
     };
     return (
       <div>

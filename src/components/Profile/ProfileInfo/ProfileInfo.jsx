@@ -6,29 +6,58 @@ const ProfileInfo = (props) => {
   if (!props.userData) {
     return <Preloader />;
   }
+
+  const hasPhotoSmall = () => {
+    return props.userData.photos.small ? props.userData.photos.small : props.defaultImage;
+  };
+
   const facebook = () => {
-    return props.userData.contacts.facebook ? props.userData.contacts.facebook : '';
+    if (!props.userData.contacts.facebook) {
+      return <div />;
+    }
+    return <div>facebook: {props.userData.contacts.facebook}</div>;
   };
   const website = () => {
-    return props.userData.contacts.website ? props.userData.contacts.website : '';
+    if (!props.userData.contacts.website) {
+      return <div />;
+    }
+    return <div>website: {props.userData.contacts.website}</div>;
   };
   const vk = () => {
-    return props.userData.contacts.vk ? props.userData.contacts.vk : '';
+    if (!props.userData.contacts.vk) {
+      return <div />;
+    }
+    return <div>vk: {props.userData.contacts.vk}</div>;
   };
   const twitter = () => {
-    return props.userData.contacts.twitter ? props.userData.contacts.twitter : '';
+    if (!props.userData.contacts.twitter) {
+      return <div />;
+    }
+    return <div>twitter: {props.userData.contacts.twitter}</div>;
   };
   const instagram = () => {
-    return props.userData.contacts.instagram ? props.userData.contacts.instagram : '';
+    if (!props.userData.contacts.instagram) {
+      return <div />;
+    }
+    return <div>instagram: {props.userData.contacts.instagram}</div>;
   };
   const youtube = () => {
-    return props.userData.contacts.youtube ? props.userData.contacts.youtube : '';
+    if (!props.userData.contacts.youtube) {
+      return <div />;
+    }
+    return <div>youtube: {props.userData.contacts.youtube}</div>;
   };
   const github = () => {
-    return props.userData.contacts.github ? props.userData.contacts.github : '';
+    if (!props.userData.contacts.github) {
+      return <div />;
+    }
+    return <div>github: {props.userData.contacts.github}</div>;
   };
   const mainLink = () => {
-    return props.userData.contacts.mainLink ? props.userData.contacts.mainLink : '';
+    if (!props.userData.contacts.mainLink) {
+      return <div />;
+    }
+    return <div>mainLink: {props.userData.contacts.mainLink}</div>;
   };
 
   return (
@@ -41,20 +70,20 @@ const ProfileInfo = (props) => {
       </Fragment>
       <Fragment>
         <div className={styles.avatar}>
-          <img src={props.userData.photos.small} alt='avatar' />
+          <img src={hasPhotoSmall()} alt='avatar' />
         </div>
         <div>{props.userData.fullName}</div>
         <div>{props.userData.aboutMe}</div>
         <div>------------------</div>
         <div>Контакты</div>
-        <div>facebook: {facebook()}</div>
-        <div>website: {website()}</div>
-        <div>vk: {vk()}</div>
-        <div>twitter: {twitter()}</div>
-        <div>instagram: {instagram()}</div>
-        <div>youtube: {youtube()}</div>
-        <div>github: {github()}</div>
-        <div>mainLink: {mainLink()}</div>
+        <div>{facebook()}</div>
+        <div>{website()}</div>
+        <div>{vk()}</div>
+        <div>{twitter()}</div>
+        <div>{instagram()}</div>
+        <div>{youtube()}</div>
+        <div>{github()}</div>
+        <div>{mainLink()}</div>
       </Fragment>
     </Fragment>
   );
