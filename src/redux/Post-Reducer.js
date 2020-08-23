@@ -81,18 +81,18 @@ const postReducer = (state = initialState, action) => {
   return stateCopy;
 };
 
-export const addPostAC = () => {
+export const addPost = () => {
   return { type: ADD_POST };
 };
 
-export const updateNewPostTextAC = (text) => {
+export const updateNewPostText = (text) => {
   return {
     type: UPDATE_NEW_POST_TEXT,
     newPostText: text,
   };
 };
 
-export const likeButtonCounterAC = (id) => {
+export const likeButtonCounter = (id) => {
   return {
     type: LIKE_BUTTON_COUNTER,
     id: id,

@@ -1,5 +1,5 @@
 import MyPosts from './OLD_MyPosts';
-import { updateNewPostTextAC, addPostAC, likeButtonCounterAC } from '../../../redux/Post-Reducer';
+import { addPost, updateNewPostText, likeButtonCounter } from '../../../redux/Post-Reducer';
 import { connect } from 'react-redux';
 
 let mapStateToProps = (state) => {
@@ -9,7 +9,7 @@ let mapStateToProps = (state) => {
   };
 };
 
-let mapDispatchToProps = (dispatch) => {
+/* let mapDispatchToProps = (dispatch) => {
   return {
     addPost: () => {
       dispatch(addPostAC());
@@ -21,8 +21,16 @@ let mapDispatchToProps = (dispatch) => {
       dispatch(likeButtonCounterAC(id));
     },
   };
+}; */
+
+let mapDispatchToProps = {
+  addPost,
+  updateNewPostText,
+  likeButtonCounter,
 };
 
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+/* const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
-export default MyPostsContainer;
+export default MyPostsContainer; */
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyPosts);

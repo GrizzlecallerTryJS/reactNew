@@ -18,13 +18,12 @@ const MyPosts = (props) => {
   });
 
   let addPost = () => {
-    //props.dispatch(addPostAC());
     props.addPost();
   };
 
   let updateNewPostText = (element) => {
     let text = element.target.value;
-    props.textAreaUpdateText(text);
+    props.updateNewPostText(text);
   };
 
   return (

@@ -19,10 +19,14 @@ let mapStateToProps = (state) => {
   };
 };
 
-let mapDispatchToProps = () => {
+/* let mapDispatchToProps = () => {
   return {};
-};
+}; */
 
-let NavbarContainer = connect(mapStateToProps, mapDispatchToProps)(Navbar);
+let mapDispatchToProps = {};
 
-export default NavbarContainer;
+/* let NavbarContainer = connect(mapStateToProps, mapDispatchToProps)(Navbar);
+
+export default NavbarContainer; */
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

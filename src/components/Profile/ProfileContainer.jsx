@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from './Profile';
 import * as axios from 'axios';
-import { setCommonUserProfileAC } from '../../redux/Profile-Reducer';
+import { setCommonUserProfile } from '../../redux/Profile-Reducer';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -33,12 +33,16 @@ let mapStateToProps = (state) => {
   };
 };
 
-let mapDispatchToProps = (dispatch) => {
+/* let mapDispatchToProps = (dispatch) => {
   return {
     setCommonUserProfile: (userData) => {
       dispatch(setCommonUserProfileAC(userData));
     },
   };
+}; */
+
+let mapDispatchToProps = {
+  setCommonUserProfile,
 };
 
 let withUrlDataContainerComponent = withRouter(ProfileContainer);

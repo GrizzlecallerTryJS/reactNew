@@ -40,7 +40,7 @@ const profileReducer = (state = initState, action) => {
   return stateCopy;
 };
 
-export const setCommonUserProfileAC = (userProfile) => {
+export const setCommonUserProfile = (userProfile) => {
   return {
     type: SET_COMMON_USER_PROFILE,
     userProfile: userProfile,
