@@ -3,15 +3,6 @@ import styles from './Header.module.css';
 import { NavLink } from 'react-router-dom';
 
 const Header = (props) => {
-  /*   let userAuth = () => {
-    if (!props.isAuth) {
-      return <NavLink to={'/login'}>Login</NavLink>;
-    }
-    return <NavLink to={'/profile'}>{props.login}</NavLink>;
-  }; */
-
-  debugger;
-
   let userAuth = () => {
     return props.isAuth ? <NavLink to={'/profile'}>{props.login}</NavLink> : <NavLink to={'/login'}>Login</NavLink>;
   };
@@ -24,7 +15,6 @@ const Header = (props) => {
           alt='site logo'
         />
         <div>{userAuth()}</div>
-
         <div>
           <img src={props.authUserImage} alt='avatar' />
         </div>

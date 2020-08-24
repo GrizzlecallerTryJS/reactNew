@@ -15,7 +15,6 @@ const authReducer = (state = initState, action) => {
   let stateCopy = state;
 
   let _setAuthUserData = (userData) => {
-    debugger;
     stateCopy = {
       ...userData,
       isAuth: true,
@@ -30,7 +29,6 @@ const authReducer = (state = initState, action) => {
   };
 
   let _setAuthUserImage = (authUserImage) => {
-    debugger;
     stateCopy = {
       ...state,
       authUserImage: authUserImage,
