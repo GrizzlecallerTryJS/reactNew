@@ -10,6 +10,8 @@ const Header = (props) => {
     return <NavLink to={'/profile'}>{props.login}</NavLink>;
   }; */
 
+  debugger;
+
   let userAuth = () => {
     return props.isAuth ? <NavLink to={'/profile'}>{props.login}</NavLink> : <NavLink to={'/login'}>Login</NavLink>;
   };
@@ -21,7 +23,10 @@ const Header = (props) => {
           src='https://www.freeflashlogos.com/wp-content/uploads/2019/05/logomaker-landing-page.jpg'
           alt='site logo'
         />
-        {userAuth()}
+        <div>{userAuth()}</div>
+        <div>
+          <img src={props.image} alt='avatar' />
+        </div>
       </div>
     </header>
   );
