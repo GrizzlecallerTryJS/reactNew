@@ -24,11 +24,9 @@ class HeaderContainer extends React.Component {
             withCredentials: true,
           })
           .then((response) => {
-            debugger;
-            if (!response.data.photos.small) {
-              this.props.setAuthUserImage(defaultImage);
-            }
-            this.props.setAuthUserImage(response.data.photos.small);
+            !response.data.photos.small
+              ? this.props.setAuthUserImage(defaultImage)
+              : this.props.setAuthUserImage(response.data.photos.small);
           });
       });
   }
