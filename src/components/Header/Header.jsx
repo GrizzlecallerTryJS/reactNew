@@ -26,7 +26,7 @@ const Header = (props) => {
         <div>{userAuth()}</div>
 
         <div>
-          <img src={props.image} alt='avatar' />
+          <img src={props.authUserImage} alt='avatar' />
         </div>
       </div>
     </header>

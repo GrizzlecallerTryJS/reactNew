@@ -14,14 +14,11 @@ let initState = {
 const authReducer = (state = initState, action) => {
   let stateCopy = state;
 
-  let _setAuthUserData = (id, login, email) => {
+  let _setAuthUserData = (userData) => {
     debugger;
     stateCopy = {
-      ...id,
-      ...login,
-      ...email,
+      ...userData,
       isAuth: true,
-      image: null,
     };
   };
 
@@ -33,6 +30,7 @@ const authReducer = (state = initState, action) => {
   };
 
   let _setAuthUserImage = (authUserImage) => {
+    debugger;
     stateCopy = {
       ...state,
       authUserImage: authUserImage,
