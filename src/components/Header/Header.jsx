@@ -10,6 +10,8 @@ const Header = (props) => {
     return <NavLink to={'/profile'}>{props.login}</NavLink>;
   }; */
 
+  debugger;
+
   let userAuth = () => {
     return props.isAuth ? <NavLink to={'/profile'}>{props.login}</NavLink> : <NavLink to={'/login'}>Login</NavLink>;
   };
@@ -22,6 +24,7 @@ const Header = (props) => {
           alt='site logo'
         />
         {userAuth()}
+        <img src={props.image} alt='avatar' />
       </div>
     </header>
   );

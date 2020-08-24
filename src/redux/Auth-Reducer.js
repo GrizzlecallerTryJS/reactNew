@@ -7,13 +7,19 @@ let initState = {
   login: null,
   isFetching: true,
   isAuth: false,
+  image: null,
 };
 
 const authReducer = (state = initState, action) => {
   let stateCopy = state;
-  let _setAuthUserData = (userData) => {
+
+  let _setAuthUserData = (id, login, email, image) => {
+    debugger;
     stateCopy = {
-      ...userData,
+      ...id,
+      ...login,
+      ...email,
+      ...image,
       isAuth: true,
     };
   };
@@ -34,23 +40,24 @@ const authReducer = (state = initState, action) => {
   return stateCopy;
 };
 
-/* export const setAuthUserData = (id, login, email) => {
+export const setAuthUserData = (id, login, email, image) => {
   return {
     type: SET_USER_DATA,
     userData: {
       id,
       login,
       email,
+      image,
     },
   };
-}; */
+};
 
-export const setAuthUserData = (userData) => {
+/* export const setAuthUserData = (userData) => {
   return {
     type: SET_USER_DATA,
     userData: userData,
   };
-};
+}; */
 
 export const setIsFetching = (isFetching) => {
   return {
