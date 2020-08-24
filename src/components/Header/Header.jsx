@@ -24,8 +24,14 @@ const Header = (props) => {
           alt='site logo'
         />
         <div>{userAuth()}</div>
+<<<<<<< HEAD
         <div>
           <img src={props.image} alt='avatar' />
+=======
+
+        <div>
+          <img src={props.authUserImage} alt='avatar' />
+>>>>>>> MT-015
         </div>
       </div>
     </header>
