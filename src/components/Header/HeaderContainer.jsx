@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
-import { setAuthUserData, setIsFetching } from '../../redux/Auth-Reducer';
+import { setAuthUserData, setIsFetching, setAuthUserImage } from '../../redux/Auth-Reducer';
 import * as axios from 'axios';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
 import defaultImage from '../../assets/defaultImage.jpg';
@@ -25,12 +25,10 @@ class HeaderContainer extends React.Component {
           })
           .then((response) => {
             debugger;
-            if (response.data.photos.small) {
-              let image = response.data.photos.small;
-              this.props.setAuthUserData(image);
-            } else {
-              this.props.setAuthUserData(defaultImage);
+            if (!response.data.photos.small) {
+              this.props.setAuthUserImage(defaultImage);
             }
+            this.props.setAuthUserImage(response.data.photos.small);
           });
       });
   }
@@ -47,13 +45,14 @@ const mapStateToProps = (state) => {
   return {
     isAuth: state.forAuth.isAuth,
     login: state.forAuth.login,
-    image: state.forAuth.image,
+    authUserImage: state.forAuth.authUserImage,
   };
 };
 
 const mapDispatchToProps = {
   setAuthUserData,
   setIsFetching,
+  setAuthUserImage,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);

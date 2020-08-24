@@ -23,8 +23,11 @@ const Header = (props) => {
           src='https://www.freeflashlogos.com/wp-content/uploads/2019/05/logomaker-landing-page.jpg'
           alt='site logo'
         />
-        {userAuth()}
-        <img src={props.image} alt='avatar' />
+        <div>{userAuth()}</div>
+
+        <div>
+          <img src={props.image} alt='avatar' />
+        </div>
       </div>
     </header>
   );
