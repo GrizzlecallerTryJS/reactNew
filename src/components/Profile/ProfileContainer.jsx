@@ -38,6 +38,7 @@ let mapStateToProps = (state) => {
   return {
     userData: state.forProfile,
     isFetching: state.forProfile.isFetching,
+    postData: state.forPosts.postData,
   };
 };
 

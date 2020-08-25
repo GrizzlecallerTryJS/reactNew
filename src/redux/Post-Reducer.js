@@ -66,9 +66,8 @@ const postReducer = (state = initialState, action) => {
   const _updateNewPostText = (newPostText) => {
     stateCopy = {
       ...state,
+      newPostText: newPostText,
     };
-
-    stateCopy.newPostText = newPostText;
   };
 
   if (action.type === ADD_POST) {

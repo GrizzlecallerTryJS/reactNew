@@ -13,13 +13,6 @@ let mapStateToProps = (state) => {
   return {
     addPost: () => {
       dispatch(addPostAC());
-    },
-    textAreaUpdateText: (text) => {
-      dispatch(updateNewPostTextAC(text));
-    },
-    likeButtonCounter: (id) => {
-      dispatch(likeButtonCounterAC(id));
-    },
   };
 }; */
 
