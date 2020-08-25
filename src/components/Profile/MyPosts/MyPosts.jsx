@@ -29,6 +29,7 @@ class MyPosts extends React.Component {
           liked={post.liked}
           likeCount={post.likeCount}
           likeButtonCounter={this.props.likeButtonCounter}
+          key={post.id}
         />
       );
     });

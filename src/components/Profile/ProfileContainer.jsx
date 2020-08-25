@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import Profile from './Profile';
-import * as axios from 'axios';
 import { setCommonUserProfile, setIsFetching } from '../../redux/Profile-Reducer';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
 import defaultImage from './../../assets/defaultImage.jpg';
+import { usersAPI } from '../../api/api';
 
 class ProfileContainer extends React.Component {
   componentDidMount () {
@@ -14,12 +14,11 @@ class ProfileContainer extends React.Component {
     if (!userId) {
       userId = 2;
     }
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`, { withCredentials: true })
-      .then((response) => {
-        this.props.setIsFetching(false);
-        this.props.setCommonUserProfile(response.data);
-      });
+
+    usersAPI.getUserProfile(userId).then((data) => {
+      this.props.setIsFetching(false);
+      this.props.setCommonUserProfile(data);
+    });
   }
 
   render () {
