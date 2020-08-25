@@ -13,6 +13,9 @@ const Users = (props) => {
         status={user.status}
         followButton={props.followButton}
         defaultImage={props.defaultImage}
+        followingProgress={props.followingProgress}
+        followingProgressState={props.followingProgressState}
+        key={user.id}
       />
     );
   });

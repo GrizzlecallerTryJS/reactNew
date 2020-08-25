@@ -9,17 +9,21 @@ const UserItem = (props) => {
   };
 
   let follow = () => {
+    props.followingProgress(true, props.id);
     usersAPI.followUser(props.id).then((data) => {
       if (data.resultCode === 0) {
         followButton(props.id);
+        props.followingProgress(false, props.id);
       }
     });
   };
 
   let unFollow = () => {
+    props.followingProgress(true, props.id);
     usersAPI.unFollowUser(props.id).then((data) => {
       if (data.resultCode === 0) {
         followButton(props.id);
+        props.followingProgress(false, props.id);
       }
     });
   };
@@ -28,13 +32,17 @@ const UserItem = (props) => {
     if (!props.followed) {
       return (
         <div>
-          <button onClick={follow}>follow</button>
+          <button disabled={props.followingProgressState.some((id) => id === props.id)} onClick={follow}>
+            follow
+          </button>
         </div>
       );
     } else {
       return (
         <div>
-          <button onClick={unFollow}>unFollow</button>
+          <button disabled={props.followingProgressState.some((id) => id === props.id)} onClick={unFollow}>
+            unFollow
+          </button>
         </div>
       );
     }

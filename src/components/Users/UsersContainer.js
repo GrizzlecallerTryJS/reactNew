@@ -1,6 +1,13 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { followButton, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching } from '../../redux/Users-Reducer';
+import {
+  followButton,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+  setIsFetching,
+  followingProgress,
+} from '../../redux/Users-Reducer';
 import defaultImage from './../../assets/defaultImage.jpg';
 import Users from './Users';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
@@ -47,6 +54,8 @@ class UsersAPIComponent extends React.Component {
           followButton={this.props.followButton}
           currentPage={this.props.currentPage}
           onPageChanged={this.onPageChanged}
+          followingProgress={this.props.followingProgress}
+          followingProgressState={this.props.followingProgressState}
         />
       );
     };
@@ -61,6 +70,7 @@ let mapStateToProps = (state) => {
     totalUsersCount: state.forUsers.totalUsersCount,
     currentPage: state.forUsers.currentPage,
     isFetching: state.forUsers.isFetching,
+    followingProgressState: state.forUsers.followingProgressState,
   };
 };
 
@@ -82,6 +92,7 @@ let mapDispatchToProps = {
   setCurrentPage,
   setTotalUsersCount,
   setIsFetching,
+  followingProgress,
 };
 
 //const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);

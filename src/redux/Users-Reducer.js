@@ -3,13 +3,15 @@ const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
+const FOLLOWING_PROGRESS = 'FOLLOWING-PROGRESS';
 
 let initState = {
   users: [],
   pageSize: 8,
   totalUsersCount: 0,
   currentPage: 1,
-  isFetching: true,
+  isFetching: false,
+  followingProgressState: [],
 };
 
 const usersReducer = (state = initState, action) => {
@@ -22,7 +24,6 @@ const usersReducer = (state = initState, action) => {
     };
 
     state.users.map((user) => {
-      //return user.id === id && user.followed === false ? (user.followed = true) : (user.followed = false);
       if (user.id === id && user.followed === false) {
         return (user.followed = true);
       } else if (user.id === id && user.followed === true) {
@@ -50,6 +51,20 @@ const usersReducer = (state = initState, action) => {
     stateCopy = { ...state, isFetching: isFetching };
   };
 
+  let _followingProgress = (isFetching, id) => {
+    stateCopy = {
+      ...state,
+      followingProgressState: isFetching
+        ? [
+            ...state.followingProgressState,
+            id,
+          ]
+        : [
+            ...state.followingProgressState.filter((id) => id !== action.userId),
+          ],
+    };
+  };
+
   if (action.type === FOLLOW_BUTTON) {
     _followButton(action.id);
   } else if (action.type === SET_USERS) {
@@ -60,6 +75,8 @@ const usersReducer = (state = initState, action) => {
     _setTotalUsersCount(action.totalUsersCount);
   } else if (action.type === TOGGLE_IS_FETCHING) {
     _setIsFetching(action.isFetching);
+  } else if (action.type === FOLLOWING_PROGRESS) {
+    _followingProgress(action.isFetching, action.userId);
   }
 
   return stateCopy;
@@ -97,6 +114,14 @@ export const setIsFetching = (isFetching) => {
   return {
     type: TOGGLE_IS_FETCHING,
     isFetching: isFetching,
+  };
+};
+
+export const followingProgress = (isFetching, userId) => {
+  return {
+    type: FOLLOWING_PROGRESS,
+    isFetching: isFetching,
+    userId: userId,
   };
 };
 
