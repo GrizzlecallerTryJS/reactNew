@@ -1,3 +1,5 @@
+import { usersAPI } from '../api/api';
+
 const FOLLOW_BUTTON = 'FOLLOW-BUTTON';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
@@ -122,6 +124,52 @@ export const followingProgress = (isFetching, userId) => {
     type: FOLLOWING_PROGRESS,
     isFetching: isFetching,
     userId: userId,
+  };
+};
+
+export const getUsers = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(setIsFetching(true));
+    usersAPI.getUsers(currentPage, pageSize).then((data) => {
+      dispatch(setIsFetching(false));
+      dispatch(setUsers(data.items));
+      dispatch(setTotalUsersCount(data.totalCount));
+    });
+  };
+};
+
+export const getUsersPage = (pageNumber, pageSize) => {
+  return (dispatch) => {
+    dispatch(setCurrentPage(pageNumber));
+    dispatch(setIsFetching(true));
+    usersAPI.getUsers(pageNumber, pageSize).then((data) => {
+      dispatch(setIsFetching(false));
+      dispatch(setUsers(data.items));
+    });
+  };
+};
+
+export const follow = (userID) => {
+  return (dispatch) => {
+    dispatch(followingProgress(true, userID));
+    usersAPI.followUser(userID).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(followButton(userID));
+        dispatch(followingProgress(false, userID));
+      }
+    });
+  };
+};
+
+export const unFollow = (userID) => {
+  return (dispatch) => {
+    dispatch(followingProgress(true, userID));
+    usersAPI.unFollowUser(userID).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(followButton(userID));
+        dispatch(followingProgress(false, userID));
+      }
+    });
   };
 };
 

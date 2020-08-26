@@ -1,17 +1,9 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import {
-  followButton,
-  setUsers,
-  setCurrentPage,
-  setTotalUsersCount,
-  setIsFetching,
-  followingProgress,
-} from '../../redux/Users-Reducer';
+import { followingProgress, getUsers, getUsersPage, follow, unFollow } from '../../redux/Users-Reducer';
 import defaultImage from './../../assets/defaultImage.jpg';
 import Users from './Users';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
-import { usersAPI } from '../../api/api';
 
 class UsersAPIComponent extends React.Component {
   // конструктор закоменчен, только потому что его не обязательно писать, т.к.
@@ -22,25 +14,14 @@ class UsersAPIComponent extends React.Component {
   } */
 
   componentDidMount () {
-    this.props.setIsFetching(true);
-    let page = this.props.currentPage;
+    let currentPage = this.props.currentPage;
     let pageSize = this.props.pageSize;
-    usersAPI.getUsers(page, pageSize).then((data) => {
-      this.props.setIsFetching(false);
-      this.props.setUsers(data.items);
-      this.props.setTotalUsersCount(data.totalCount);
-    });
+    this.props.getUsers(currentPage, pageSize);
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.setIsFetching(true);
-    let page = pageNumber;
     let pageSize = this.props.pageSize;
-    usersAPI.getUsers(page, pageSize).then((data) => {
-      this.props.setIsFetching(false);
-      this.props.setUsers(data.items);
-    });
+    this.props.getUsersPage(pageNumber, pageSize);
   };
 
   render () {
@@ -51,11 +32,11 @@ class UsersAPIComponent extends React.Component {
           pageSize={this.props.pageSize}
           users={this.props.users}
           defaultImage={defaultImage}
-          followButton={this.props.followButton}
           currentPage={this.props.currentPage}
           onPageChanged={this.onPageChanged}
-          followingProgress={this.props.followingProgress}
           followingProgressState={this.props.followingProgressState}
+          follow={this.props.follow}
+          unFollow={this.props.unFollow}
         />
       );
     };
@@ -87,12 +68,11 @@ let mapStateToProps = (state) => {
 }; */
 
 let mapDispatchToProps = {
-  followButton,
-  setUsers,
-  setCurrentPage,
-  setTotalUsersCount,
-  setIsFetching,
   followingProgress,
+  getUsers,
+  getUsersPage,
+  follow,
+  unFollow,
 };
 
 //const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);

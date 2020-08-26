@@ -11,11 +11,11 @@ const Users = (props) => {
         followed={user.followed}
         name={user.name}
         status={user.status}
-        followButton={props.followButton}
         defaultImage={props.defaultImage}
-        followingProgress={props.followingProgress}
         followingProgressState={props.followingProgressState}
         key={user.id}
+        follow={props.follow}
+        unFollow={props.unFollow}
       />
     );
   });
