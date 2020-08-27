@@ -1,3 +1,5 @@
+import { usersAPI } from '../api/api';
+
 const SET_COMMON_USER_PROFILE = 'SET-COMMON_USER_DATA';
 const SET_IS_FETCHNG = 'SET-IS-FETCHNG';
 
@@ -62,6 +64,21 @@ export const setIsFetching = (isFetching) => {
   return {
     type: SET_IS_FETCHNG,
     isFetching: isFetching,
+  };
+};
+
+export const getUserProfile = (userId) => {
+  return (dispatch) => {
+    dispatch(setIsFetching(true));
+    //let userId = this.props.match.params.userId;
+    if (!userId) {
+      userId = 2;
+    }
+
+    usersAPI.getUserProfile(userId).then((data) => {
+      dispatch(setIsFetching(false));
+      dispatch(setCommonUserProfile(data));
+    });
   };
 };
 

@@ -3,22 +3,11 @@ import Header from './Header';
 import { connect } from 'react-redux';
 import { setAuthUserData, setIsFetching, setAuthUserImage } from '../../redux/Auth-Reducer';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
-import defaultImage from '../../assets/defaultImage.jpg';
-import { usersAPI } from '../../api/api';
+import { getHeader } from '../../redux/Header-Reducer';
 
 class HeaderContainer extends React.Component {
   componentDidMount () {
-    this.props.setIsFetching(true);
-    usersAPI.getAuthMe().then((data) => {
-      if (data.resultCode === 0) {
-        this.props.setIsFetching(false);
-        let { id, login, email } = data.data;
-        this.props.setAuthUserData(id, login, email);
-      }
-      usersAPI.getUserProfile(data.data.id).then((data) => {
-        !data.photos.small ? this.props.setAuthUserImage(defaultImage) : this.props.setAuthUserImage(data.photos.small);
-      });
-    });
+    this.props.getHeader();
   }
 
   render () {
@@ -41,6 +30,7 @@ const mapDispatchToProps = {
   setAuthUserData,
   setIsFetching,
   setAuthUserImage,
+  getHeader,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);
