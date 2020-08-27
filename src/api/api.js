@@ -20,11 +20,7 @@ export const usersAPI = {
       return response.data;
     });
   },
-  getAuthMe () {
-    return instance.get(`auth/me`).then((response) => {
-      return response.data;
-    });
-  },
+
   followUser (userId) {
     return instance.post(`follow/${userId}`, null).then((response) => {
       return response.data;
@@ -37,6 +33,10 @@ export const usersAPI = {
   },
 };
 
-// followUser
-
-// getProfile
+export const authAPI = {
+  getAuthMe () {
+    return instance.get(`auth/me`).then((response) => {
+      return response.data;
+    });
+  },
+};

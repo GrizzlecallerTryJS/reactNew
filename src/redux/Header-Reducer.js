@@ -1,4 +1,4 @@
-import { usersAPI } from '../api/api';
+import { usersAPI, authAPI } from '../api/api';
 import defaultImage from '../assets/defaultImage.jpg';
 import { setAuthUserData, setIsFetching, setAuthUserImage } from '../redux/Auth-Reducer';
 
@@ -13,7 +13,7 @@ const headerReducer = (state = initState, action) => {
 export const getHeader = () => {
   return (dispatch) => {
     dispatch(setIsFetching(true));
-    usersAPI.getAuthMe().then((data) => {
+    authAPI.getAuthMe().then((data) => {
       if (data.resultCode === 0) {
         dispatch(setIsFetching(false));
         let { id, login, email } = data.data;
