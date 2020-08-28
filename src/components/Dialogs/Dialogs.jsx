@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import MessageItem from './MessageItem/MessageItem';
+import { Redirect } from 'react-router-dom';
 
 class Dialogs extends React.Component {
   updateNewMessageText = (element) => {
@@ -14,6 +15,10 @@ class Dialogs extends React.Component {
   };
 
   render () {
+    if (!this.props.isAuth) {
+      return <Redirect to={'/login'} />;
+    }
+
     let NameMassive = this.props.forDialogs.dialogsData.map((dialog) => {
       return <DialogItem id={dialog.id} name={dialog.name} avatar={dialog.avatar} />;
     });

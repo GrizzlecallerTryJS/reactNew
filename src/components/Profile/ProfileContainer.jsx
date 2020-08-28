@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Profile from './Profile';
 import { setCommonUserProfile, setIsFetching, getUserProfile } from '../../redux/Profile-Reducer';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
 import defaultImage from './../../assets/defaultImage.jpg';
 
@@ -13,6 +13,10 @@ class ProfileContainer extends React.Component {
   }
 
   render () {
+    if (!this.props.isAuth) {
+      return <Redirect to={'/login'} />;
+    }
+
     let ProfileCaller = () => {
       return <Profile {...this.props} defaultImage={defaultImage} />;
     };
@@ -29,6 +33,7 @@ let mapStateToProps = (state) => {
     userData: state.forProfile,
     isFetching: state.forProfile.isFetching,
     postData: state.forPosts.postData,
+    isAuth: state.forAuth.isAuth,
   };
 };
 

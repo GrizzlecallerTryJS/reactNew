@@ -3,6 +3,7 @@ import './App.css';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
+import Login from './components/Login/Login';
 import { Route } from 'react-router-dom';
 import Friends from './components/Friends/Friends';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
@@ -50,6 +51,7 @@ const App = (props) => {
         <Route path='/settings' render={Settings} />
         <Route path='/friends' render={Friends} />
         <Route path='/users' render={UsersCaller} />
+        <Route path='/login' render={Login} />
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+import { authAPI } from '../api/api';
+
 const SET_USER_DATA = 'SET-USER-DATA';
 const SET_IS_FETCHING = 'SET-IS-FETCHING';
 const SET_AUTH_USER_IMAGE = 'SET-AUTH-USER-IMAGE';
@@ -55,6 +57,16 @@ export const setAuthUserData = (id, login, email) => {
       email,
     },
   };
+};
+
+export const getAuthUserData = () => (dispatch) => {
+  authAPI.getAuthMe().then((data) => {
+    if (data.resultCode === 0) {
+      dispatch(setIsFetching(false));
+      let { id, login, email } = data.data;
+      dispatch(setAuthUserData(id, login, email));
+    }
+  });
 };
 
 export const setAuthUserImage = (authUserImage) => {

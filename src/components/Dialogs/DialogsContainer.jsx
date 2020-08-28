@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 let mapStateToProps = (state) => {
   return {
     forDialogs: state.forDialogs,
+    isAuth: state.forAuth.isAuth,
   };
 };
 
