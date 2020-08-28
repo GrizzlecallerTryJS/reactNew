@@ -15,10 +15,6 @@ class Dialogs extends React.Component {
   };
 
   render () {
-    if (!this.props.isAuth) {
-      return <Redirect to={'/login'} />;
-    }
-
     let NameMassive = this.props.forDialogs.dialogsData.map((dialog) => {
       return <DialogItem id={dialog.id} name={dialog.name} avatar={dialog.avatar} />;
     });

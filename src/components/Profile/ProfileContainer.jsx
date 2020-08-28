@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
 import defaultImage from './../../assets/defaultImage.jpg';
+import withAuthRedirect from '../../hoc/WithAuthRedirect';
 
 class ProfileContainer extends React.Component {
   componentDidMount () {
@@ -13,10 +14,6 @@ class ProfileContainer extends React.Component {
   }
 
   render () {
-    if (!this.props.isAuth) {
-      return <Redirect to={'/login'} />;
-    }
-
     let ProfileCaller = () => {
       return <Profile {...this.props} defaultImage={defaultImage} />;
     };
@@ -53,4 +50,6 @@ let mapDispatchToProps = {
 
 let withUrlDataContainerComponent = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps, mapDispatchToProps)(withUrlDataContainerComponent);
+const profileContainerWithAIthHOC = withAuthRedirect(withUrlDataContainerComponent);
+
+export default connect(mapStateToProps, mapDispatchToProps)(profileContainerWithAIthHOC);
