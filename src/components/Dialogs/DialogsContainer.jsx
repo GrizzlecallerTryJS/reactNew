@@ -6,7 +6,6 @@ import withAuthRedirect from '../../hoc/WithAuthRedirect';
 let mapStateToProps = (state) => {
   return {
     forDialogs: state.forDialogs,
-    isAuth: state.forAuth.isAuth,
   };
 };
 
@@ -21,6 +20,6 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-const dialogsContainerWithAuthHOC = withAuthRedirect(Dialogs);
+//const dialogsContainerWithAuthHOC = withAuthRedirect(Dialogs);
 
-export default connect(mapStateToProps, mapDispatchToProps)(dialogsContainerWithAuthHOC);
+export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Dialogs));

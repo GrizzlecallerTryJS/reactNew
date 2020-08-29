@@ -30,7 +30,6 @@ let mapStateToProps = (state) => {
     userData: state.forProfile,
     isFetching: state.forProfile.isFetching,
     postData: state.forPosts.postData,
-    isAuth: state.forAuth.isAuth,
   };
 };
 
@@ -48,8 +47,8 @@ let mapDispatchToProps = {
   getUserProfile,
 };
 
-let withUrlDataContainerComponent = withRouter(ProfileContainer);
+//let withUrlDataContainerComponent = withRouter(ProfileContainer);
 
-const profileContainerWithAIthHOC = withAuthRedirect(withUrlDataContainerComponent);
+//const profileContainerWithAuthHOC = withAuthRedirect(withRouter(ProfileContainer));
 
-export default connect(mapStateToProps, mapDispatchToProps)(profileContainerWithAIthHOC);
+export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfileContainer)));

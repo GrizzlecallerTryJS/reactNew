@@ -1,10 +1,17 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+let mapStateToPropsForHOC = (state) => {
+  return {
+    isAuth: state.forAuth.isAuth,
+  };
+};
 
 // Эта функция принимает компонент...
 function withAuthRedirect (WrappedComponent){
   // ...и возвращает другой компонент...
-  class withAuthRedirect extends React.Component {
+  class RedirectComponent extends React.Component {
     /* constructor (props) {
       super(props);
     } */
@@ -14,8 +21,8 @@ function withAuthRedirect (WrappedComponent){
       return authState ? <WrappedComponent {...this.props} /> : <Redirect to={'/login'} />;
     }
   }
-  withAuthRedirect.displayName = `withAuthRedirect(${getDisplayName(WrappedComponent)})`;
-  return withAuthRedirect;
+  RedirectComponent.displayName = `RedirectComponent(${getDisplayName(WrappedComponent)})`;
+  return connect(mapStateToPropsForHOC)(RedirectComponent);
 }
 
 function getDisplayName (WrappedComponent){
