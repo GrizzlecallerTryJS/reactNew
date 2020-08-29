@@ -21,6 +21,6 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-const dialogsContainerWithAIthHOC = withAuthRedirect(Dialogs);
+const dialogsContainerWithAuthHOC = withAuthRedirect(Dialogs);
 
-export default connect(mapStateToProps, mapDispatchToProps)(dialogsContainerWithAIthHOC);
+export default connect(mapStateToProps, mapDispatchToProps)(dialogsContainerWithAuthHOC);

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Profile from './Profile';
 import { setCommonUserProfile, setIsFetching, getUserProfile } from '../../redux/Profile-Reducer';
 import { connect } from 'react-redux';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
 import defaultImage from './../../assets/defaultImage.jpg';
 import withAuthRedirect from '../../hoc/WithAuthRedirect';

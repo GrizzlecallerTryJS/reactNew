@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import MessageItem from './MessageItem/MessageItem';
-import { Redirect } from 'react-router-dom';
 
 class Dialogs extends React.Component {
   updateNewMessageText = (element) => {
