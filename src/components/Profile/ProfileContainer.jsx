@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
 import defaultImage from './../../assets/defaultImage.jpg';
 import withAuthRedirect from '../../hoc/WithAuthRedirect';
+import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
   componentDidMount () {
@@ -47,8 +48,14 @@ let mapDispatchToProps = {
   getUserProfile,
 };
 
+let profileContainer = compose(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect, withRouter)(
+  ProfileContainer
+);
+
+export default profileContainer;
+
 //let withUrlDataContainerComponent = withRouter(ProfileContainer);
 
 //const profileContainerWithAuthHOC = withAuthRedirect(withRouter(ProfileContainer));
 
-export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfileContainer)));
+//export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfileContainer)));
