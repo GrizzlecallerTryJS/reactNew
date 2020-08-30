@@ -1,5 +1,6 @@
 import Navbar from './Navbar';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 /* const NavbarContainer = (props) => {
 
@@ -25,8 +26,6 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = {};
 
-/* let NavbarContainer = connect(mapStateToProps, mapDispatchToProps)(Navbar);
+//export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
 
-export default NavbarContainer; */
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(Navbar);

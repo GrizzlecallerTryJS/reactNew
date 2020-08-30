@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setAuthUserData, setIsFetching, setAuthUserImage } from '../../redux/Auth-Reducer';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
 import { getHeader } from '../../redux/Header-Reducer';
+import { compose } from 'redux';
 
 class HeaderContainer extends React.Component {
   componentDidMount () {
@@ -33,4 +34,6 @@ const mapDispatchToProps = {
   getHeader,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(HeaderContainer);
+
+//export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);

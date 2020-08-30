@@ -4,6 +4,7 @@ import { followingProgress, getUsers, getUsersPage, follow, unFollow } from '../
 import defaultImage from './../../assets/defaultImage.jpg';
 import Users from './Users';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
+import { compose } from 'redux';
 
 class UsersAPIComponent extends React.Component {
   // конструктор закоменчен, только потому что его не обязательно писать, т.к.
@@ -75,6 +76,6 @@ let mapDispatchToProps = {
   unFollow,
 };
 
-//const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(UsersAPIComponent);
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+//export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);

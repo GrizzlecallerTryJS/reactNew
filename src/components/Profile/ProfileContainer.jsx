@@ -53,9 +53,3 @@ let profileContainer = compose(connect(mapStateToProps, mapDispatchToProps), wit
 );
 
 export default profileContainer;
-
-//let withUrlDataContainerComponent = withRouter(ProfileContainer);
-
-//const profileContainerWithAuthHOC = withAuthRedirect(withRouter(ProfileContainer));
-
-//export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfileContainer)));
