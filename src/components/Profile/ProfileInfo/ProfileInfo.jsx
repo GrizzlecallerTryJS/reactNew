@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import styles from './ProfileInfo.module.css';
 import Preloader from '../../../assets/loaders/Preloader/Preloader';
+import ProfileStatusComponent from './ProfileStatusComponent';
 
 const ProfileInfo = (props) => {
   if (!props.userData) {
@@ -60,6 +61,10 @@ const ProfileInfo = (props) => {
     return <div>mainLink: {props.userData.contacts.mainLink}</div>;
   };
 
+  let profileStatus = () => {
+    return <ProfileStatusComponent status={props.userData.aboutMe} />;
+  };
+
   return (
     <Fragment>
       <Fragment>
@@ -73,7 +78,7 @@ const ProfileInfo = (props) => {
           <img src={hasPhotoSmall()} alt='avatar' />
         </div>
         <div>{props.userData.fullName}</div>
-        <div>{props.userData.aboutMe}</div>
+        <div>{profileStatus()}</div>
         <div>------------------</div>
         <div>Контакты</div>
         <div>{facebook()}</div>
