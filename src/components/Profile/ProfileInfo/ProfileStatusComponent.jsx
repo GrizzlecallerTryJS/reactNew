@@ -20,6 +20,12 @@ class ProfileStatusComponent extends React.Component {
     this.setState({ localStatus: text });
   };
 
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevProps.status !== this.props.status) {
+      this.setState({ localStatus: this.props.status });
+    }
+  };
+
   render () {
     const editTrue = () => {
       return (
