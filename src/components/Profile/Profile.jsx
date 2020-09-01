@@ -6,7 +6,12 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 const Profile = (props) => {
   return (
     <Fragment>
-      <ProfileInfo userData={props.userData} defaultImage={props.defaultImage} />
+      <ProfileInfo
+        userData={props.userData}
+        defaultImage={props.defaultImage}
+        status={props.status}
+        updateUserStatus={props.updateUserStatus}
+      />
       <div>
         <div>MAIN CONTENT BELOW</div>
         <div>------------------</div>

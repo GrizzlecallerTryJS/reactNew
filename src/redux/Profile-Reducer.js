@@ -1,7 +1,8 @@
-import { usersAPI } from '../api/api';
+import { profileAPI } from '../api/api';
 
 const SET_COMMON_USER_PROFILE = 'SET-COMMON_USER_DATA';
 const SET_IS_FETCHNG = 'SET-IS-FETCHNG';
+const SET_USER_STATUS = 'SET-USER-STATUS';
 
 let initState = {
   aboutMe: null,
@@ -24,8 +25,8 @@ let initState = {
     large: null,
   },
   isFetching: false,
+  status: 'null',
 };
-
 const profileReducer = (state = initState, action) => {
   let stateCopy = state;
 
@@ -44,10 +45,19 @@ const profileReducer = (state = initState, action) => {
     };
   };
 
+  let _setUserStatus = (status) => {
+    stateCopy = {
+      ...state,
+      status: status,
+    };
+  };
+
   if (action.type === SET_COMMON_USER_PROFILE) {
     _setCommonUserProfile(action.userProfile);
   } else if (action.type === SET_IS_FETCHNG) {
     _isFetching(action.isFetching);
+  } else if (action.type === SET_USER_STATUS) {
+    _setUserStatus(action.status);
   }
 
   return stateCopy;
@@ -67,17 +77,45 @@ export const setIsFetching = (isFetching) => {
   };
 };
 
+export const setUserStatus = (status) => {
+  return {
+    type: SET_USER_STATUS,
+    status: status,
+  };
+};
+
 export const getUserProfile = (userId) => {
   return (dispatch) => {
     dispatch(setIsFetching(true));
-    //let userId = this.props.match.params.userId;
-    if (!userId) {
-      userId = 2;
-    }
 
-    usersAPI.getUserProfile(userId).then((data) => {
+    profileAPI.getUserProfile(userId).then((data) => {
       dispatch(setIsFetching(false));
       dispatch(setCommonUserProfile(data));
+    });
+  };
+};
+
+export const getUserStatus = (userId) => {
+  return (dispatch) => {
+    dispatch(setIsFetching(true));
+
+    profileAPI.getUserStatus(userId).then((response) => {
+      dispatch(setIsFetching(false));
+      dispatch(setUserStatus(response));
+    });
+  };
+};
+
+export const updateUserStatus = (status) => {
+  debugger;
+  return (dispatch) => {
+    dispatch(setIsFetching(true));
+
+    profileAPI.updateStatus(status).then((response) => {
+      if (response.data.resultCode === 0) {
+        dispatch(setIsFetching(false));
+        dispatch(setUserStatus(status));
+      }
     });
   };
 };

@@ -3,6 +3,7 @@ import React from 'react';
 class ProfileStatusComponent extends React.Component {
   state = {
     editMode: false,
+    localStatus: this.props.status,
   };
 
   activateEditeMode = () => {
@@ -11,13 +12,25 @@ class ProfileStatusComponent extends React.Component {
 
   deactivateMode = () => {
     this.setState({ editMode: false });
+    this.props.updateUserStatus(this.state.localStatus);
+  };
+
+  onStateUpdate = (element) => {
+    let text = element.target.value;
+    this.setState({ localStatus: text });
   };
 
   render () {
     const editTrue = () => {
       return (
         <div>
-          <input autoFocus={true} onBlur={this.deactivateMode} value={this.props.status} type='text' />
+          <input
+            onChange={this.onStateUpdate}
+            autoFocus={true}
+            onBlur={this.deactivateMode}
+            value={this.state.localStatus ? this.state.localStatus : 'You need to add you STATUS!'}
+            type='text'
+          />
         </div>
       );
     };
@@ -25,7 +38,9 @@ class ProfileStatusComponent extends React.Component {
     const editFalse = () => {
       return (
         <div>
-          <span onDoubleClick={this.activateEditeMode}>{this.props.status}</span>
+          <span onDoubleClick={this.activateEditeMode}>
+            {this.state.localStatus ? this.state.localStatus : 'You need to add you STATUS!'}
+          </span>
         </div>
       );
     };

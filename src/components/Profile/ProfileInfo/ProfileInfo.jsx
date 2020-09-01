@@ -62,7 +62,7 @@ const ProfileInfo = (props) => {
   };
 
   let profileStatus = () => {
-    return <ProfileStatusComponent status={props.userData.aboutMe} />;
+    return <ProfileStatusComponent status={props.status} updateUserStatus={props.updateUserStatus} />;
   };
 
   return (
@@ -78,6 +78,7 @@ const ProfileInfo = (props) => {
           <img src={hasPhotoSmall()} alt='avatar' />
         </div>
         <div>{props.userData.fullName}</div>
+        <div>{props.userData.aboutMe}</div>
         <div>{profileStatus()}</div>
         <div>------------------</div>
         <div>Контакты</div>
