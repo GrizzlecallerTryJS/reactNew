@@ -11,6 +11,7 @@ const Profile = (props) => {
         defaultImage={props.defaultImage}
         status={props.status}
         updateUserStatus={props.updateUserStatus}
+        defaultStatus={props.defaultStatus}
       />
       <div>
         <div>MAIN CONTENT BELOW</div>

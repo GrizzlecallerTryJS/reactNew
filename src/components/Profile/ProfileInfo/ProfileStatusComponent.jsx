@@ -34,7 +34,7 @@ class ProfileStatusComponent extends React.Component {
             onChange={this.onStateUpdate}
             autoFocus={true}
             onBlur={this.deactivateMode}
-            value={this.state.localStatus ? this.state.localStatus : 'You need to add you STATUS!'}
+            value={this.state.localStatus ? this.state.localStatus : this.props.status}
             type='text'
           />
         </div>
@@ -44,9 +44,7 @@ class ProfileStatusComponent extends React.Component {
     const editFalse = () => {
       return (
         <div>
-          <span onDoubleClick={this.activateEditeMode}>
-            {this.state.localStatus ? this.state.localStatus : 'You need to add you STATUS!'}
-          </span>
+          <span onDoubleClick={this.activateEditeMode}>{this.state.localStatus}</span>
         </div>
       );
     };

@@ -20,20 +20,15 @@ class ProfileContainer extends React.Component {
     if (!userId) {
       userId = 2;
     }
-    this.props.getUserStatus(userId);
     this.props.getUserProfile(userId);
+    this.props.getUserStatus(userId);
   }
+
+  defaultStatus = 'defaultStatus';
 
   render () {
     let ProfileCaller = () => {
-      return (
-        <Profile
-          {...this.props}
-          defaultImage={defaultImage}
-          status={this.props.status}
-          updateUserStatus={this.props.updateUserStatus}
-        />
-      );
+      return <Profile {...this.props} defaultImage={defaultImage} defaultStatus={this.defaultStatus} />;
     };
     return (
       <div>

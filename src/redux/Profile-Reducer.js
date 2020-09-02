@@ -25,7 +25,7 @@ let initState = {
     large: null,
   },
   isFetching: false,
-  status: 'null',
+  status: 'initStateStatus',
 };
 const profileReducer = (state = initState, action) => {
   let stateCopy = state;
@@ -107,7 +107,6 @@ export const getUserStatus = (userId) => {
 };
 
 export const updateUserStatus = (status) => {
-  debugger;
   return (dispatch) => {
     dispatch(setIsFetching(true));
 

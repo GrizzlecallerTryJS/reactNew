@@ -62,7 +62,12 @@ const ProfileInfo = (props) => {
   };
 
   let profileStatus = () => {
-    return <ProfileStatusComponent status={props.status} updateUserStatus={props.updateUserStatus} />;
+    return props.status ? (
+      <ProfileStatusComponent status={props.status} updateUserStatus={props.updateUserStatus} />
+    ) : (
+      <ProfileStatusComponent status={props.defaultStatus} updateUserStatus={props.updateUserStatus} />
+    );
+    //return <ProfileStatusComponent status={props.status} updateUserStatus={props.updateUserStatus} />;
   };
 
   return (
