@@ -7,7 +7,7 @@ const DialogsForm = (props) => {
     <div>
       <form onSubmit={props.handleSubmit}>
         <div>
-          <Field name={'dialogField'} component={'textarea'} placeholder={'bbbbb'} />
+          <Field name={'dialogField'} component={'textarea'} placeholder={'enter your message'} />
           <button>add post</button>
         </div>
       </form>

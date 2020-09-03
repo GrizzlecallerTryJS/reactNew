@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
+import { reduxForm } from 'redux-form';
+import MyPostsForm from './MyPostsForm/MyPostsForm';
 
+let MyPostsFormRedux = reduxForm({ form: 'myPostsForm' })(MyPostsForm);
 class MyPosts extends React.Component {
   // конструктор закоменчен, только потому что его не обязательно писать, т.к.
   // единственное его предназначение передавать пропсы в родительский класс
@@ -11,16 +14,12 @@ class MyPosts extends React.Component {
 
   postData = this.props.postData;
 
-  addPost = () => {
-    this.props.addPost();
-  };
-
-  updateNewPostText = (element) => {
-    let text = element.target.value;
-    this.props.updateNewPostText(text);
+  addPost = (values) => {
+    this.props.addPost(values.postField);
   };
 
   render () {
+    debugger;
     const PostMap = this.postData.map((post) => {
       return (
         <Post
@@ -43,12 +42,7 @@ class MyPosts extends React.Component {
           </div>
         </div>
         <div className={styles.text_area}>
-          <div>
-            <textarea onChange={this.updateNewPostText} value={this.props.newPostText} />
-          </div>
-          <div>
-            <button onClick={this.addPost}>add post</button>
-          </div>
+          <MyPostsFormRedux onSubmit={this.addPost} />
         </div>
         <div className={styles.posts}>{PostMap}</div>
       </div>

@@ -1,5 +1,4 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let initialState = {
   dialogsData: [
@@ -57,28 +56,14 @@ const messageReducer = (state = initialState, action) => {
     stateCopy.messagesData.push(newMessage);
   };
 
-  const _updateNewMessageText = (newMessageText) => {
-    stateCopy = { ...state };
-    stateCopy.newMessageText = newMessageText;
-  };
-
   if (action.type === ADD_MESSAGE) {
     _addMessage(action.message);
-  } else if ((action.type = UPDATE_NEW_MESSAGE_TEXT)) {
-    _updateNewMessageText(action.newMessageText);
   }
   return stateCopy;
 };
 
 export const addMessageAC = (message) => {
   return { type: ADD_MESSAGE, message: message };
-};
-
-export const updateNewMessageTextAC = (text) => {
-  return {
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    newMessageText: text,
-  };
 };
 
 export default messageReducer;

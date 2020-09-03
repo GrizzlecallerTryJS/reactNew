@@ -1,5 +1,4 @@
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const LIKE_BUTTON_COUNTER = 'LIKE-BUTTON-COUNTER';
 
 let initialState = {
@@ -12,7 +11,6 @@ let initialState = {
     { id: 6, message: 'A', likeCount: 20, liked: false },
     { id: 7, message: 'ROBOT', likeCount: 20, liked: false },
   ],
-  newPostText: 'test',
 };
 
 const postReducer = (state = initialState, action) => {
@@ -23,7 +21,7 @@ const postReducer = (state = initialState, action) => {
 
   let stateCopy = state;
 
-  const _addPost = () => {
+  const _addPost = (postMessage) => {
     stateCopy = {
       ...state,
       postData: [
@@ -34,16 +32,14 @@ const postReducer = (state = initialState, action) => {
     let last = stateCopy.postData.length - 1;
 
     const newId = stateCopy.postData[last].id + 1;
-
     let newPost = {
       id: newId,
-      message: stateCopy.newPostText,
+      message: postMessage,
       likeCount: 0,
       liked: false,
     };
 
     stateCopy.postData.push(newPost);
-    stateCopy.newPostText = '';
   };
 
   const _likeButtonCounter = (id) => {
@@ -63,32 +59,16 @@ const postReducer = (state = initialState, action) => {
     }
   };
 
-  const _updateNewPostText = (newPostText) => {
-    stateCopy = {
-      ...state,
-      newPostText: newPostText,
-    };
-  };
-
   if (action.type === ADD_POST) {
-    _addPost();
-  } else if (action.type === UPDATE_NEW_POST_TEXT) {
-    _updateNewPostText(action.newPostText);
+    _addPost(action.postMessage);
   } else if (action.type === LIKE_BUTTON_COUNTER) {
     _likeButtonCounter(action.id);
   }
   return stateCopy;
 };
 
-export const addPost = () => {
-  return { type: ADD_POST };
-};
-
-export const updateNewPostText = (text) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    newPostText: text,
-  };
+export const addPost = (postMessage) => {
+  return { type: ADD_POST, postMessage: postMessage };
 };
 
 export const likeButtonCounter = (id) => {

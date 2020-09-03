@@ -1,5 +1,5 @@
 import MyPosts from './MyPosts';
-import { addPost, updateNewPostText, likeButtonCounter } from '../../../redux/Post-Reducer';
+import { addPost, likeButtonCounter } from '../../../redux/Post-Reducer';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -10,18 +10,21 @@ let mapStateToProps = (state) => {
   };
 };
 
-/* let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = (dispatch) => {
   return {
-    addPost: () => {
-      dispatch(addPostAC());
+    addPost: (postMessage) => {
+      dispatch(addPost(postMessage));
+    },
+    likeButtonCounter: (id) => {
+      dispatch(likeButtonCounter(id));
+    },
   };
-}; */
-
-let mapDispatchToProps = {
-  addPost,
-  updateNewPostText,
-  likeButtonCounter,
 };
+
+/* let mapDispatchToProps = {
+  addPost,
+  likeButtonCounter,
+}; */
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(MyPosts);
 

@@ -8,11 +8,6 @@ import { reduxForm } from 'redux-form';
 const DialogReduxForm = reduxForm({ form: 'dialogForm' })(DialogsForm);
 
 class Dialogs extends React.Component {
-  updateNewMessageText = (element) => {
-    let text = element.target.value;
-    this.props.updateNewMessageText(text);
-  };
-
   addMessage = (values) => {
     this.props.addMessage(values.dialogField);
   };
@@ -40,6 +35,3 @@ class Dialogs extends React.Component {
 }
 
 export default Dialogs;
-
-/* <textarea onChange={this.updateNewMessageText} value={this.props.forDialogs.newMessageText} />
-            <button onClick={this.addMessage}>add post</button> */
