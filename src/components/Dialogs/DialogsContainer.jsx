@@ -15,12 +15,12 @@ let mapDispatchToProps = (dispatch) => {
     updateNewMessageText: (text) => {
       dispatch(updateNewMessageTextAC(text));
     },
-    addMessage: () => {
-      dispatch(addMessageAC());
+    addMessage: (message) => {
+      dispatch(addMessageAC(message));
     },
   };
 };
 
-let dialogsContainer = compose(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)(Dialogs);
+let dialogsContainer = compose(connect(mapStateToProps, mapDispatchToProps))(Dialogs);
 
 export default dialogsContainer;

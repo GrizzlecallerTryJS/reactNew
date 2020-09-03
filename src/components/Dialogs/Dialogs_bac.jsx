@@ -2,10 +2,6 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import MessageItem from './MessageItem/MessageItem';
-import DialogsForm from './DialogsForm/DialogsForm';
-import { reduxForm } from 'redux-form';
-
-const DialogReduxForm = reduxForm({ form: 'dialogForm' })(DialogsForm);
 
 class Dialogs extends React.Component {
   updateNewMessageText = (element) => {
@@ -13,8 +9,8 @@ class Dialogs extends React.Component {
     this.props.updateNewMessageText(text);
   };
 
-  addMessage = (values) => {
-    this.props.addMessage(values.dialogField);
+  addMessage = () => {
+    this.props.addMessage();
   };
 
   render () {
@@ -31,7 +27,8 @@ class Dialogs extends React.Component {
         <div className={styles.dialogs_messages}>
           <div>{MessageMassive}</div>
           <div>
-            <DialogReduxForm onSubmit={this.addMessage} />
+            <textarea onChange={this.updateNewMessageText} value={this.props.forDialogs.newMessageText} />
+            <button onClick={this.addMessage}>add post</button>
           </div>
         </div>
       </div>
@@ -40,6 +37,3 @@ class Dialogs extends React.Component {
 }
 
 export default Dialogs;
-
-/* <textarea onChange={this.updateNewMessageText} value={this.props.forDialogs.newMessageText} />
-            <button onClick={this.addMessage}>add post</button> */

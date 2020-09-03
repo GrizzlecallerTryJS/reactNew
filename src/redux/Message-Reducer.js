@@ -33,13 +33,12 @@ let initialState = {
     { id: 6, text: 'Eu dolor nulla esse fugiat ea non est consequat ad exercitation.' },
     { id: 7, text: 'Est laboris sit elit magna veniam nostrud mollit duis minim.' },
   ],
-  newMessageText: 'test',
 };
 
 const messageReducer = (state = initialState, action) => {
   let stateCopy = state;
 
-  const _addMessage = () => {
+  const _addMessage = (message) => {
     stateCopy = {
       ...state,
       messagesData: [
@@ -52,11 +51,10 @@ const messageReducer = (state = initialState, action) => {
 
     let newMessage = {
       id: newId,
-      text: state.newMessageText,
+      text: message,
     };
 
     stateCopy.messagesData.push(newMessage);
-    stateCopy.newMessageText = '';
   };
 
   const _updateNewMessageText = (newMessageText) => {
@@ -65,15 +63,15 @@ const messageReducer = (state = initialState, action) => {
   };
 
   if (action.type === ADD_MESSAGE) {
-    _addMessage();
+    _addMessage(action.message);
   } else if ((action.type = UPDATE_NEW_MESSAGE_TEXT)) {
     _updateNewMessageText(action.newMessageText);
   }
   return stateCopy;
 };
 
-export const addMessageAC = () => {
-  return { type: ADD_MESSAGE };
+export const addMessageAC = (message) => {
+  return { type: ADD_MESSAGE, message: message };
 };
 
 export const updateNewMessageTextAC = (text) => {
