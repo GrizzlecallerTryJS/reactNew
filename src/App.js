@@ -42,16 +42,16 @@ const App = (props) => {
         <NavbarCaller />
       </div>
       <div className='app_wrapper_content'>
-        <Route path='/profile/:userId?' render={ProfileCaller} />
+        <Route path='/profile/:userId?' component={ProfileCaller} />
         <div className='app_wrapper_dialogs'>
-          <Route exact path='/messages' render={DialogsCaller} />
+          <Route exact path='/messages' component={DialogsCaller} />
         </div>
-        <Route path='/news' render={News} />
-        <Route path='/music' render={Music} />
-        <Route path='/settings' render={Settings} />
-        <Route path='/friends' render={Friends} />
-        <Route path='/users' render={UsersCaller} />
-        <Route path='/login' render={Login} />
+        <Route path='/news' component={News} />
+        <Route path='/music' component={Music} />
+        <Route path='/settings' component={Settings} />
+        <Route path='/friends' component={Friends} />
+        <Route path='/users' component={UsersCaller} />
+        <Route path='/login' component={Login} />
       </div>
     </div>
   );

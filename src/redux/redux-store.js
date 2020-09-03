@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
 import postReducer from './Post-Reducer';
 import messageReducer from './Message-Reducer';
@@ -11,6 +12,7 @@ import headerReducer from './Header-Reducer';
 
 let reducers = combineReducers({
   forPosts: postReducer,
+  form: formReducer,
   forUsers: usersReducer,
   forAuth: authReducer,
   forProfile: profileReducer,
