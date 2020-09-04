@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Textarea = ({ input, ...props }) => {
+export const Textarea = (props) => {
   debugger;
   return (
     <div>
