@@ -19,7 +19,6 @@ class MyPosts extends React.Component {
   };
 
   render () {
-    debugger;
     const PostMap = this.postData.map((post) => {
       return (
         <Post
