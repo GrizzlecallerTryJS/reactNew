@@ -16,10 +16,9 @@ let initState = {
 const authReducer = (state = initState, action) => {
   let stateCopy = state;
 
-  let _setAuthUserData = (userData) => {
+  let _setAuthUserData = (payload) => {
     stateCopy = {
-      ...userData,
-      isAuth: true,
+      ...payload,
     };
   };
 
@@ -38,7 +37,7 @@ const authReducer = (state = initState, action) => {
   };
 
   if (action.type === SET_USER_DATA) {
-    _setAuthUserData(action.userData);
+    _setAuthUserData(action.payload);
   } else if (action.type === SET_IS_FETCHING) {
     _setIsFetching(action.isFetching);
   } else if (action.type === SET_AUTH_USER_IMAGE) {
@@ -48,23 +47,45 @@ const authReducer = (state = initState, action) => {
   return stateCopy;
 };
 
-export const setAuthUserData = (id, login, email) => {
+export const setAuthUserData = (id, login, email, isAuth) => {
   return {
     type: SET_USER_DATA,
-    userData: {
+    payload: {
       id,
       login,
       email,
+      isAuth,
     },
   };
 };
 
 export const getAuthUserData = () => (dispatch) => {
+  dispatch(setIsFetching(true));
   authAPI.getAuthMe().then((data) => {
     if (data.resultCode === 0) {
       dispatch(setIsFetching(false));
       let { id, login, email } = data.data;
-      dispatch(setAuthUserData(id, login, email));
+      dispatch(setAuthUserData(id, login, email, true));
+    }
+  });
+};
+
+export const authLoginUser = (email, password, rememberMe = false) => (dispatch) => {
+  dispatch(setIsFetching(true));
+  authAPI.authLogin(email, password, rememberMe).then((data) => {
+    if (data.resultCode === 0) {
+      dispatch(setIsFetching(true));
+      dispatch(getAuthUserData());
+    }
+  });
+};
+
+export const authLogoutUser = () => (dispatch) => {
+  dispatch(setIsFetching(true));
+  authAPI.authLogout().then((data) => {
+    if (data.resultCode === 0) {
+      dispatch(setIsFetching(true));
+      dispatch(setAuthUserData(null, null, null, false));
     }
   });
 };

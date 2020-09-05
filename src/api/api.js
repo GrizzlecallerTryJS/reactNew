@@ -49,4 +49,12 @@ export const authAPI = {
       return response.data;
     });
   },
+  authLogin (email, password, rememberMe = false) {
+    return instance.post(`auth/login`, { email, password, rememberMe }).then((response) => {
+      return response.data;
+    });
+  },
+  authLogout () {
+    return instance.delete(`auth/login`);
+  },
 };
