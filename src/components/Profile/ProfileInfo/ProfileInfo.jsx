@@ -73,10 +73,10 @@ const ProfileInfo = (props) => {
   return (
     <Fragment>
       <Fragment>
-        <img
+        {/* <img
           src='https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg'
           alt='test'
-        />
+        /> */}
       </Fragment>
       <Fragment>
         <div className={styles.avatar}>

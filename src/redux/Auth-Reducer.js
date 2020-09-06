@@ -74,7 +74,7 @@ export const authLoginUser = (email, password, rememberMe = false) => (dispatch)
   dispatch(setIsFetching(true));
   authAPI.authLogin(email, password, rememberMe).then((data) => {
     if (data.resultCode === 0) {
-      dispatch(setIsFetching(true));
+      dispatch(setIsFetching(false));
       dispatch(getAuthUserData());
     }
   });
@@ -84,7 +84,7 @@ export const authLogoutUser = () => (dispatch) => {
   dispatch(setIsFetching(true));
   authAPI.authLogout().then((data) => {
     if (data.resultCode === 0) {
-      dispatch(setIsFetching(true));
+      dispatch(setIsFetching(false));
       dispatch(setAuthUserData(null, null, null, false));
     }
   });

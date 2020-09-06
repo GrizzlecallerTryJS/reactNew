@@ -1,10 +1,20 @@
 import React from 'react';
 import styles from './Header.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 
 const Header = (props) => {
+  const login = () => {
+    return (
+      <div>
+        <div>
+          <NavLink to={`/profile/${props.userId}`}>{props.login}</NavLink> -{' '}
+          <button onClick={props.authLogoutUser}>logout</button>
+        </div>
+      </div>
+    );
+  };
   let userAuth = () => {
-    return props.isAuth ? <NavLink to={'/profile'}>{props.login}</NavLink> : <NavLink to={'/login'}>Login</NavLink>;
+    return props.isAuth ? login() : <NavLink to={'/login'}>Login</NavLink>;
   };
 
   return (
