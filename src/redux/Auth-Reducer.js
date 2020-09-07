@@ -1,4 +1,5 @@
 import { authAPI } from '../api/api';
+import { stopSubmit } from 'redux-form';
 
 const SET_USER_DATA = 'SET-USER-DATA';
 const SET_IS_FETCHING = 'SET-IS-FETCHING';
@@ -76,6 +77,9 @@ export const authLoginUser = (email, password, rememberMe = false) => (dispatch)
     if (data.resultCode === 0) {
       dispatch(setIsFetching(false));
       dispatch(getAuthUserData());
+    } else {
+      let errorMessage = data.messages.length > 0 ? data.messages[0] : 'Something Wrong';
+      dispatch(stopSubmit('loginForm', { _error: errorMessage }));
     }
   });
 };

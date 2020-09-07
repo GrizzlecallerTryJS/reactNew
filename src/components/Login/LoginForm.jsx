@@ -2,11 +2,20 @@ import React from 'react';
 import { Field } from 'redux-form';
 import { Input, Checkbox, Password } from './../../assets/FormsControls/FormsControls';
 import { required, maxLengthCreator, minLengthCreator } from '../../utils/validators/Validators';
+import styles from './../../assets/FormsControls/FormsControls.module.css';
 
 const maxLength30 = maxLengthCreator(30);
 const minLength1 = minLengthCreator(1);
 
 const LoginForm = (props) => {
+  const errorTrue = () => {
+    return (
+      <div className={styles.formSummaty}>
+        <span>{props.error}</span>
+      </div>
+    );
+  };
+
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
@@ -38,6 +47,7 @@ const LoginForm = (props) => {
         <label htmlFor='rememberMe'>remember Me</label>
         <Field component={Checkbox} name={'rememberMe'} />
       </div>
+      <div>{props.error && errorTrue()}</div>
       <div>
         <button>Submit</button>
       </div>

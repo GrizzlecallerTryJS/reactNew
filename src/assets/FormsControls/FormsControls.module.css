@@ -6,3 +6,9 @@
 .formControl.error span {
   color: red;
 }
+
+.formSummaty {
+  color: blueviolet;
+  border: royalblue 1px solid;
+  padding: 10px;
+}
