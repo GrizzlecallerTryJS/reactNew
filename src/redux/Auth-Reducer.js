@@ -62,7 +62,7 @@ export const setAuthUserData = (id, login, email, isAuth) => {
 
 export const getAuthUserData = () => (dispatch) => {
   dispatch(setIsFetching(true));
-  authAPI.getAuthMe().then((data) => {
+  return authAPI.getAuthMe().then((data) => {
     if (data.resultCode === 0) {
       dispatch(setIsFetching(false));
       let { id, login, email } = data.data;

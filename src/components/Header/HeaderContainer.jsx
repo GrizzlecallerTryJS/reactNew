@@ -5,7 +5,6 @@ import { setAuthUserData, setIsFetching, setAuthUserImage, authLogoutUser } from
 import Preloader from '../../assets/loaders/Preloader/Preloader';
 import { getHeader } from '../../redux/Header-Reducer';
 import { compose } from 'redux';
-import { profileAPI } from '../../api/api';
 
 class HeaderContainer extends React.Component {
   componentDidMount () {

@@ -9,6 +9,7 @@ import profileReducer from './Profile-Reducer';
 import authReducer from './Auth-Reducer';
 import thunkMiddleware from 'redux-thunk';
 import headerReducer from './Header-Reducer';
+import appReducer from './App-Reducer';
 
 let reducers = combineReducers({
   forPosts: postReducer,
@@ -19,6 +20,7 @@ let reducers = combineReducers({
   forNavbar: navBarReducer,
   forDialogs: messageReducer,
   forHeder: headerReducer,
+  forApp: appReducer,
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));

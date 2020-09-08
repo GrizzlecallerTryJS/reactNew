@@ -17,7 +17,7 @@ export const getHeader = () => {
       if (data.resultCode === 0) {
         dispatch(setIsFetching(false));
         let { id, login, email } = data.data;
-        dispatch(setAuthUserData(id, login, email));
+        dispatch(setAuthUserData(id, login, email, true));
       }
       profileAPI.getUserProfile(data.data.id).then((data) => {
         !data.photos.small ? dispatch(setAuthUserImage(defaultImage)) : dispatch(setAuthUserImage(data.photos.small));
