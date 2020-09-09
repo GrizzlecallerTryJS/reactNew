@@ -1,12 +1,11 @@
 import MyPosts from './MyPosts';
-import { addPost, likeButtonCounter } from '../../../redux/Post-Reducer';
+import { addPost, likeButtonCounter, getPostData } from '../../../redux/Post-Reducer';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 let mapStateToProps = (state) => {
   return {
-    postData: state.forPosts.postData,
-    newPostText: state.forPosts.newPostText,
+    postData: getPostData(state),
   };
 };
 

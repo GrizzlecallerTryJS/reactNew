@@ -1,6 +1,18 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { followingProgress, getUsers, getUsersPage, follow, unFollow } from '../../redux/Users-Reducer';
+import {
+  followingProgress,
+  requestUsers,
+  requestUsersPage,
+  follow,
+  unFollow,
+  getPageSize,
+  getUsersOnPage,
+  getTotalUsersCount,
+  getCurrentPage,
+  getFetching,
+  getFollowingProgressState,
+} from '../../redux/Users-Reducer';
 import defaultImage from './../../assets/defaultImage.jpg';
 import Users from './Users';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
@@ -15,14 +27,14 @@ class UsersAPIComponent extends React.Component {
   } */
 
   componentDidMount () {
-    let currentPage = this.props.currentPage;
+    let requestedPage = this.props.requestedPage;
     let pageSize = this.props.pageSize;
-    this.props.getUsers(currentPage, pageSize);
+    this.props.requestUsers(requestedPage, pageSize);
   }
 
   onPageChanged = (pageNumber) => {
     let pageSize = this.props.pageSize;
-    this.props.getUsersPage(pageNumber, pageSize);
+    this.props.requestUsersPage(pageNumber, pageSize);
   };
 
   render () {
@@ -33,7 +45,7 @@ class UsersAPIComponent extends React.Component {
           pageSize={this.props.pageSize}
           users={this.props.users}
           defaultImage={defaultImage}
-          currentPage={this.props.currentPage}
+          requestedPage={this.props.requestedPage}
           onPageChanged={this.onPageChanged}
           followingProgressState={this.props.followingProgressState}
           follow={this.props.follow}
@@ -47,12 +59,12 @@ class UsersAPIComponent extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    users: state.forUsers.users,
-    pageSize: state.forUsers.pageSize,
-    totalUsersCount: state.forUsers.totalUsersCount,
-    currentPage: state.forUsers.currentPage,
-    isFetching: state.forUsers.isFetching,
-    followingProgressState: state.forUsers.followingProgressState,
+    users: getUsersOnPage(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    requestedPage: getCurrentPage(state),
+    isFetching: getFetching(state),
+    followingProgressState: getFollowingProgressState(state),
   };
 };
 
@@ -70,8 +82,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = {
   followingProgress,
-  getUsers,
-  getUsersPage,
+  requestUsers,
+  requestUsersPage,
   follow,
   unFollow,
 };

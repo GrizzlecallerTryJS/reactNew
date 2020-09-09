@@ -13,6 +13,7 @@ import Preloader from '../../assets/loaders/Preloader/Preloader';
 import defaultImage from './../../assets/defaultImage.jpg';
 import withAuthRedirect from '../../hoc/WithAuthRedirect';
 import { compose } from 'redux';
+import { getAuth, getAuthId } from '../../redux/Auth-Reducer';
 
 class ProfileContainer extends React.Component {
   componentDidMount () {
@@ -47,8 +48,8 @@ let mapStateToProps = (state) => {
     status: state.forProfile.status,
     isFetching: state.forProfile.isFetching,
     postData: state.forPosts.postData,
-    authorizedUserId: state.forAuth.id,
-    isAuth: state.forAuth.isAuth,
+    authorizedUserId: getAuthId(state),
+    isAuth: getAuth(state),
   };
 };
 

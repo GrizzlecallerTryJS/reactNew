@@ -41,7 +41,7 @@ const usersReducer = (state = initState, action) => {
     };
   };
 
-  let _setCurrentPage = (pageNumber) => {
+  let _setRequestedPage = (pageNumber) => {
     stateCopy = { ...state, currentPage: pageNumber };
   };
 
@@ -72,7 +72,7 @@ const usersReducer = (state = initState, action) => {
   } else if (action.type === SET_USERS) {
     _setUsers(action.users);
   } else if (action.type === SET_CURRENT_PAGE) {
-    _setCurrentPage(action.currentPage);
+    _setRequestedPage(action.currentPage);
   } else if (action.type === SET_TOTAL_USERS_COUNT) {
     _setTotalUsersCount(action.totalUsersCount);
   } else if (action.type === TOGGLE_IS_FETCHING) {
@@ -83,6 +83,8 @@ const usersReducer = (state = initState, action) => {
 
   return stateCopy;
 };
+
+/* Action crators */
 
 export const followButton = (id) => {
   return {
@@ -98,7 +100,7 @@ export const setUsers = (newUsers) => {
   };
 };
 
-export const setCurrentPage = (pageNumber) => {
+export const setRequestedPage = (pageNumber) => {
   return {
     type: SET_CURRENT_PAGE,
     currentPage: pageNumber,
@@ -127,9 +129,14 @@ export const followingProgress = (isFetching, userId) => {
   };
 };
 
-export const getUsers = (currentPage, pageSize) => {
+/* Action crators END */
+
+/* Thunk crators */
+
+export const requestUsers = (currentPage, pageSize) => {
   return (dispatch) => {
     dispatch(setIsFetching(true));
+    dispatch(setRequestedPage(pageSize));
     usersAPI.getUsers(currentPage, pageSize).then((data) => {
       dispatch(setIsFetching(false));
       dispatch(setUsers(data.items));
@@ -138,9 +145,9 @@ export const getUsers = (currentPage, pageSize) => {
   };
 };
 
-export const getUsersPage = (pageNumber, pageSize) => {
+export const requestUsersPage = (pageNumber, pageSize) => {
   return (dispatch) => {
-    dispatch(setCurrentPage(pageNumber));
+    dispatch(setRequestedPage(pageNumber));
     dispatch(setIsFetching(true));
     usersAPI.getUsers(pageNumber, pageSize).then((data) => {
       dispatch(setIsFetching(false));
@@ -171,6 +178,34 @@ export const unFollow = (userID) => {
       }
     });
   };
+};
+
+/* Thunk crators  END */
+
+/* Getters */
+
+export const getUsersOnPage = (state) => {
+  return state.forUsers.users;
+};
+
+export const getPageSize = (state) => {
+  return state.forUsers.pageSize;
+};
+
+export const getTotalUsersCount = (state) => {
+  return state.forUsers.totalUsersCount;
+};
+
+export const getCurrentPage = (state) => {
+  return state.forUsers.currentPage;
+};
+
+export const getFetching = (state) => {
+  return state.forUsers.isFetching;
+};
+
+export const getFollowingProgressState = (state) => {
+  return state.forUsers.followingProgressState;
 };
 
 export default usersReducer;

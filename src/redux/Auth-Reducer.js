@@ -48,6 +48,8 @@ const authReducer = (state = initState, action) => {
   return stateCopy;
 };
 
+/* Action crators */
+
 export const setAuthUserData = (id, login, email, isAuth) => {
   return {
     type: SET_USER_DATA,
@@ -59,6 +61,22 @@ export const setAuthUserData = (id, login, email, isAuth) => {
     },
   };
 };
+
+export const setAuthUserImage = (authUserImage) => {
+  return {
+    type: SET_AUTH_USER_IMAGE,
+    authUserImage: authUserImage,
+  };
+};
+
+export const setIsFetching = (isFetching) => {
+  return {
+    type: SET_IS_FETCHING,
+    isFetching: isFetching,
+  };
+};
+
+/* Thunk crators */
 
 export const getAuthUserData = () => (dispatch) => {
   dispatch(setIsFetching(true));
@@ -94,18 +112,13 @@ export const authLogoutUser = () => (dispatch) => {
   });
 };
 
-export const setAuthUserImage = (authUserImage) => {
-  return {
-    type: SET_AUTH_USER_IMAGE,
-    authUserImage: authUserImage,
-  };
+/* Getters */
+
+export const getAuth = (state) => {
+  return state.forAuth.isAuth;
 };
 
-export const setIsFetching = (isFetching) => {
-  return {
-    type: SET_IS_FETCHING,
-    isFetching: isFetching,
-  };
+export const getAuthId = (state) => {
+  return state.forAuth.id;
 };
-
 export default authReducer;

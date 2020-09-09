@@ -67,8 +67,13 @@ const postReducer = (state = initialState, action) => {
   return stateCopy;
 };
 
+/* Action crators */
+
 export const addPost = (postMessage) => {
-  return { type: ADD_POST, postMessage: postMessage };
+  return {
+    type: ADD_POST,
+    postMessage: postMessage,
+  };
 };
 
 export const likeButtonCounter = (id) => {
@@ -76,6 +81,12 @@ export const likeButtonCounter = (id) => {
     type: LIKE_BUTTON_COUNTER,
     id: id,
   };
+};
+
+/* Getters */
+
+export const getPostData = (state) => {
+  return state.forPosts.postData;
 };
 
 export default postReducer;
