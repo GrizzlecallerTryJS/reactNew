@@ -136,7 +136,7 @@ export const followingProgress = (isFetching, userId) => {
 export const requestUsers = (currentPage, pageSize) => {
   return (dispatch) => {
     dispatch(setIsFetching(true));
-    dispatch(setRequestedPage(pageSize));
+    dispatch(setRequestedPage(currentPage));
     usersAPI.getUsers(currentPage, pageSize).then((data) => {
       dispatch(setIsFetching(false));
       dispatch(setUsers(data.items));
