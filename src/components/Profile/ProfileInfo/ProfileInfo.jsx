@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import styles from './ProfileInfo.module.css';
 import Preloader from '../../../assets/loaders/Preloader/Preloader';
 import ProfileStatusComponent from './ProfileStatusComponent';
+import ProfileStatusWithHoocs from './ProfileStatusWithHoocs';
 
 const ProfileInfo = (props) => {
   if (!props.userData) {
@@ -63,9 +64,9 @@ const ProfileInfo = (props) => {
 
   let profileStatus = () => {
     return props.status ? (
-      <ProfileStatusComponent status={props.status} updateUserStatus={props.updateUserStatus} />
+      <ProfileStatusWithHoocs status={props.status} updateUserStatus={props.updateUserStatus} />
     ) : (
-      <ProfileStatusComponent status={props.defaultStatus} updateUserStatus={props.updateUserStatus} />
+      <ProfileStatusWithHoocs status={props.defaultStatus} updateUserStatus={props.updateUserStatus} />
     );
     //return <ProfileStatusComponent status={props.status} updateUserStatus={props.updateUserStatus} />;
   };
@@ -101,3 +102,6 @@ const ProfileInfo = (props) => {
 };
 
 export default ProfileInfo;
+
+/* <ProfileStatusComponent status={props.status} updateUserStatus={props.updateUserStatus} /> */
+/* <ProfileStatusComponent status={props.defaultStatus} updateUserStatus={props.updateUserStatus} /> */
