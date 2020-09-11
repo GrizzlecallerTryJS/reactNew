@@ -1,5 +1,6 @@
 import { authAPI } from '../api/api';
 import { stopSubmit } from 'redux-form';
+import { createSelector } from 'reselect';
 
 const SET_USER_DATA = 'SET-USER-DATA';
 const SET_IS_FETCHING = 'SET-IS-FETCHING';
@@ -114,11 +115,25 @@ export const authLogoutUser = () => (dispatch) => {
 
 /* Getters */
 
-export const getAuth = (state) => {
+const _getAuth = (state) => {
   return state.forAuth.isAuth;
 };
 
-export const getAuthId = (state) => {
+const _getAuthId = (state) => {
   return state.forAuth.id;
 };
+
+const _getAuthLogin = (state) => {
+  return state.forAuth.login;
+};
+
+const _getAuthUserImage = (state) => {
+  return state.forAuth.authUserImage;
+};
+
+export const getAuth = createSelector(_getAuth, (isAuth) => isAuth);
+export const getAuthId = createSelector(_getAuthId, (id) => id);
+export const getAuthLogin = createSelector(_getAuthLogin, (login) => login);
+export const getAuthUserImage = createSelector(_getAuthUserImage, (authUserImage) => authUserImage);
+
 export default authReducer;

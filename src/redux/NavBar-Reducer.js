@@ -1,3 +1,5 @@
+import { createSelector } from 'reselect';
+
 let initialState = {
   navbarData: [
     { id: 1, article: 'Profile', path: '/profile' },
@@ -13,5 +15,13 @@ let initialState = {
 const navBarReducer = (state = initialState, action) => {
   return state;
 };
+
+/* Getters */
+
+const navbarData = (state) => {
+  return state.forNavbar.navbarData;
+};
+
+export const getNavbarData = createSelector(navbarData, (data) => data);
 
 export default navBarReducer;

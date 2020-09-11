@@ -6,7 +6,11 @@ import {
   getUserProfile,
   getUserStatus,
   updateUserStatus,
+  getUserData,
+  getIsFetching,
+  getStatus,
 } from '../../redux/Profile-Reducer';
+import { getPostData } from '../../redux/Post-Reducer';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
@@ -44,10 +48,10 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    userData: state.forProfile,
-    status: state.forProfile.status,
-    isFetching: state.forProfile.isFetching,
-    postData: state.forPosts.postData,
+    userData: getUserData(state),
+    status: getStatus(state),
+    isFetching: getIsFetching(state),
+    postData: getPostData(state),
     authorizedUserId: getAuthId(state),
     isAuth: getAuth(state),
   };

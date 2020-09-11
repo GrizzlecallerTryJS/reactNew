@@ -1,6 +1,7 @@
 import Navbar from './Navbar';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { getNavbarData } from '../../redux/NavBar-Reducer';
 
 /* const NavbarContainer = (props) => {
 
@@ -16,7 +17,7 @@ import { compose } from 'redux';
 
 let mapStateToProps = (state) => {
   return {
-    navbarData: state.forNavbar.navbarData,
+    navbarData: getNavbarData(state),
   };
 };
 

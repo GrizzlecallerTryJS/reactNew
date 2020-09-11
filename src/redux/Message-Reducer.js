@@ -1,3 +1,5 @@
+import { createSelector } from 'reselect';
+
 const ADD_MESSAGE = 'ADD-MESSAGE';
 
 let initialState = {
@@ -65,5 +67,11 @@ const messageReducer = (state = initialState, action) => {
 export const addMessageAC = (message) => {
   return { type: ADD_MESSAGE, message: message };
 };
+
+const _getDialogs = (state) => {
+  return state.forDialogs;
+};
+
+export const getDialogs = createSelector(_getDialogs, (dialogs) => dialogs);
 
 export default messageReducer;

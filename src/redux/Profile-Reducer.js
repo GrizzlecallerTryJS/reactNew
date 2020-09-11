@@ -1,3 +1,4 @@
+import { createSelector } from 'reselect';
 import { profileAPI } from '../api/api';
 
 const SET_COMMON_USER_PROFILE = 'SET-COMMON_USER_DATA';
@@ -63,6 +64,8 @@ const profileReducer = (state = initState, action) => {
   return stateCopy;
 };
 
+/* Action crators */
+
 export const setCommonUserProfile = (userProfile) => {
   return {
     type: SET_COMMON_USER_PROFILE,
@@ -83,6 +86,8 @@ export const setUserStatus = (status) => {
     status: status,
   };
 };
+
+/* Thunk crators */
 
 export const getUserProfile = (userId) => {
   return (dispatch) => {
@@ -118,5 +123,23 @@ export const updateUserStatus = (status) => {
     });
   };
 };
+
+/* Getters */
+
+const _getUserData = (state) => {
+  return state.forProfile;
+};
+
+const _getStatus = (state) => {
+  return state.forProfile.status;
+};
+
+const _getIsFetching = (state) => {
+  return state.forProfile.isFetching;
+};
+
+export const getUserData = createSelector(_getUserData, (data) => data);
+export const getStatus = createSelector(_getStatus, (status) => status);
+export const getIsFetching = createSelector(_getIsFetching, (fetching) => fetching);
 
 export default profileReducer;

@@ -1,7 +1,16 @@
 import React, { Fragment } from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
-import { setAuthUserData, setIsFetching, setAuthUserImage, authLogoutUser } from '../../redux/Auth-Reducer';
+import {
+  setAuthUserData,
+  setIsFetching,
+  setAuthUserImage,
+  authLogoutUser,
+  getAuth,
+  getAuthLogin,
+  getAuthId,
+  getAuthUserImage,
+} from '../../redux/Auth-Reducer';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
 import { getHeader } from '../../redux/Header-Reducer';
 import { compose } from 'redux';
@@ -21,10 +30,10 @@ class HeaderContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isAuth: state.forAuth.isAuth,
-    login: state.forAuth.login,
-    userId: state.forAuth.id,
-    authUserImage: state.forAuth.authUserImage,
+    isAuth: getAuth(state),
+    login: getAuthLogin(state),
+    userId: getAuthId(state),
+    authUserImage: getAuthUserImage(state),
   };
 };
 
