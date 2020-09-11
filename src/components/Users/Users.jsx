@@ -36,7 +36,8 @@ const Users = (props) => {
               className={props.requestedPage === p ? styles.selectedPage : ''}
               onClick={(e) => {
                 props.onPageChanged(p);
-              }}>
+              }}
+              key={p}>
               {p}
             </span>
           );

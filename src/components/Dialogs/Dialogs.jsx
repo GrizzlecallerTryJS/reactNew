@@ -14,11 +14,11 @@ class Dialogs extends React.Component {
 
   render () {
     let NameMassive = this.props.forDialogs.dialogsData.map((dialog) => {
-      return <DialogItem id={dialog.id} name={dialog.name} avatar={dialog.avatar} />;
+      return <DialogItem id={dialog.id} name={dialog.name} key={dialog.id} avatar={dialog.avatar} />;
     });
 
     let MessageMassive = this.props.forDialogs.messagesData.map((message) => {
-      return <MessageItem id={message.id} messageText={message.text} />;
+      return <MessageItem id={message.id} key={message.id} messageText={message.text} />;
     });
     return (
       <div className={styles.dialogs_main}>
