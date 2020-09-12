@@ -30,8 +30,8 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    isAuth: state.forAuth.isAuth,
-    userId: state.forAuth.id,
+    isAuth : state.forAuth.isAuth,
+    userId : state.forAuth.id,
   };
 };
 

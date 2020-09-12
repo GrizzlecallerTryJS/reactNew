@@ -2,8 +2,8 @@ import React from 'react';
 
 class ProfileStatusComponent extends React.Component {
   state = {
-    editMode: false,
-    localStatus: this.props.status,
+    editMode    : false,
+    localStatus : this.props.status,
   };
 
   activateEditeMode = () => {

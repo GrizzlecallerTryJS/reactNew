@@ -77,7 +77,7 @@ class App extends React.Component {
 
 const mstp = (state) => {
   return {
-    initialized: state.forApp.initialized,
+    initialized : state.forApp.initialized,
   };
 };
 

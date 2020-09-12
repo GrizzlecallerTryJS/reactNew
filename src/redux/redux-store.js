@@ -12,15 +12,15 @@ import headerReducer from './Header-Reducer';
 import appReducer from './App-Reducer';
 
 let reducers = combineReducers({
-  forPosts: postReducer,
-  form: formReducer,
-  forUsers: usersReducer,
-  forAuth: authReducer,
-  forProfile: profileReducer,
-  forNavbar: navBarReducer,
-  forDialogs: messageReducer,
-  forHeder: headerReducer,
-  forApp: appReducer,
+  forPosts   : postReducer,
+  form       : formReducer,
+  forUsers   : usersReducer,
+  forAuth    : authReducer,
+  forProfile : profileReducer,
+  forNavbar  : navBarReducer,
+  forDialogs : messageReducer,
+  forHeder   : headerReducer,
+  forApp     : appReducer,
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));

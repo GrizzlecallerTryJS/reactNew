@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 let mapStateToPropsForHOC = (state) => {
   return {
-    isAuth: state.forAuth.isAuth,
+    isAuth : state.forAuth.isAuth,
   };
 };
 

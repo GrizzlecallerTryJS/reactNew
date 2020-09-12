@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 let initialState = {
-  navbarData: [
+  navbarData : [
     { id: 1, article: 'Profile', path: '/profile' },
     { id: 2, article: 'Messages', path: '/messages' },
     { id: 3, article: 'News', path: '/news' },

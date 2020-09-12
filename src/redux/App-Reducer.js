@@ -3,7 +3,7 @@ import { getAuthUserData } from './Auth-Reducer';
 const INITIALIZED_SUCCESS = 'INITIALIZED-SUCCESS';
 
 let initState = {
-  initialized: false,
+  initialized : false,
 };
 
 const appReducer = (state = initState, action) => {
@@ -12,7 +12,7 @@ const appReducer = (state = initState, action) => {
   const _setInitialized = (init) => {
     stateCopy = {
       ...state,
-      initialized: init,
+      initialized : init,
     };
   };
 
@@ -24,7 +24,7 @@ const appReducer = (state = initState, action) => {
 
 export const initializedSuccess = () => {
   return {
-    type: INITIALIZED_SUCCESS,
+    type : INITIALIZED_SUCCESS,
   };
 };
 

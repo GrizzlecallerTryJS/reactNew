@@ -6,13 +6,13 @@ import { compose } from 'redux';
 
 let mapStateToProps = (state) => {
   return {
-    forDialogs: getDialogs(state),
+    forDialogs : getDialogs(state),
   };
 };
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    addMessage: (message) => {
+    addMessage : (message) => {
       dispatch(addMessageAC(message));
     },
   };

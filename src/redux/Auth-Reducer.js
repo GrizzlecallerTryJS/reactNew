@@ -7,12 +7,12 @@ const SET_IS_FETCHING = 'SET-IS-FETCHING';
 const SET_AUTH_USER_IMAGE = 'SET-AUTH-USER-IMAGE';
 
 let initState = {
-  id: null,
-  email: null,
-  login: null,
-  isFetching: true,
-  isAuth: false,
-  authUserImage: null,
+  id            : null,
+  email         : null,
+  login         : null,
+  isFetching    : true,
+  isAuth        : false,
+  authUserImage : null,
 };
 
 const authReducer = (state = initState, action) => {
@@ -27,14 +27,14 @@ const authReducer = (state = initState, action) => {
   let _setIsFetching = (isFetching) => {
     stateCopy = {
       ...state,
-      isFetching: isFetching,
+      isFetching : isFetching,
     };
   };
 
   let _setAuthUserImage = (authUserImage) => {
     stateCopy = {
       ...state,
-      authUserImage: authUserImage,
+      authUserImage : authUserImage,
     };
   };
 
@@ -53,8 +53,8 @@ const authReducer = (state = initState, action) => {
 
 export const setAuthUserData = (id, login, email, isAuth) => {
   return {
-    type: SET_USER_DATA,
-    payload: {
+    type    : SET_USER_DATA,
+    payload : {
       id,
       login,
       email,
@@ -65,15 +65,15 @@ export const setAuthUserData = (id, login, email, isAuth) => {
 
 export const setAuthUserImage = (authUserImage) => {
   return {
-    type: SET_AUTH_USER_IMAGE,
-    authUserImage: authUserImage,
+    type          : SET_AUTH_USER_IMAGE,
+    authUserImage : authUserImage,
   };
 };
 
 export const setIsFetching = (isFetching) => {
   return {
-    type: SET_IS_FETCHING,
-    isFetching: isFetching,
+    type       : SET_IS_FETCHING,
+    isFetching : isFetching,
   };
 };
 

@@ -2,7 +2,7 @@ const ADD_POST = 'ADD-POST';
 const LIKE_BUTTON_COUNTER = 'LIKE-BUTTON-COUNTER';
 
 let initialState = {
-  postData: [
+  postData : [
     { id: 1, message: 'BEEP', likeCount: 15, liked: false },
     { id: 2, message: 'BOOP', likeCount: 20, liked: false },
     { id: 3, message: 'BOOP', likeCount: 20, liked: false },
@@ -24,7 +24,7 @@ const postReducer = (state = initialState, action) => {
   const _addPost = (postMessage) => {
     stateCopy = {
       ...state,
-      postData: [
+      postData : [
         ...state.postData,
       ],
     };
@@ -33,10 +33,10 @@ const postReducer = (state = initialState, action) => {
 
     const newId = stateCopy.postData[last].id + 1;
     let newPost = {
-      id: newId,
-      message: postMessage,
-      likeCount: 0,
-      liked: false,
+      id        : newId,
+      message   : postMessage,
+      likeCount : 0,
+      liked     : false,
     };
 
     stateCopy.postData.push(newPost);
@@ -45,7 +45,7 @@ const postReducer = (state = initialState, action) => {
   const _likeButtonCounter = (id) => {
     stateCopy = {
       ...state,
-      postData: [
+      postData : [
         ...state.postData,
       ],
     };
@@ -71,15 +71,15 @@ const postReducer = (state = initialState, action) => {
 
 export const addPost = (postMessage) => {
   return {
-    type: ADD_POST,
-    postMessage: postMessage,
+    type        : ADD_POST,
+    postMessage : postMessage,
   };
 };
 
 export const likeButtonCounter = (id) => {
   return {
-    type: LIKE_BUTTON_COUNTER,
-    id: id,
+    type : LIKE_BUTTON_COUNTER,
+    id   : id,
   };
 };
 

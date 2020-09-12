@@ -17,7 +17,7 @@ import { getNavbarData } from '../../redux/NavBar-Reducer';
 
 let mapStateToProps = (state) => {
   return {
-    navbarData: getNavbarData(state),
+    navbarData : getNavbarData(state),
   };
 };
 

@@ -6,27 +6,27 @@ const SET_IS_FETCHNG = 'SET-IS-FETCHNG';
 const SET_USER_STATUS = 'SET-USER-STATUS';
 
 let initState = {
-  aboutMe: null,
-  contacts: {
-    facebook: null,
-    website: null,
-    vk: null,
-    twitter: null,
-    instagram: null,
-    youtube: null,
-    github: null,
-    mainLink: null,
+  aboutMe                   : null,
+  contacts                  : {
+    facebook  : null,
+    website   : null,
+    vk        : null,
+    twitter   : null,
+    instagram : null,
+    youtube   : null,
+    github    : null,
+    mainLink  : null,
   },
-  lookingForAJob: null,
-  lookingForAJobDescription: null,
-  fullName: null,
-  userId: null,
-  photos: {
-    small: null,
-    large: null,
+  lookingForAJob            : null,
+  lookingForAJobDescription : null,
+  fullName                  : null,
+  userId                    : null,
+  photos                    : {
+    small : null,
+    large : null,
   },
-  isFetching: false,
-  status: 'initStateStatus',
+  isFetching                : false,
+  status                    : 'initStateStatus',
 };
 const profileReducer = (state = initState, action) => {
   let stateCopy = state;
@@ -34,22 +34,22 @@ const profileReducer = (state = initState, action) => {
   let _setCommonUserProfile = (userData) => {
     stateCopy = {
       ...userData,
-      contacts: { ...userData.contacts },
-      photos: { ...userData.photos },
+      contacts : { ...userData.contacts },
+      photos   : { ...userData.photos },
     };
   };
 
   let _isFetching = (isFetching) => {
     stateCopy = {
       ...state,
-      isFetching: isFetching,
+      isFetching : isFetching,
     };
   };
 
   let _setUserStatus = (status) => {
     stateCopy = {
       ...state,
-      status: status,
+      status : status,
     };
   };
 
@@ -68,22 +68,22 @@ const profileReducer = (state = initState, action) => {
 
 export const setCommonUserProfile = (userProfile) => {
   return {
-    type: SET_COMMON_USER_PROFILE,
-    userProfile: userProfile,
+    type        : SET_COMMON_USER_PROFILE,
+    userProfile : userProfile,
   };
 };
 
 export const setIsFetching = (isFetching) => {
   return {
-    type: SET_IS_FETCHNG,
-    isFetching: isFetching,
+    type       : SET_IS_FETCHNG,
+    isFetching : isFetching,
   };
 };
 
 export const setUserStatus = (status) => {
   return {
-    type: SET_USER_STATUS,
-    status: status,
+    type   : SET_USER_STATUS,
+    status : status,
   };
 };
 

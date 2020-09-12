@@ -8,12 +8,12 @@ const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 const FOLLOWING_PROGRESS = 'FOLLOWING-PROGRESS';
 
 let initState = {
-  users: [],
-  pageSize: 8,
-  totalUsersCount: 0,
-  currentPage: 1,
-  isFetching: false,
-  followingProgressState: [],
+  users                  : [],
+  pageSize               : 8,
+  totalUsersCount        : 0,
+  currentPage            : 1,
+  isFetching             : false,
+  followingProgressState : [],
 };
 
 const usersReducer = (state = initState, action) => {
@@ -22,7 +22,7 @@ const usersReducer = (state = initState, action) => {
   const _followButton = (id) => {
     stateCopy = {
       ...state,
-      users: state.users.map((u) => u),
+      users : state.users.map((u) => u),
     };
 
     state.users.map((user) => {
@@ -37,7 +37,7 @@ const usersReducer = (state = initState, action) => {
   let _setUsers = (newUsers) => {
     stateCopy = {
       ...state,
-      users: newUsers,
+      users : newUsers,
     };
   };
 
@@ -56,7 +56,7 @@ const usersReducer = (state = initState, action) => {
   let _followingProgress = (isFetching, id) => {
     stateCopy = {
       ...state,
-      followingProgressState: isFetching
+      followingProgressState : isFetching
         ? [
             ...state.followingProgressState,
             id,
@@ -88,44 +88,44 @@ const usersReducer = (state = initState, action) => {
 
 export const followButton = (id) => {
   return {
-    type: FOLLOW_BUTTON,
-    id: id,
+    type : FOLLOW_BUTTON,
+    id   : id,
   };
 };
 
 export const setUsers = (newUsers) => {
   return {
-    type: SET_USERS,
-    users: newUsers,
+    type  : SET_USERS,
+    users : newUsers,
   };
 };
 
 export const setRequestedPage = (pageNumber) => {
   return {
-    type: SET_CURRENT_PAGE,
-    currentPage: pageNumber,
+    type        : SET_CURRENT_PAGE,
+    currentPage : pageNumber,
   };
 };
 
 export const setTotalUsersCount = (totalCount) => {
   return {
-    type: SET_TOTAL_USERS_COUNT,
-    totalUsersCount: totalCount,
+    type            : SET_TOTAL_USERS_COUNT,
+    totalUsersCount : totalCount,
   };
 };
 
 export const setIsFetching = (isFetching) => {
   return {
-    type: TOGGLE_IS_FETCHING,
-    isFetching: isFetching,
+    type       : TOGGLE_IS_FETCHING,
+    isFetching : isFetching,
   };
 };
 
 export const followingProgress = (isFetching, userId) => {
   return {
-    type: FOLLOWING_PROGRESS,
-    isFetching: isFetching,
-    userId: userId,
+    type       : FOLLOWING_PROGRESS,
+    isFetching : isFetching,
+    userId     : userId,
   };
 };
 

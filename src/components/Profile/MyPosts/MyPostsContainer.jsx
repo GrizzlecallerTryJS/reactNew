@@ -5,16 +5,16 @@ import { compose } from 'redux';
 
 let mapStateToProps = (state) => {
   return {
-    postData: getPostData(state),
+    postData : getPostData(state),
   };
 };
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    addPost: (postMessage) => {
+    addPost           : (postMessage) => {
       dispatch(addPost(postMessage));
     },
-    likeButtonCounter: (id) => {
+    likeButtonCounter : (id) => {
       dispatch(likeButtonCounter(id));
     },
   };
