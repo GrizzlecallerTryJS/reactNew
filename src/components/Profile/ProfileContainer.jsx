@@ -3,11 +3,11 @@ import Profile from './Profile';
 import {
   setCommonUserProfile,
   setIsFetching,
-  getUserProfile,
-  getUserStatus,
+  getAllUserData,
   updateUserStatus,
   getUserData,
   getIsFetching,
+  getAllUserDataState,
   getStatus,
 } from '../../redux/Profile-Reducer';
 import { getPostData } from '../../redux/Post-Reducer';
@@ -28,14 +28,18 @@ class ProfileContainer extends React.Component {
         this.props.history.push('/login');
       }
     }
-    this.props.getUserProfile(userId);
-    this.props.getUserStatus(userId);
+    this.props.getAllUserData(userId);
   }
 
   defaultStatus = 'defaultStatus';
 
   render () {
+    if (!this.props.allUserDataState) {
+      return <Preloader />;
+    }
+
     let ProfileCaller = () => {
+      debugger;
       return <Profile {...this.props} defaultImage={defaultImage} defaultStatus={this.defaultStatus} />;
     };
     return (
@@ -48,12 +52,13 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    userData: getUserData(state),
-    status: getStatus(state),
-    isFetching: getIsFetching(state),
-    postData: getPostData(state),
-    authorizedUserId: getAuthId(state),
-    isAuth: getAuth(state),
+    userData         : getUserData(state),
+    isFetching       : getIsFetching(state),
+    postData         : getPostData(state),
+    authorizedUserId : getAuthId(state),
+    isAuth           : getAuth(state),
+    allUserDataState : getAllUserDataState(state),
+    status           : getStatus(state),
   };
 };
 
@@ -68,9 +73,9 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = {
   setCommonUserProfile,
   setIsFetching,
-  getUserProfile,
-  getUserStatus,
+  getAllUserData,
   updateUserStatus,
+  getStatus,
 };
 
 let profileContainer = compose(connect(mapStateToProps, mapDispatchToProps), withRouter)(ProfileContainer);
