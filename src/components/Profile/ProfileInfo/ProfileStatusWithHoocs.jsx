@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const ProfileStatusWithHoocs = (props) => {
   let [
@@ -10,6 +10,16 @@ const ProfileStatusWithHoocs = (props) => {
     localStatus,
     setLocalStatus,
   ] = useState(props.status);
+
+  useEffect(
+    () => {
+      debugger;
+      setLocalStatus(props.status);
+    },
+    [
+      props.status,
+    ]
+  );
 
   const activateEditeMode = () => {
     setEditMode(true);
