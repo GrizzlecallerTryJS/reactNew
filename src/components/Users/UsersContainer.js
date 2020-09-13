@@ -89,5 +89,3 @@ let mapDispatchToProps = {
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(UsersAPIComponent);
-
-//export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
