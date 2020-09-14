@@ -12,7 +12,14 @@ class Dialogs extends React.Component {
     this.props.addMessage(values.dialogField);
   };
 
+  shouldComponentUpdate (nextProps, nextState) {
+    return nextProps !== this.props || nextState !== this.state;
+  }
+
   render () {
+    console.log('RENDER');
+    console.log(this.props);
+
     let NameMassive = this.props.forDialogs.dialogsData.map((dialog) => {
       return <DialogItem id={dialog.id} name={dialog.name} key={dialog.id} avatar={dialog.avatar} />;
     });

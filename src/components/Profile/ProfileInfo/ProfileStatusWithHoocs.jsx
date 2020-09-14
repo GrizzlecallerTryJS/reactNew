@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const ProfileStatusWithHoocs = (props) => {
+const ProfileStatusWithHoocs = React.memo((props) => {
   let [
     editMode,
     setEditMode,
@@ -13,7 +13,6 @@ const ProfileStatusWithHoocs = (props) => {
 
   useEffect(
     () => {
-      debugger;
       setLocalStatus(props.status);
     },
     [
@@ -62,6 +61,6 @@ const ProfileStatusWithHoocs = (props) => {
   };
 
   return <div>{changeStatus()}</div>;
-};
+});
 
 export default ProfileStatusWithHoocs;

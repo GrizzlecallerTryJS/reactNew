@@ -52,7 +52,6 @@ const profileReducer = (state = initState, action) => {
   };
 
   let _setUserStatus = (status) => {
-    debugger;
     stateCopy = {
       ...state,
       status : status,

@@ -39,7 +39,6 @@ class ProfileContainer extends React.Component {
     }
 
     let ProfileCaller = () => {
-      debugger;
       return <Profile {...this.props} defaultImage={defaultImage} defaultStatus={this.defaultStatus} />;
     };
     return (

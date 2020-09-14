@@ -4,6 +4,10 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 const Profile = (props) => {
+  console.log(props);
+
+  window.props = [];
+  window.props.push(props);
   return (
     <Fragment>
       <ProfileInfo
