@@ -67,7 +67,7 @@ const postReducer = (state = initialState, action) => {
   return stateCopy;
 };
 
-/* Action crators */
+/* Action creators */
 
 export const addPost = (postMessage) => {
   return {
