@@ -2,35 +2,35 @@ import { createSelector } from 'reselect';
 import { profileAPI } from '../api/api';
 
 const SET_COMMON_USER_PROFILE = 'SET-COMMON_USER_DATA';
-const SET_IS_FETCHNG = 'SET-IS-FETCHNG';
+const SET_IS_FETCHING = 'SET-IS-FETCHING';
 const SET_USER_STATUS = 'SET-USER-STATUS';
 const GET_ALL_USER_DATA_SUCCESS = 'GET-ALL-USER-DATA-SUCCESS';
 
 let initState = {
-  userData         : {
-    aboutMe                   : null,
-    contacts                  : {
-      facebook  : null,
-      website   : null,
-      vk        : null,
-      twitter   : null,
-      instagram : null,
-      youtube   : null,
-      github    : null,
-      mainLink  : null,
+  userData: {
+    aboutMe: null,
+    contacts: {
+      facebook: null,
+      website: null,
+      vk: null,
+      twitter: null,
+      instagram: null,
+      youtube: null,
+      github: null,
+      mainLink: null,
     },
-    lookingForAJob            : null,
-    lookingForAJobDescription : null,
-    fullName                  : null,
-    userId                    : null,
-    photos                    : {
-      small : null,
-      large : null,
+    lookingForAJob: null,
+    lookingForAJobDescription: null,
+    fullName: null,
+    userId: null,
+    photos: {
+      small: null,
+      large: null,
     },
   },
-  isFetching       : false,
-  status           : 'initStateStatus',
-  allUserDataState : false,
+  isFetching: false,
+  status: 'initStateStatus',
+  allUserDataState: false,
 };
 const profileReducer = (state = initState, action) => {
   let stateCopy = state;
@@ -38,76 +38,80 @@ const profileReducer = (state = initState, action) => {
   let _setCommonUserProfile = (userData) => {
     stateCopy = {
       ...state,
-      userData : userData,
-      contacts : { ...userData.contacts },
-      photos   : { ...userData.photos },
+      userData: userData,
+      contacts: { ...userData.contacts },
+      photos: { ...userData.photos },
     };
   };
 
   let _isFetching = (isFetching) => {
     stateCopy = {
       ...state,
-      isFetching : isFetching,
+      isFetching: isFetching,
     };
   };
 
   let _setUserStatus = (status) => {
     stateCopy = {
       ...state,
-      status : status,
+      status: status,
     };
   };
 
   let _getAllUserDataSuccess = (success) => {
     stateCopy = {
       ...state,
-      allUserDataState : success,
+      allUserDataState: success,
     };
   };
 
-  if (action.type === SET_COMMON_USER_PROFILE) {
+  if (action.type === SET_COMMON_USER_PROFILE)
+  {
     _setCommonUserProfile(action.userProfile);
-  } else if (action.type === SET_IS_FETCHNG) {
+  } else if (action.type === SET_IS_FETCHNG)
+  {
     _isFetching(action.isFetching);
-  } else if (action.type === SET_USER_STATUS) {
+  } else if (action.type === SET_USER_STATUS)
+  {
     _setUserStatus(action.status);
-  } else if (action.type === GET_ALL_USER_DATA_SUCCESS) {
+  } else if (action.type === GET_ALL_USER_DATA_SUCCESS)
+  {
     _getAllUserDataSuccess(true);
   }
 
   return stateCopy;
 };
 
-/* Action crators */
+/* Action creators */
 
 export const setCommonUserProfile = (userProfile) => {
   return {
-    type        : SET_COMMON_USER_PROFILE,
-    userProfile : userProfile,
+    type: SET_COMMON_USER_PROFILE,
+    userProfile: userProfile,
   };
 };
 
 export const setIsFetching = (isFetching) => {
   return {
-    type       : SET_IS_FETCHNG,
-    isFetching : isFetching,
+    type: SET_IS_FETCHING,
+    isFetching: isFetching,
   };
 };
 
 export const setUserStatus = (status) => {
   return {
-    type   : SET_USER_STATUS,
-    status : status,
+    type: SET_USER_STATUS,
+    status: status,
   };
 };
 
 export const getAllUserDataSuccess = () => {
   return {
-    type : GET_ALL_USER_DATA_SUCCESS,
+    type: GET_ALL_USER_DATA_SUCCESS,
   };
 };
 
-/* Thunk crators */
+/* Thunk creators */
 
 const getUserProfile = (userId) => {
   return (dispatch) => {
@@ -147,7 +151,8 @@ export const updateUserStatus = (status) => {
     dispatch(setIsFetching(true));
 
     profileAPI.updateStatus(status).then((response) => {
-      if (response.data.resultCode === 0) {
+      if (response.data.resultCode === 0)
+      {
         dispatch(setIsFetching(false));
         dispatch(setUserStatus(status));
       }
