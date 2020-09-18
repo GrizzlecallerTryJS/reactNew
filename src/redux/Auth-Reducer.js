@@ -7,12 +7,12 @@ const SET_IS_FETCHING = 'SET-IS-FETCHING';
 const SET_AUTH_USER_IMAGE = 'SET-AUTH-USER-IMAGE';
 
 let initState = {
-  id            : null,
-  email         : null,
-  login         : null,
-  isFetching    : true,
-  isAuth        : false,
-  authUserImage : null,
+  id: null,
+  email: null,
+  login: null,
+  isFetching: true,
+  isAuth: false,
+  authUserImage: null,
 };
 
 const authReducer = (state = initState, action) => {
@@ -27,22 +27,25 @@ const authReducer = (state = initState, action) => {
   let _setIsFetching = (isFetching) => {
     stateCopy = {
       ...state,
-      isFetching : isFetching,
+      isFetching: isFetching,
     };
   };
 
   let _setAuthUserImage = (authUserImage) => {
     stateCopy = {
       ...state,
-      authUserImage : authUserImage,
+      authUserImage: authUserImage,
     };
   };
 
-  if (action.type === SET_USER_DATA) {
+  if (action.type === SET_USER_DATA)
+  {
     _setAuthUserData(action.payload);
-  } else if (action.type === SET_IS_FETCHING) {
+  } else if (action.type === SET_IS_FETCHING)
+  {
     _setIsFetching(action.isFetching);
-  } else if (action.type === SET_AUTH_USER_IMAGE) {
+  } else if (action.type === SET_AUTH_USER_IMAGE)
+  {
     _setAuthUserImage(action.authUserImage);
   }
 
@@ -53,8 +56,8 @@ const authReducer = (state = initState, action) => {
 
 export const setAuthUserData = (id, login, email, isAuth) => {
   return {
-    type    : SET_USER_DATA,
-    payload : {
+    type: SET_USER_DATA,
+    payload: {
       id,
       login,
       email,
@@ -65,21 +68,21 @@ export const setAuthUserData = (id, login, email, isAuth) => {
 
 export const setAuthUserImage = (authUserImage) => {
   return {
-    type          : SET_AUTH_USER_IMAGE,
-    authUserImage : authUserImage,
+    type: SET_AUTH_USER_IMAGE,
+    authUserImage: authUserImage,
   };
 };
 
 export const setIsFetching = (isFetching) => {
   return {
-    type       : SET_IS_FETCHING,
-    isFetching : isFetching,
+    type: SET_IS_FETCHING,
+    isFetching: isFetching,
   };
 };
 
 /* Thunk crators */
 
-export const getAuthUserData = () => (dispatch) => {
+/* export const getAuthUserData = () => (dispatch) => {
   dispatch(setIsFetching(true));
   return authAPI.getAuthMe().then((data) => {
     if (data.resultCode === 0) {
@@ -88,15 +91,29 @@ export const getAuthUserData = () => (dispatch) => {
       dispatch(setAuthUserData(id, login, email, true));
     }
   });
+}; */
+
+export const getAuthUserData = () => async (dispatch) => {
+  dispatch(setIsFetching(true));
+  let response = authAPI.getAuthMe();
+  if (response.resultCode === 0)
+  {
+    dispatch(setIsFetching(false));
+    let { id, login, email } = response.data;
+    dispatch(setAuthUserData(id, login, email, true));
+  }
 };
+
 
 export const authLoginUser = (email, password, rememberMe = false) => (dispatch) => {
   dispatch(setIsFetching(true));
   authAPI.authLogin(email, password, rememberMe).then((data) => {
-    if (data.resultCode === 0) {
+    if (data.resultCode === 0)
+    {
       dispatch(setIsFetching(false));
       dispatch(getAuthUserData());
-    } else {
+    } else
+    {
       let errorMessage = data.messages.length > 0 ? data.messages[0] : 'Something Wrong';
       dispatch(stopSubmit('loginForm', { _error: errorMessage }));
     }
@@ -106,7 +123,8 @@ export const authLoginUser = (email, password, rememberMe = false) => (dispatch)
 export const authLogoutUser = () => (dispatch) => {
   dispatch(setIsFetching(true));
   authAPI.authLogout().then((data) => {
-    if (data.resultCode === 0) {
+    if (data.resultCode === 0)
+    {
       dispatch(setIsFetching(false));
       dispatch(setAuthUserData(null, null, null, false));
     }

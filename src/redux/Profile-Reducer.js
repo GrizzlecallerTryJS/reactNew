@@ -68,7 +68,7 @@ const profileReducer = (state = initState, action) => {
   if (action.type === SET_COMMON_USER_PROFILE)
   {
     _setCommonUserProfile(action.userProfile);
-  } else if (action.type === SET_IS_FETCHNG)
+  } else if (action.type === SET_IS_FETCHING)
   {
     _isFetching(action.isFetching);
   } else if (action.type === SET_USER_STATUS)
