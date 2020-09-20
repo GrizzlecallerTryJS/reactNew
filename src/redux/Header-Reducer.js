@@ -10,20 +10,18 @@ const headerReducer = (state = initState, action) => {
   return stateCopy;
 };
 
-export const getHeader = () => {
-  return (dispatch) => {
-    dispatch(setIsFetching(true));
-    authAPI.getAuthMe().then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(setIsFetching(false));
-        let { id, login, email } = data.data;
-        dispatch(setAuthUserData(id, login, email, true));
-      }
-      profileAPI.getUserProfile(data.data.id).then((data) => {
-        !data.photos.small ? dispatch(setAuthUserImage(defaultImage)) : dispatch(setAuthUserImage(data.photos.small));
-      });
-    });
-  };
+export const getHeader = () => async (dispatch) => {
+  dispatch(setIsFetching(true));
+  let response = await authAPI.getAuthMe();
+  if (response.resultCode === 0) {
+    dispatch(setIsFetching(false));
+    let { id, login, email } = response.data;
+    dispatch(setAuthUserData(id, login, email, true));
+  }
+  let response1 = await profileAPI.getUserProfile(response.data.id);
+  !response1.photos.small
+    ? dispatch(setAuthUserImage(defaultImage))
+    : dispatch(setAuthUserImage(response1.photos.small));
 };
 
 export default headerReducer;

@@ -84,7 +84,7 @@ const usersReducer = (state = initState, action) => {
   return stateCopy;
 };
 
-/* Action crators */
+/* Action creators */
 
 export const followButton = (id) => {
   return {
@@ -129,11 +129,11 @@ export const followingProgress = (isFetching, userId) => {
   };
 };
 
-/* Action crators END */
+/* Action creators END */
 
-/* Thunk crators */
+/* Thunk creators */
 
-export const requestUsers = (currentPage, pageSize) => {
+/* export const requestUsers = (currentPage, pageSize) => {
   return (dispatch) => {
     dispatch(setIsFetching(true));
     dispatch(setRequestedPage(currentPage));
@@ -143,9 +143,18 @@ export const requestUsers = (currentPage, pageSize) => {
       dispatch(setTotalUsersCount(data.totalCount));
     });
   };
+}; */
+
+export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
+  dispatch(setIsFetching(true));
+  dispatch(setRequestedPage(currentPage));
+  let response = await usersAPI.getUsers(currentPage, pageSize);
+  dispatch(setIsFetching(false));
+  dispatch(setUsers(response.items));
+  dispatch(setTotalUsersCount(response.totalCount));
 };
 
-export const requestUsersPage = (pageNumber, pageSize) => {
+/* export const requestUsersPage = (pageNumber, pageSize) => {
   return (dispatch) => {
     dispatch(setRequestedPage(pageNumber));
     dispatch(setIsFetching(true));
@@ -154,33 +163,61 @@ export const requestUsersPage = (pageNumber, pageSize) => {
       dispatch(setUsers(data.items));
     });
   };
+}; */
+
+export const requestUsersPage = (pageNumber, pageSize) => async (dispatch) => {
+  dispatch(setRequestedPage(pageNumber));
+  dispatch(setIsFetching(true));
+  let response = await usersAPI.getUsers(pageNumber, pageSize);
+  dispatch(setIsFetching(false));
+  dispatch(setUsers(response.items));
 };
 
-export const follow = (userID) => {
+/* export const follow = (userID) => {
   return (dispatch) => {
     dispatch(followingProgress(true, userID));
     usersAPI.followUser(userID).then((data) => {
-      if (data.resultCode === 0) {
+      if (data.resultCode === 0)
+      {
         dispatch(followButton(userID));
         dispatch(followingProgress(false, userID));
       }
     });
   };
+}; */
+
+export const follow = (userID) => async (dispatch) => {
+  dispatch(followingProgress(true, userID));
+  let response = await usersAPI.followUser(userID);
+  if (response.resultCode === 0) {
+    dispatch(followButton(userID));
+    dispatch(followingProgress(false, userID));
+  }
 };
 
-export const unFollow = (userID) => {
+/* export const unFollow = (userID) => {
   return (dispatch) => {
     dispatch(followingProgress(true, userID));
     usersAPI.unFollowUser(userID).then((data) => {
-      if (data.resultCode === 0) {
+      if (data.resultCode === 0)
+      {
         dispatch(followButton(userID));
         dispatch(followingProgress(false, userID));
       }
     });
   };
+}; */
+
+export const unFollow = (userID) => async (dispatch) => {
+  dispatch(followingProgress(true, userID));
+  let response = await usersAPI.unFollowUser(userID);
+  if (response.resultCode === 0) {
+    dispatch(followButton(userID));
+    dispatch(followingProgress(false, userID));
+  }
 };
 
-/* Thunk crators  END */
+/* Thunk creators  END */
 
 /* Getters */
 
