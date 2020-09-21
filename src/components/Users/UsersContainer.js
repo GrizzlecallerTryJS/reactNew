@@ -4,8 +4,7 @@ import {
   followingProgress,
   requestUsers,
   requestUsersPage,
-  follow,
-  unFollow,
+  followUnfollow,
   getPageSize,
   getUsersOnPage,
   getTotalUsersCount,
@@ -38,7 +37,7 @@ class UsersAPIComponent extends React.Component {
   };
 
   render () {
-    const UsersCalller = () => {
+    const UsersCaller = () => {
       return (
         <Users
           totalUsersCount={this.props.totalUsersCount}
@@ -48,12 +47,11 @@ class UsersAPIComponent extends React.Component {
           requestedPage={this.props.requestedPage}
           onPageChanged={this.onPageChanged}
           followingProgressState={this.props.followingProgressState}
-          follow={this.props.follow}
-          unFollow={this.props.unFollow}
+          followUnfollow={this.props.followUnfollow}
         />
       );
     };
-    return <Fragment>{this.props.isFetching ? <Preloader /> : <UsersCalller />}</Fragment>;
+    return <Fragment>{this.props.isFetching ? <Preloader /> : <UsersCaller />}</Fragment>;
   }
 }
 
@@ -84,8 +82,7 @@ let mapDispatchToProps = {
   followingProgress,
   requestUsers,
   requestUsersPage,
-  follow,
-  unFollow,
+  followUnfollow,
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(UsersAPIComponent);

@@ -25,7 +25,7 @@ const usersReducer = (state = initState, action) => {
       users : state.users.map((u) => u),
     };
 
-    state.users.map((user) => {
+    stateCopy.users.map((user) => {
       if (user.id === id && user.followed === false) {
         return (user.followed = true);
       } else if (user.id === id && user.followed === true) {
@@ -133,18 +133,6 @@ export const followingProgress = (isFetching, userId) => {
 
 /* Thunk creators */
 
-/* export const requestUsers = (currentPage, pageSize) => {
-  return (dispatch) => {
-    dispatch(setIsFetching(true));
-    dispatch(setRequestedPage(currentPage));
-    usersAPI.getUsers(currentPage, pageSize).then((data) => {
-      dispatch(setIsFetching(false));
-      dispatch(setUsers(data.items));
-      dispatch(setTotalUsersCount(data.totalCount));
-    });
-  };
-}; */
-
 export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
   dispatch(setIsFetching(true));
   dispatch(setRequestedPage(currentPage));
@@ -154,17 +142,6 @@ export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
   dispatch(setTotalUsersCount(response.totalCount));
 };
 
-/* export const requestUsersPage = (pageNumber, pageSize) => {
-  return (dispatch) => {
-    dispatch(setRequestedPage(pageNumber));
-    dispatch(setIsFetching(true));
-    usersAPI.getUsers(pageNumber, pageSize).then((data) => {
-      dispatch(setIsFetching(false));
-      dispatch(setUsers(data.items));
-    });
-  };
-}; */
-
 export const requestUsersPage = (pageNumber, pageSize) => async (dispatch) => {
   dispatch(setRequestedPage(pageNumber));
   dispatch(setIsFetching(true));
@@ -173,20 +150,7 @@ export const requestUsersPage = (pageNumber, pageSize) => async (dispatch) => {
   dispatch(setUsers(response.items));
 };
 
-/* export const follow = (userID) => {
-  return (dispatch) => {
-    dispatch(followingProgress(true, userID));
-    usersAPI.followUser(userID).then((data) => {
-      if (data.resultCode === 0)
-      {
-        dispatch(followButton(userID));
-        dispatch(followingProgress(false, userID));
-      }
-    });
-  };
-}; */
-
-export const follow = (userID) => async (dispatch) => {
+/* export const follow = (userID) => async (dispatch) => {
   dispatch(followingProgress(true, userID));
   let response = await usersAPI.followUser(userID);
   if (response.resultCode === 0) {
@@ -195,22 +159,20 @@ export const follow = (userID) => async (dispatch) => {
   }
 };
 
-/* export const unFollow = (userID) => {
-  return (dispatch) => {
-    dispatch(followingProgress(true, userID));
-    usersAPI.unFollowUser(userID).then((data) => {
-      if (data.resultCode === 0)
-      {
-        dispatch(followButton(userID));
-        dispatch(followingProgress(false, userID));
-      }
-    });
-  };
-}; */
-
 export const unFollow = (userID) => async (dispatch) => {
   dispatch(followingProgress(true, userID));
   let response = await usersAPI.unFollowUser(userID);
+  if (response.resultCode === 0) {
+    dispatch(followButton(userID));
+    dispatch(followingProgress(false, userID));
+  }
+}; */
+
+export const followUnfollow = (userID, followed) => async (dispatch) => {
+  dispatch(followingProgress(true, userID));
+  let apiMethod;
+  followed ? (apiMethod = usersAPI.unFollowUser(userID)) : (apiMethod = usersAPI.followUser(userID));
+  let response = await apiMethod;
   if (response.resultCode === 0) {
     dispatch(followButton(userID));
     dispatch(followingProgress(false, userID));

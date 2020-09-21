@@ -1,4 +1,5 @@
 import React from 'react';
+import { Field } from 'redux-form';
 import styles from './FormsControls.module.css';
 
 const FormControl = ({ Element, input, type, meta: { touched, error }, props }) => {
@@ -27,4 +28,20 @@ export const Checkbox = (props) => {
 
 export const Password = (props) => {
   return <FormControl {...props} Element={'Input'} type={'password'} />;
+};
+
+export const creatorForField = (name, component, validators = []) => {
+  return (
+    <div>
+      <label htmlFor={name}>{name.charAt(0).toUpperCase() + name.slice(1)}</label>
+      <Field
+        name={name}
+        component={component}
+        validate={[
+          ...validators,
+        ]}
+        placeholder={name}
+      />
+    </div>
+  );
 };
