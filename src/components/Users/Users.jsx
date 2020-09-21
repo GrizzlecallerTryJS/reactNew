@@ -1,4 +1,5 @@
 import React from 'react';
+import Paginator from '../../assets/Paginator/Paginator';
 import UserItem from './UserItem/UserItem';
 import styles from './Users.module.css';
 
@@ -14,35 +15,19 @@ const Users = (props) => {
         defaultImage={props.defaultImage}
         followingProgressState={props.followingProgressState}
         key={user.id}
-        follow={props.follow}
-        unFollow={props.unFollow}
+        followUnfollow={props.followUnfollow}
       />
     );
   });
 
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  let pages = [];
-
-  for (let i = 1; i <= pagesCount; i++) {
-    pages[i - 1] = i;
-  }
-
   return (
     <div>
-      <div>
-        {pages.map((p) => {
-          return (
-            <span
-              className={props.requestedPage === p ? styles.selectedPage : ''}
-              onClick={(e) => {
-                props.onPageChanged(p);
-              }}
-              key={p}>
-              {p}
-            </span>
-          );
-        })}
-      </div>
+      <Paginator
+        totalUsersCount={props.totalUsersCount}
+        pageSize={props.pageSize}
+        onPageChanged={props.onPageChanged}
+        requestedPage={props.requestedPage}
+      />
       <div className={styles.users_global}>
         <div>{user}</div>
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field } from 'redux-form';
-import { Input, Checkbox, Password } from './../../assets/FormsControls/FormsControls';
+import { Input, Checkbox, Password, creatorForField } from './../../assets/FormsControls/FormsControls';
 import { required, maxLengthCreator, minLengthCreator } from '../../utils/validators/Validators';
 import styles from './../../assets/FormsControls/FormsControls.module.css';
 
@@ -18,35 +18,17 @@ const LoginForm = (props) => {
 
   return (
     <form onSubmit={props.handleSubmit}>
-      <div>
-        <label htmlFor='Login'>Login</label>
-        <Field
-          name={'email'}
-          component={Input}
-          validate={[
-            required,
-            maxLength30,
-            minLength1,
-          ]}
-          placeholder={'test'}
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>password</label>
-        <Field
-          name={'password'}
-          component={Password}
-          validate={[
-            required,
-            maxLength30,
-            minLength1,
-          ]}
-        />
-      </div>
-      <div>
-        <label htmlFor='rememberMe'>remember Me</label>
-        <Field component={Checkbox} name={'rememberMe'} />
-      </div>
+      {creatorForField('email', Input, [
+        required,
+        maxLength30,
+        minLength1,
+      ])}
+      {creatorForField('password', Password, [
+        required,
+        maxLength30,
+        minLength1,
+      ])}
+      {creatorForField('rememberMe', Checkbox)}
       <div>{props.error && errorTrue()}</div>
       <div>
         <button>Submit</button>
