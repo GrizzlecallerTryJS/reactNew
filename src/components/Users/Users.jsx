@@ -15,27 +15,26 @@ const Users = (props) => {
         defaultImage={props.defaultImage}
         followingProgressState={props.followingProgressState}
         key={user.id}
-        follow={props.follow}
-        unFollow={props.unFollow}
+        followUnfollow={props.followUnfollow}
       />
     );
   });
 
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  let pages = [];
-
-  for (let i = 1; i <= pagesCount; i++) {
-    pages[i - 1] = i;
-  }
-
   return (
     <div>
       <Paginator
+<<<<<<< HEAD
         pages={pages}
         pagesCount={pagesCount}
         itemsForPaginator={props.itemsForPaginator}
         requestedPage={props.requestedPage}
         onPageChanged={props.onPageChanged}
+=======
+        totalUsersCount={props.totalUsersCount}
+        pageSize={props.pageSize}
+        onPageChanged={props.onPageChanged}
+        requestedPage={props.requestedPage}
+>>>>>>> 0a8d4f77e18ee2bde1720b0e2a4abbe1980c5006
       />
       <div className={styles.users_global}>
         <div>{user}</div>

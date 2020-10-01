@@ -3,32 +3,18 @@ import styles from './UserItem.module.css';
 import { NavLink } from 'react-router-dom';
 
 const UserItem = (props) => {
-  let follow = () => {
-    props.follow(props.id);
-  };
-
-  let unFollow = () => {
-    props.unFollow(props.id);
+  let followUnfollow = () => {
+    props.followUnfollow(props.id, props.followed);
   };
 
   let followState = () => {
-    if (!props.followed) {
-      return (
-        <div>
-          <button disabled={props.followingProgressState.some((id) => id === props.id)} onClick={follow}>
-            follow
-          </button>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <button disabled={props.followingProgressState.some((id) => id === props.id)} onClick={unFollow}>
-            unFollow
-          </button>
-        </div>
-      );
-    }
+    return (
+      <div>
+        <button disabled={props.followingProgressState.some((id) => id === props.id)} onClick={followUnfollow}>
+          {props.followed ? 'unFollow' : 'follow'}
+        </button>
+      </div>
+    );
   };
 
   let defaultStatus = () => {

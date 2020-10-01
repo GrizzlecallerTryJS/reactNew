@@ -28,7 +28,7 @@ const usersReducer = (state = initState, action) => {
       users : state.users.map((u) => u),
     };
 
-    state.users.map((user) => {
+    stateCopy.users.map((user) => {
       if (user.id === id && user.followed === false) {
         return (user.followed = true);
       } else if (user.id === id && user.followed === true) {
@@ -151,7 +151,11 @@ export const componentReadyToMount = () => {
 
 /* Thunk creators */
 
+<<<<<<< HEAD
 export const requestUsers = (requestedPage, pageSize) => async (dispatch) => {
+=======
+export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
+>>>>>>> 0a8d4f77e18ee2bde1720b0e2a4abbe1980c5006
   dispatch(setIsFetching(true));
   dispatch(setRequestedPage(requestedPage));
   let response = await usersAPI.getUsers(requestedPage, pageSize);
@@ -168,7 +172,11 @@ export const requestUsersPage = (pageNumber, pageSize) => async (dispatch) => {
   dispatch(setUsers(response.items));
 };
 
+<<<<<<< HEAD
 export const follow = (userID) => async (dispatch) => {
+=======
+/* export const follow = (userID) => async (dispatch) => {
+>>>>>>> 0a8d4f77e18ee2bde1720b0e2a4abbe1980c5006
   dispatch(followingProgress(true, userID));
   let response = await usersAPI.followUser(userID);
   if (response.resultCode === 0) {
@@ -180,6 +188,17 @@ export const follow = (userID) => async (dispatch) => {
 export const unFollow = (userID) => async (dispatch) => {
   dispatch(followingProgress(true, userID));
   let response = await usersAPI.unFollowUser(userID);
+  if (response.resultCode === 0) {
+    dispatch(followButton(userID));
+    dispatch(followingProgress(false, userID));
+  }
+}; */
+
+export const followUnfollow = (userID, followed) => async (dispatch) => {
+  dispatch(followingProgress(true, userID));
+  let apiMethod;
+  followed ? (apiMethod = usersAPI.unFollowUser(userID)) : (apiMethod = usersAPI.followUser(userID));
+  let response = await apiMethod;
   if (response.resultCode === 0) {
     dispatch(followButton(userID));
     dispatch(followingProgress(false, userID));
