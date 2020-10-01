@@ -20,7 +20,7 @@ const ProfileStatusWithHoocs = React.memo((props) => {
     ]
   );
 
-  const activateEditeMode = () => {
+  const activateEditMode = () => {
     setEditMode(true);
   };
 
@@ -51,7 +51,7 @@ const ProfileStatusWithHoocs = React.memo((props) => {
   const editFalse = () => {
     return (
       <div>
-        <span onDoubleClick={activateEditeMode}>{localStatus}</span>
+        <span onDoubleClick={activateEditMode}>{localStatus}</span>
       </div>
     );
   };
