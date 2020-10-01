@@ -6,6 +6,7 @@ const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 const FOLLOWING_PROGRESS = 'FOLLOWING-PROGRESS';
+const READY_TO_MOUNT = 'READY-TO-MOUNT';
 
 let initState = {
   users                  : [],
@@ -14,6 +15,8 @@ let initState = {
   currentPage            : 1,
   isFetching             : false,
   followingProgressState : [],
+  itemsForPaginator      : 10,
+  componentReadyToMount  : false,
 };
 
 const usersReducer = (state = initState, action) => {
@@ -67,6 +70,13 @@ const usersReducer = (state = initState, action) => {
     };
   };
 
+  let _componentReadyToMount = (success) => {
+    stateCopy = {
+      ...state,
+      componentReadyToMount : success,
+    };
+  };
+
   if (action.type === FOLLOW_BUTTON) {
     _followButton(action.id);
   } else if (action.type === SET_USERS) {
@@ -79,6 +89,8 @@ const usersReducer = (state = initState, action) => {
     _setIsFetching(action.isFetching);
   } else if (action.type === FOLLOWING_PROGRESS) {
     _followingProgress(action.isFetching, action.userId);
+  } else if (action.READY_TO_MOUNT) {
+    _componentReadyToMount(true);
   }
 
   return stateCopy;
@@ -129,41 +141,24 @@ export const followingProgress = (isFetching, userId) => {
   };
 };
 
+export const componentReadyToMount = () => {
+  return {
+    type : READY_TO_MOUNT,
+  };
+};
+
 /* Action creators END */
 
 /* Thunk creators */
 
-/* export const requestUsers = (currentPage, pageSize) => {
-  return (dispatch) => {
-    dispatch(setIsFetching(true));
-    dispatch(setRequestedPage(currentPage));
-    usersAPI.getUsers(currentPage, pageSize).then((data) => {
-      dispatch(setIsFetching(false));
-      dispatch(setUsers(data.items));
-      dispatch(setTotalUsersCount(data.totalCount));
-    });
-  };
-}; */
-
-export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
+export const requestUsers = (requestedPage, pageSize) => async (dispatch) => {
   dispatch(setIsFetching(true));
-  dispatch(setRequestedPage(currentPage));
-  let response = await usersAPI.getUsers(currentPage, pageSize);
+  dispatch(setRequestedPage(requestedPage));
+  let response = await usersAPI.getUsers(requestedPage, pageSize);
   dispatch(setIsFetching(false));
   dispatch(setUsers(response.items));
   dispatch(setTotalUsersCount(response.totalCount));
 };
-
-/* export const requestUsersPage = (pageNumber, pageSize) => {
-  return (dispatch) => {
-    dispatch(setRequestedPage(pageNumber));
-    dispatch(setIsFetching(true));
-    usersAPI.getUsers(pageNumber, pageSize).then((data) => {
-      dispatch(setIsFetching(false));
-      dispatch(setUsers(data.items));
-    });
-  };
-}; */
 
 export const requestUsersPage = (pageNumber, pageSize) => async (dispatch) => {
   dispatch(setRequestedPage(pageNumber));
@@ -172,19 +167,6 @@ export const requestUsersPage = (pageNumber, pageSize) => async (dispatch) => {
   dispatch(setIsFetching(false));
   dispatch(setUsers(response.items));
 };
-
-/* export const follow = (userID) => {
-  return (dispatch) => {
-    dispatch(followingProgress(true, userID));
-    usersAPI.followUser(userID).then((data) => {
-      if (data.resultCode === 0)
-      {
-        dispatch(followButton(userID));
-        dispatch(followingProgress(false, userID));
-      }
-    });
-  };
-}; */
 
 export const follow = (userID) => async (dispatch) => {
   dispatch(followingProgress(true, userID));
@@ -195,19 +177,6 @@ export const follow = (userID) => async (dispatch) => {
   }
 };
 
-/* export const unFollow = (userID) => {
-  return (dispatch) => {
-    dispatch(followingProgress(true, userID));
-    usersAPI.unFollowUser(userID).then((data) => {
-      if (data.resultCode === 0)
-      {
-        dispatch(followButton(userID));
-        dispatch(followingProgress(false, userID));
-      }
-    });
-  };
-}; */
-
 export const unFollow = (userID) => async (dispatch) => {
   dispatch(followingProgress(true, userID));
   let response = await usersAPI.unFollowUser(userID);
@@ -215,6 +184,17 @@ export const unFollow = (userID) => async (dispatch) => {
     dispatch(followButton(userID));
     dispatch(followingProgress(false, userID));
   }
+};
+
+export const readyToMount = (requestedPage, pageSize) => (dispatch) => {
+  let users = dispatch(requestUsers(requestedPage, pageSize));
+  let usersPage = dispatch(requestUsersPage(requestedPage, pageSize));
+  Promise.all([
+    users,
+    usersPage,
+  ]).then(() => {
+    dispatch(componentReadyToMount());
+  });
 };
 
 /* Thunk creators  END */
@@ -243,6 +223,14 @@ export const getFetching = (state) => {
 
 export const getFollowingProgressState = (state) => {
   return state.forUsers.followingProgressState;
+};
+
+export const getItemsForPaginator = (state) => {
+  return state.forUsers.itemsForPaginator;
+};
+
+export const getComponentReadyToMountState = (state) => {
+  return state.forUsers.componentReadyToMount;
 };
 
 export default usersReducer;

@@ -12,11 +12,15 @@ import {
   getCurrentPage,
   getFetching,
   getFollowingProgressState,
+  getItemsForPaginator,
+  getComponentReadyToMountState,
+  readyToMount,
 } from '../../redux/Users-Reducer';
 import defaultImage from './../../assets/defaultImage.jpg';
 import Users from './Users';
 import Preloader from '../../assets/loaders/Preloader/Preloader';
 import { compose } from 'redux';
+import { isThrowStatement } from 'typescript';
 
 class UsersAPIComponent extends React.Component {
   // конструктор закоменчен, только потому что его не обязательно писать, т.к.
@@ -29,7 +33,7 @@ class UsersAPIComponent extends React.Component {
   componentDidMount () {
     let requestedPage = this.props.requestedPage;
     let pageSize = this.props.pageSize;
-    this.props.requestUsers(requestedPage, pageSize);
+    this.props.readyToMount(requestedPage, pageSize);
   }
 
   onPageChanged = (pageNumber) => {
@@ -38,6 +42,10 @@ class UsersAPIComponent extends React.Component {
   };
 
   render () {
+    /* if (!this.props.componentReadyToMount) {
+      return <Preloader />;
+    } */
+
     const UsersCalller = () => {
       return (
         <Users
@@ -50,6 +58,7 @@ class UsersAPIComponent extends React.Component {
           followingProgressState={this.props.followingProgressState}
           follow={this.props.follow}
           unFollow={this.props.unFollow}
+          itemsForPaginator={this.props.itemsForPaginator}
         />
       );
     };
@@ -65,6 +74,8 @@ let mapStateToProps = (state) => {
     requestedPage          : getCurrentPage(state),
     isFetching             : getFetching(state),
     followingProgressState : getFollowingProgressState(state),
+    itemsForPaginator      : getItemsForPaginator(state),
+    componentReadyToMount  : getComponentReadyToMountState(state),
   };
 };
 
@@ -86,6 +97,7 @@ let mapDispatchToProps = {
   requestUsersPage,
   follow,
   unFollow,
+  readyToMount,
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(UsersAPIComponent);
