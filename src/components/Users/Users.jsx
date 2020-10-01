@@ -1,4 +1,5 @@
 import React from 'react';
+import Paginator from '../../assets/Paginator/Paginator';
 import UserItem from './UserItem/UserItem';
 import styles from './Users.module.css';
 
@@ -29,20 +30,13 @@ const Users = (props) => {
 
   return (
     <div>
-      <div>
-        {pages.map((p) => {
-          return (
-            <span
-              className={props.requestedPage === p ? styles.selectedPage : ''}
-              onClick={(e) => {
-                props.onPageChanged(p);
-              }}
-              key={p}>
-              {p}
-            </span>
-          );
-        })}
-      </div>
+      <Paginator
+        pages={pages}
+        pagesCount={pagesCount}
+        itemsForPaginator={props.itemsForPaginator}
+        requestedPage={props.requestedPage}
+        onPageChanged={props.onPageChanged}
+      />
       <div className={styles.users_global}>
         <div>{user}</div>
       </div>
