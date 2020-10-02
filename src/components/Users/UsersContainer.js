@@ -41,15 +41,7 @@ class UsersAPIComponent extends React.Component {
   };
 
   render () {
-<<<<<<< HEAD
-    /* if (!this.props.componentReadyToMount) {
-      return <Preloader />;
-    } */
-
-    const UsersCalller = () => {
-=======
     const UsersCaller = () => {
->>>>>>> 0a8d4f77e18ee2bde1720b0e2a4abbe1980c5006
       return (
         <Users
           totalUsersCount={this.props.totalUsersCount}
@@ -59,13 +51,7 @@ class UsersAPIComponent extends React.Component {
           requestedPage={this.props.requestedPage}
           onPageChanged={this.onPageChanged}
           followingProgressState={this.props.followingProgressState}
-<<<<<<< HEAD
-          follow={this.props.follow}
-          unFollow={this.props.unFollow}
-          itemsForPaginator={this.props.itemsForPaginator}
-=======
           followUnfollow={this.props.followUnfollow}
->>>>>>> 0a8d4f77e18ee2bde1720b0e2a4abbe1980c5006
         />
       );
     };
@@ -102,13 +88,7 @@ let mapDispatchToProps = {
   followingProgress,
   requestUsers,
   requestUsersPage,
-<<<<<<< HEAD
-  follow,
-  unFollow,
-  readyToMount,
-=======
   followUnfollow,
->>>>>>> 0a8d4f77e18ee2bde1720b0e2a4abbe1980c5006
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(UsersAPIComponent);

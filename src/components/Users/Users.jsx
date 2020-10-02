@@ -23,18 +23,10 @@ const Users = (props) => {
   return (
     <div>
       <Paginator
-<<<<<<< HEAD
-        pages={pages}
-        pagesCount={pagesCount}
-        itemsForPaginator={props.itemsForPaginator}
-        requestedPage={props.requestedPage}
-        onPageChanged={props.onPageChanged}
-=======
         totalUsersCount={props.totalUsersCount}
         pageSize={props.pageSize}
         onPageChanged={props.onPageChanged}
         requestedPage={props.requestedPage}
->>>>>>> 0a8d4f77e18ee2bde1720b0e2a4abbe1980c5006
       />
       <div className={styles.users_global}>
         <div>{user}</div>

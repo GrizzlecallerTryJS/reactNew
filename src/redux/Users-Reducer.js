@@ -151,11 +151,7 @@ export const componentReadyToMount = () => {
 
 /* Thunk creators */
 
-<<<<<<< HEAD
 export const requestUsers = (requestedPage, pageSize) => async (dispatch) => {
-=======
-export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
->>>>>>> 0a8d4f77e18ee2bde1720b0e2a4abbe1980c5006
   dispatch(setIsFetching(true));
   dispatch(setRequestedPage(requestedPage));
   let response = await usersAPI.getUsers(requestedPage, pageSize);
@@ -172,11 +168,7 @@ export const requestUsersPage = (pageNumber, pageSize) => async (dispatch) => {
   dispatch(setUsers(response.items));
 };
 
-<<<<<<< HEAD
-export const follow = (userID) => async (dispatch) => {
-=======
 /* export const follow = (userID) => async (dispatch) => {
->>>>>>> 0a8d4f77e18ee2bde1720b0e2a4abbe1980c5006
   dispatch(followingProgress(true, userID));
   let response = await usersAPI.followUser(userID);
   if (response.resultCode === 0) {
