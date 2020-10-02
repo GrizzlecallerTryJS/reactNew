@@ -20,11 +20,19 @@ const Users = (props) => {
     );
   });
 
+  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+  let pages = [];
+
+  for (let i = 1; i <= pagesCount; i++) {
+    pages[i - 1] = i;
+  }
+
   return (
     <div>
       <Paginator
         totalUsersCount={props.totalUsersCount}
         pageSize={props.pageSize}
+        pages={pages}
         onPageChanged={props.onPageChanged}
         requestedPage={props.requestedPage}
       />

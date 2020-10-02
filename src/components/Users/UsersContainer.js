@@ -89,6 +89,7 @@ let mapDispatchToProps = {
   requestUsers,
   requestUsersPage,
   followUnfollow,
+  readyToMount,
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(UsersAPIComponent);
