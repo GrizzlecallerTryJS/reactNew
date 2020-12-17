@@ -2,13 +2,13 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import {
   followingProgress,
-  requestUsers,
+  /* requestUsers, */
   requestUsersPage,
   followUnfollow,
   getPageSize,
   getUsersOnPage,
   getTotalUsersCount,
-  getCurrentPage,
+  getActionPage,
   getFetching,
   getFollowingProgressState,
   getItemsForPaginator,
@@ -64,7 +64,7 @@ let mapStateToProps = (state) => {
     users                  : getUsersOnPage(state),
     pageSize               : getPageSize(state),
     totalUsersCount        : getTotalUsersCount(state),
-    requestedPage          : getCurrentPage(state),
+    requestedPage          : getActionPage(state),
     isFetching             : getFetching(state),
     followingProgressState : getFollowingProgressState(state),
     itemsForPaginator      : getItemsForPaginator(state),
@@ -86,7 +86,7 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = {
   followingProgress,
-  requestUsers,
+  /* requestUsers, */
   requestUsersPage,
   followUnfollow,
   readyToMount,

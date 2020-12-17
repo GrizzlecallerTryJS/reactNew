@@ -4,6 +4,8 @@ import UserItem from './UserItem/UserItem';
 import styles from './Users.module.css';
 
 const Users = (props) => {
+  console.log('users!!!');
+  console.log(props);
   let user = props.users.map((user) => {
     return (
       <UserItem
