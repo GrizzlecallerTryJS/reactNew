@@ -12,11 +12,12 @@ let initState = {
   users                  : [],
   pageSize               : 8,
   totalUsersCount        : 0,
-  currentPage            : 1,
+  defaultPage            : 1,
   isFetching             : false,
   followingProgressState : [],
   itemsForPaginator      : 10,
   componentReadyToMount  : false,
+  actionPage             : null,
 };
 
 const usersReducer = (state = initState, action) => {
@@ -45,7 +46,7 @@ const usersReducer = (state = initState, action) => {
   };
 
   let _setRequestedPage = (pageNumber) => {
-    stateCopy = { ...state, currentPage: pageNumber };
+    stateCopy = { ...state, actionPage: pageNumber };
   };
 
   let _setTotalUsersCount = (totalCount) => {
@@ -82,7 +83,7 @@ const usersReducer = (state = initState, action) => {
   } else if (action.type === SET_USERS) {
     _setUsers(action.users);
   } else if (action.type === SET_CURRENT_PAGE) {
-    _setRequestedPage(action.currentPage);
+    _setRequestedPage(action.pageNumber);
   } else if (action.type === SET_TOTAL_USERS_COUNT) {
     _setTotalUsersCount(action.totalUsersCount);
   } else if (action.type === TOGGLE_IS_FETCHING) {
@@ -114,8 +115,8 @@ export const setUsers = (newUsers) => {
 
 export const setRequestedPage = (pageNumber) => {
   return {
-    type        : SET_CURRENT_PAGE,
-    currentPage : pageNumber,
+    type       : SET_CURRENT_PAGE,
+    pageNumber : pageNumber,
   };
 };
 
@@ -151,14 +152,14 @@ export const componentReadyToMount = () => {
 
 /* Thunk creators */
 
-export const requestUsers = (requestedPage, pageSize) => async (dispatch) => {
+/* export const requestUsers = (requestedPage, pageSize) => async (dispatch) => {
   dispatch(setIsFetching(true));
   dispatch(setRequestedPage(requestedPage));
   let response = await usersAPI.getUsers(requestedPage, pageSize);
   dispatch(setIsFetching(false));
   dispatch(setUsers(response.items));
   dispatch(setTotalUsersCount(response.totalCount));
-};
+}; */
 
 export const requestUsersPage = (pageNumber, pageSize) => async (dispatch) => {
   dispatch(setRequestedPage(pageNumber));
@@ -166,6 +167,7 @@ export const requestUsersPage = (pageNumber, pageSize) => async (dispatch) => {
   let response = await usersAPI.getUsers(pageNumber, pageSize);
   dispatch(setIsFetching(false));
   dispatch(setUsers(response.items));
+  dispatch(setTotalUsersCount(response.totalCount));
 };
 
 /* export const follow = (userID) => async (dispatch) => {
@@ -198,10 +200,10 @@ export const followUnfollow = (userID, followed) => async (dispatch) => {
 };
 
 export const readyToMount = (requestedPage, pageSize) => (dispatch) => {
-  let users = dispatch(requestUsers(requestedPage, pageSize));
+  /* let users = dispatch(requestUsers(requestedPage, pageSize)); */
   let usersPage = dispatch(requestUsersPage(requestedPage, pageSize));
   Promise.all([
-    users,
+    /* users, */
     usersPage,
   ]).then(() => {
     dispatch(componentReadyToMount());
@@ -224,8 +226,8 @@ export const getTotalUsersCount = (state) => {
   return state.forUsers.totalUsersCount;
 };
 
-export const getCurrentPage = (state) => {
-  return state.forUsers.currentPage;
+export const getActionPage = (state) => {
+  return state.forUsers.actionPage;
 };
 
 export const getFetching = (state) => {
@@ -242,6 +244,10 @@ export const getItemsForPaginator = (state) => {
 
 export const getComponentReadyToMountState = (state) => {
   return state.forUsers.componentReadyToMount;
+};
+
+export const getDefaultPage = (state) => {
+  return state.forUsers.defaultPage;
 };
 
 export default usersReducer;
